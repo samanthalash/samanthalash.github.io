@@ -30,9 +30,9 @@ export const folderSections: FolderSection[] = [
     marginNote: "Landing page with portfolio introduction.",
     placeholderContent: {
       eyebrow: "Portfolio Home",
-      title: "Welcome to my portfolio",
+      title: "Welcome to my portfolio!",
       body:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "hello! please look at my projects, where I work across.",
       bullets: [],
       footer: "Home presentation layout.",
     },

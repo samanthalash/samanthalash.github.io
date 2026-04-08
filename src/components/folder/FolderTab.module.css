@@ -76,7 +76,8 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-medium);
   font-size: clamp(0.5rem, 0.58vw, 0.65rem);
   letter-spacing: 0.09em;
   text-transform: uppercase;
