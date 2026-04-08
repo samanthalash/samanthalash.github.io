@@ -1,7 +1,7 @@
 .scene {
   position: relative;
   min-height: 100vh;
-  padding: clamp(14px, 1.8vw, 24px);
+  padding: var(--scene-padding, 24px);
   overflow: hidden;
 }
 
@@ -29,6 +29,15 @@
   position: relative;
   z-index: 1;
   display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  gap: clamp(18px, 2.4vw, 32px);
   min-height: calc(100vh - clamp(28px, 3.6vw, 48px));
-  place-items: center;
+  align-items: center;
+  justify-items: center;
+}
+
+@media (max-width: 1180px) {
+  .composition {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,5 +1,13 @@
 export type FolderAccentStyle = "script" | "stamp" | "typewritten";
 
+export interface VisualSettings {
+  folderScale: number;
+  folderTilt: number;
+  scenePadding: number;
+  paperInset: number;
+  contentScale: number;
+}
+
 export interface FolderSection {
   id: "work" | "about" | "archive" | "experiments" | "contact";
   label: string;
@@ -18,6 +26,14 @@ export interface FolderSection {
 }
 
 export type FolderSectionId = FolderSection["id"];
+
+export const defaultVisualSettings: VisualSettings = {
+  folderScale: 1,
+  folderTilt: -0.55,
+  scenePadding: 24,
+  paperInset: 3.5,
+  contentScale: 1,
+};
 
 export const folderSections: FolderSection[] = [
   {
