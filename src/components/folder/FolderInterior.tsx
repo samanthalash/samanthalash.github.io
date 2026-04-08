@@ -13,8 +13,10 @@ export function FolderInterior({
   activeSectionId,
   isPending,
 }: FolderInteriorProps) {
+  const isHome = activeSection.id === "work";
+
   return (
-    <div className={styles.interiorFrame}>
+    <div className={styles.interiorFrame} data-home={isHome}>
       <div className={styles.sheetStack} aria-hidden="true">
         <span className={styles.sheetBack} />
         <span className={styles.sheetMid} />
@@ -26,7 +28,7 @@ export function FolderInterior({
         aria-labelledby={`tab-${activeSectionId}`}
         tabIndex={0}
         data-pending={isPending}
-        data-home={activeSection.id === "work"}
+        data-home={isHome}
         className={styles.paperSheet}
       >
         <ContentPanel activeSection={activeSection} />

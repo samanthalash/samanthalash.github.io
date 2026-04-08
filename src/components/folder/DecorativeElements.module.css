@@ -5,23 +5,15 @@
   color: rgb(42 31 35 / 0.9);
 }
 
-.homeBadge {
+.homeStampLogo {
   position: absolute;
   top: 7.6%;
   right: 5.2%;
-  display: grid;
-  place-items: center;
   width: clamp(62px, 7vw, 92px);
-  aspect-ratio: 1;
-  border: 2px solid rgb(39 39 39 / 0.96);
-  border-radius: 999px;
-  background: rgb(255 253 250 / 0.12);
-}
-
-.homeBadgeLogo {
-  width: 62%;
   height: auto;
-  color: var(--ink-soft);
+  object-fit: contain;
+  filter: saturate(0) brightness(0.2);
+  opacity: 0.96;
 }
 
 .clipLarge,

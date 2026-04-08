@@ -1,5 +1,5 @@
 import type { FolderSection } from "../../data/folderSections";
-import homeLogo from "../../assets/home-logo.svg";
+import stampLogo from "../../assets/stamp-logo.png";
 import styles from "./DecorativeElements.module.css";
 
 interface DecorativeElementsProps {
@@ -12,9 +12,7 @@ export function DecorativeElements({
   if (activeSection.id === "work") {
     return (
       <div className={styles.decorativeLayer} aria-hidden="true">
-        <div className={styles.homeBadge}>
-          <img src={homeLogo} alt="" className={styles.homeBadgeLogo} />
-        </div>
+        <img src={stampLogo} alt="" className={styles.homeStampLogo} />
       </div>
     );
   }
