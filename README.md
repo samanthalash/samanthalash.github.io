@@ -1,34 +1,32 @@
 # samanthalash.github.io
 
-HTML-first portfolio scaffold for a design website.
+React + Vite portfolio frontend built as a tactile archival folder interface.
 
 ## Structure
 
 ```text
 /
-├── index.html                 # Homepage
-├── about/                     # About page
-├── contact/                   # Contact page
-├── projects/                  # Work index + individual project pages
-├── assets/
-│   ├── css/                   # Global styles
-│   ├── js/                    # Light progressive enhancement
-│   ├── images/                # Public-facing image assets
-│   └── fonts/                 # Custom webfonts
-└── content/
-    ├── site/                  # Draft copy, notes, messaging
-    └── projects/              # Case study source content
+├── index.html                # Vite entry HTML
+├── src/
+│   ├── App.tsx               # Top-level folder state
+│   ├── data/                 # Typed tab and placeholder content config
+│   ├── components/folder/    # Folder shell, tabs, interior, and content system
+│   └── styles/               # Tokens and global styles
+├── about/                    # Existing static page
+├── contact/                  # Existing static page
+├── projects/                 # Existing static pages
+└── content/                  # Draft notes and future portfolio copy
 ```
 
-## Build Approach
+## Commands
 
-- Keep public pages as plain HTML so the site stays simple to edit and easy to host on GitHub Pages.
-- Store brand notes, homepage copy, and case study drafts in `content/` so planning material stays organized.
-- Add one folder per project inside `projects/` when you're ready to turn a case study into a public page.
+- `npm install`
+- `npm run dev`
+- `npm run build`
+- `npm run preview`
 
-## Start Here
+## Notes
 
-- Edit `index.html` for the homepage.
-- Update shared styles in `assets/css/main.css`.
-- Add project thumbnails and mockups to `assets/images/projects/`.
-- Draft portfolio copy in `content/site/` and `content/projects/`.
+- The root experience is now a React single-page folder interface with 5 tab dividers.
+- Portfolio content is driven from `src/data/folderSections.ts`.
+- Styling is split between shared design tokens and component-local CSS Modules to keep the realism maintainable.

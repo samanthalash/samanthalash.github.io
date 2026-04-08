@@ -1,0 +1,34 @@
+.scene {
+  position: relative;
+  min-height: 100vh;
+  padding: clamp(14px, 1.8vw, 24px);
+  overflow: hidden;
+}
+
+.surfaceGlow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 18%, rgb(255 255 255 / 0.95), transparent 24%),
+    radial-gradient(circle at 78% 28%, rgb(248 243 239 / 0.82), transparent 34%),
+    radial-gradient(circle at 55% 120%, rgb(232 226 220 / 0.5), transparent 42%),
+    linear-gradient(180deg, #fdfcf9 0%, #f5f2ec 46%, #f1ece5 100%);
+  filter: saturate(0.92);
+}
+
+.surfaceGlow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  background-image: var(--noise-texture);
+  mix-blend-mode: multiply;
+}
+
+.composition {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: calc(100vh - clamp(28px, 3.6vw, 48px));
+  place-items: center;
+}

@@ -1,0 +1,8 @@
+.tabRail {
+  position: absolute;
+  top: -4.6%;
+  left: 4.4%;
+  right: 4.4%;
+  height: 13%;
+  pointer-events: none;
+}
