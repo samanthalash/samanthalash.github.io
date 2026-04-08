@@ -1,20 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500&family=Luxurious+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap");
 
 :root {
-  --font-editorial: "Cormorant Garamond", "Times New Roman", serif;
-  --font-script: "Luxurious Script", "Brush Script MT", cursive;
+  --font-sans: "Neue Montreal", "PP Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-editorial: var(--font-sans);
+  --font-script: var(--font-sans);
   --font-mono: "IBM Plex Mono", "Courier New", monospace;
-  --font-body: "Instrument Sans", "Helvetica Neue", sans-serif;
+  --font-body: var(--font-sans);
+  --font-weight-light: 300;
+  --font-weight-medium: 500;
 
-  --folder-pink-highlight: #f1dce2;
-  --folder-pink: #e2c6d0;
-  --folder-pink-deep: #d3b0bc;
-  --paper-top: #fcf8f0;
-  --paper-base: #f4eddf;
-  --paper-aged: #f0e6d7;
-  --ink-soft: #342d2a;
-  --ink-muted: rgb(73 62 56 / 0.86);
-  --ink-faint: rgb(103 88 79 / 0.76);
+  --folder-pink-highlight: #ffd1e6;
+  --folder-pink: #ffc0de;
+  --folder-pink-deep: #f1aacd;
+  --paper-top: #fffdfa;
+  --paper-base: #fffdfa;
+  --paper-aged: #f6efe9;
+  --ink-soft: #272727;
+  --ink-muted: rgb(39 39 39 / 0.78);
+  --ink-faint: rgb(39 39 39 / 0.56);
+  --cement-light: #dfddd8;
+  --cement-mid: #cfcac4;
+  --cement-dark: #b9b3ac;
 
   --motion-medium: 460ms;
   --motion-slow: 620ms;

@@ -22,23 +22,19 @@ export type FolderSectionId = FolderSection["id"];
 export const folderSections: FolderSection[] = [
   {
     id: "work",
-    label: "Work",
+    label: "Home",
     shortCode: "SL-01",
-    annotation: "Primary selection of commissioned and self-initiated work.",
+    annotation: "Portfolio landing page.",
     accentStyle: "script",
-    stampText: "Active File",
-    marginNote: "Open first for current portfolio samples.",
+    stampText: "Home",
+    marginNote: "Landing page with portfolio introduction.",
     placeholderContent: {
-      eyebrow: "Portfolio Index",
-      title: "Selected Work Filed For Review",
+      eyebrow: "Portfolio Home",
+      title: "Welcome to my portfolio",
       body:
-        "This section is reserved for case studies, campaigns, printed matter, and visual systems. The layout is designed to hold image-led project summaries without changing the folder structure itself.",
-      bullets: [
-        "Featured projects with art direction and process notes",
-        "Expandable case study modules for future deep dives",
-        "Space for stills, captions, and tactile project metadata",
-      ],
-      footer: "Prepared for presentation copy and image sequencing.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      bullets: [],
+      footer: "Home presentation layout.",
     },
   },
   {

@@ -1,3 +1,5 @@
+import homeLogo from "../../assets/home-logo.svg";
+import paperclipImage from "../../assets/paperclip.png";
 import type { FolderSection } from "../../data/folderSections";
 import styles from "./ContentPanel.module.css";
 
@@ -7,6 +9,32 @@ interface ContentPanelProps {
 
 export function ContentPanel({ activeSection }: ContentPanelProps) {
   const { placeholderContent } = activeSection;
+  const isHome = activeSection.id === "work";
+
+  if (isHome) {
+    return (
+      <div className={`${styles.content} ${styles.homeContent}`}>
+        <h1 className={styles.homeTitle}>{placeholderContent.title}</h1>
+
+        <div className={styles.homeLogoWrap} aria-hidden="true">
+          <img src={homeLogo} alt="" className={styles.homeLogo} />
+        </div>
+
+        <aside className={styles.homeCardWrap}>
+          <div className={styles.homeCard}>
+            <p className={styles.homeCardName}>Samantha Lash</p>
+            <p className={styles.homeCardText}>{placeholderContent.body}</p>
+          </div>
+          <img
+            src={paperclipImage}
+            alt=""
+            className={styles.homePaperclip}
+            aria-hidden="true"
+          />
+        </aside>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.content}>

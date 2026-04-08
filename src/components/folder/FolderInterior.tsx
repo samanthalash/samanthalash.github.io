@@ -26,6 +26,7 @@ export function FolderInterior({
         aria-labelledby={`tab-${activeSectionId}`}
         tabIndex={0}
         data-pending={isPending}
+        data-home={activeSection.id === "work"}
         className={styles.paperSheet}
       >
         <ContentPanel activeSection={activeSection} />
