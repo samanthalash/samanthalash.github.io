@@ -3,7 +3,6 @@
   display: grid;
   height: 100%;
   grid-template-rows: auto 1fr auto;
-  font-size: calc(1rem * var(--content-scale, 1));
   padding: clamp(30px, 3vw, 44px) clamp(30px, 3vw, 46px) clamp(24px, 2.2vw, 34px);
   color: var(--ink-soft);
 }

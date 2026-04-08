@@ -1,10 +1,6 @@
 .interiorFrame {
   position: absolute;
-  inset:
-    var(--paper-inset-top, 18.2%)
-    var(--paper-inset-side, 3.4%)
-    var(--paper-inset-bottom, 4.6%)
-    var(--paper-inset-side, 3.6%);
+  inset: 18.2% 3.4% 4.6% 3.6%;
   border-radius: 16px 12px 18px 18px;
   background:
     linear-gradient(180deg, rgb(188 149 165 / 0.28), transparent 10%),

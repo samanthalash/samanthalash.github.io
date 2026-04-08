@@ -1,13 +1,9 @@
 .folderWrap {
   position: relative;
-  width: min(95vw, 1480px);
+  width: min(95vw, calc((100vh - clamp(56px, 8vh, 96px)) * 1.47), 1480px);
+  max-height: calc(100vh - clamp(56px, 8vh, 96px));
   aspect-ratio: 1.47;
-  transform:
-    translateX(1.2vw)
-    translateY(0.6vh)
-    rotate(var(--folder-tilt, -0.55deg))
-    scale(var(--folder-scale, 1));
-  transform-origin: center center;
+  transform: translateX(1.2vw) translateY(0.6vh) rotate(-0.55deg);
 }
 
 .shadowBase,
@@ -113,10 +109,6 @@
     width: min(96vw, 1100px);
     aspect-ratio: auto;
     min-height: 88vh;
-    transform:
-      translateX(0.3vw)
-      translateY(0.2vh)
-      rotate(var(--folder-tilt, -0.55deg))
-      scale(var(--folder-scale, 1));
+    transform: translateX(0.3vw) translateY(0.2vh);
   }
 }
