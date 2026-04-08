@@ -27,11 +27,8 @@ export function FolderTab({
       data-index={index}
       onClick={() => onSelect(section.id)}
     >
-      <span className={styles.shadow} aria-hidden="true" />
-      <span className={styles.paper} aria-hidden="true" />
-      <span className={styles.letterpress} aria-hidden="true" />
+      <span className={styles.tabBody} aria-hidden="true" />
       <span className={styles.label}>{section.label}</span>
-      <span className={styles.code}>{section.shortCode}</span>
     </button>
   );
 }
