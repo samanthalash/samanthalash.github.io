@@ -19,30 +19,12 @@ function FolderIcon() {
       {/* Tab / lid — rotates open on click */}
       <g className={styles.folderLid}>
         <path
-          d="M6,20 L6,10 Q6,6 10,6 L36,6 Q41,6 43,9 L48,20 Z"
-          fill="#f1aacd"
-        />
-        <path
-          d="M8,12 Q24,10 44,14 L44,17 Q24,13 8,15 Z"
-          fill="rgba(255,255,255,0.18)"
+          d="M11,20 L11,10 Q11,6 15,6 L41,6 Q46,6 48,9 L53,20 Z"
+          fill="#ffc0cf"
         />
       </g>
       {/* Folder body */}
       <rect x="6" y="18" width="84" height="62" rx="10" fill="#ffc0cf" />
-      {/* Body inner highlight streak */}
-      <path
-        d="M16,20 Q48,25 80,20 L80,28 Q48,35 16,28 Z"
-        fill="rgba(255,255,255,0.15)"
-      />
-      {/* Bottom shade for depth */}
-      <rect
-        x="6"
-        y="62"
-        width="84"
-        height="18"
-        fill="rgba(39,39,39,0.07)"
-        style={{ borderRadius: "0 0 10px 10px" }}
-      />
     </svg>
   );
 }
