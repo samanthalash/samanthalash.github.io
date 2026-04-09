@@ -35,10 +35,7 @@
   height: 100%;
   border-radius: 16px 16px 22px 22px;
   overflow: visible;
-  background:
-    linear-gradient(165deg, rgb(255 255 255 / 0.25), transparent 34%),
-    linear-gradient(180deg, rgb(255 255 255 / 0.12), transparent 24%),
-    linear-gradient(180deg, var(--folder-pink-highlight) 0%, var(--folder-pink) 48%, var(--folder-pink-deep) 100%);
+  background: var(--folder-pink);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.34),
     inset 0 -2px 6px rgb(39 39 39 / 0.1),
@@ -59,9 +56,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background:
-    linear-gradient(180deg, rgb(255 255 255 / 0.14), transparent 18%),
-    linear-gradient(90deg, rgb(255 255 255 / 0.04), transparent 26%, rgb(39 39 39 / 0.04) 72%, transparent 100%);
+  background: transparent;
 }
 
 .folderCover::after {

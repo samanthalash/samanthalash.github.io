@@ -9,12 +9,13 @@
   --font-weight-light: 300;
   --font-weight-medium: 500;
 
-  --folder-pink-highlight: #ffd1e6;
-  --folder-pink: #ffc0de;
+  --folder-pink-highlight: #ffc0cf;
+  --folder-pink: #ffc0cf;
   --folder-pink-deep: #f1aacd;
   --paper-top: #fffdfa;
   --paper-base: #fffdfa;
   --paper-aged: #f6efe9;
+  --site-background: #272727;
   --ink-soft: #272727;
   --ink-muted: rgb(39 39 39 / 0.78);
   --ink-faint: rgb(39 39 39 / 0.56);
