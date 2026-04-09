@@ -1,4 +1,6 @@
 .folderWrap {
+  --tab-height: clamp(30px, 9vw, 6px);
+  --tab-embed: clamp(0.15px, 0vw, 0px);
   position: relative;
   width: min(95vw, calc((100vh - clamp(56px, 8vh, 96px)) * 1.47), 1480px);
   max-height: calc(100vh - clamp(56px, 8vh, 96px));
@@ -13,7 +15,7 @@
 }
 
 .shadowBase {
-  inset: 5.6% 3.5% -5% 3%;
+  inset: calc(var(--tab-height) + 1.8%) 3.5% -5% 3%;
   border-radius: 32px;
   background: radial-gradient(circle at 50% 35%, rgb(39 39 39 / 0.22), rgb(39 39 39 / 0.06) 55%, transparent 74%);
   filter: blur(42px);
@@ -22,7 +24,7 @@
 }
 
 .shadowContact {
-  inset: 11% 5% -2% 5%;
+  inset: calc(var(--tab-height) + 6.5%) 5% -2% 5%;
   border-radius: 26px;
   background: linear-gradient(180deg, rgb(39 39 39 / 0.16), transparent 72%);
   filter: blur(11px);
@@ -31,15 +33,13 @@
 }
 
 .folderBody {
-  position: relative;
-  height: 100%;
-  border-radius: 16px 16px 22px 22px;
+  position: absolute;
+  inset: var(--tab-height) 0 0;
+  height: auto;
+  border-radius: 12px 12px 22px 22px;
   overflow: visible;
   background: var(--folder-pink);
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.34),
-    inset 0 -2px 6px rgb(39 39 39 / 0.1),
-    0 0 0 1px rgb(39 39 39 / 0.12);
+  box-shadow: inset 0 -2px 6px rgb(39 39 39 / 0.1);
 }
 
 .folderCover,
@@ -63,9 +63,8 @@
   content: "";
   position: absolute;
   inset: 2px;
-  border-radius: 15px 15px 20px 20px;
+  border-radius: 11px 11px 20px 20px;
   box-shadow:
-    inset 0 0 0 1px rgb(255 255 255 / 0.12),
     inset 0 22px 26px rgb(255 255 255 / 0.04);
 }
 
@@ -93,13 +92,14 @@
 
 .folderWear::after {
   box-shadow:
-    inset 0 0 0 1px rgb(255 255 255 / 0.08),
     inset 0 18px 22px rgb(255 255 255 / 0.05),
     inset 0 -12px 18px rgb(39 39 39 / 0.06);
 }
 
 @media (max-width: 900px) {
   .folderWrap {
+    --tab-height: clamp(64px, 12vw, 92px);
+    --tab-embed: clamp(6px, 1vw, 10px);
     width: min(96vw, 1100px);
     aspect-ratio: auto;
     min-height: 88vh;

@@ -39,7 +39,7 @@ export const folderSections: FolderSection[] = [
   },
   {
     id: "about",
-    label: "About",
+    label: "Creative direction",
     shortCode: "SL-02",
     annotation: "Biographical page, working approach, and studio orientation.",
     accentStyle: "typewritten",
@@ -60,7 +60,7 @@ export const folderSections: FolderSection[] = [
   },
   {
     id: "archive",
-    label: "Archive",
+    label: "Brand Identity",
     shortCode: "SL-03",
     annotation: "Older work, references, and filed fragments for slower browsing.",
     accentStyle: "stamp",
@@ -81,7 +81,7 @@ export const folderSections: FolderSection[] = [
   },
   {
     id: "experiments",
-    label: "Experiments",
+    label: "Strategy & Concept",
     shortCode: "SL-04",
     annotation: "Space for side studies, tests, and visual trials.",
     accentStyle: "script",

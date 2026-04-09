@@ -1,10 +1,15 @@
 .tabRail {
+  --tab-rail-inset: clamp(28px, 2.6vw, 38px);
   position: absolute;
-  top: -4%;
-  left: 3%;
-  height: 4%;
-  display: flex;
+  top: 0;
+  left: var(--tab-rail-inset);
+  right: var(--tab-rail-inset);
+  height: var(--tab-height);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   align-items: flex-end;
-  gap: 3px;
+  gap: clamp(0px, 0vw, 0px);
   pointer-events: none;
+  transform: translateY(calc(-100% + var(--tab-embed)));
+  z-index: 12;
 }

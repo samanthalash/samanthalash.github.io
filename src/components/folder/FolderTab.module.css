@@ -1,6 +1,7 @@
 .tab {
   position: relative;
-  width: clamp(58px, 7vw, 92px);
+  width: 100%;
+  min-width: 0;
   height: 100%;
   border: 0;
   padding: 0;
@@ -15,12 +16,8 @@
 }
 
 .tab[data-active="true"] {
-  transform: translateY(0);
+  transform: translateY(1px);
   z-index: 10;
-}
-
-.tab:hover:not([data-active="true"]) {
-  transform: translateY(-1px);
 }
 
 .tab:focus-visible {
@@ -36,13 +33,15 @@
 }
 
 .tabBody {
+  --tab-shoulder-width: clamp(50px, 1.1vw, 70px);
+  --tab-shoulder-height: clamp(40px, 100%, 20px);
   position: absolute;
-  inset: 0;
-  border-radius: 5px 5px 0 0;
+  inset: 0 calc(var(--tab-shoulder-width)*0.9) calc(var(--tab-embed) * -1);
+  border-radius: 26px 26px 0 0;
   background: var(--folder-pink-deep);
-  border: 1px solid rgb(120 82 98 / 0.26);
-  border-bottom: 1px solid rgb(120 82 98 / 0.1);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.16);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.16),
+    0 1px 0 rgb(120 82 98 / 0.08);
   filter: brightness(0.96);
 }
 
@@ -57,34 +56,67 @@
   pointer-events: none;
 }
 
+.tabBody::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--tab-shoulder-width) * -1);
+  right: calc(var(--tab-shoulder-width) * -1);
+  bottom: 0;
+  height: var(--tab-shoulder-height);
+  background: inherit;
+  border-radius: 18px 18px 0 0;
+  clip-path: polygon(
+  0 100%,
+  4% 99%,
+  8% 95%,
+  12% 82%,
+  16% 62%,
+  20% 40%,
+  24% 20%,
+  27% 8%,
+  30% 2%,
+  34% 0,
+  66% 0,
+  70% 2%,
+  73% 8%,
+  76% 20%,
+  80% 40%,
+  84% 62%,
+  88% 82%,
+  92% 95%,
+  96% 99%,
+  100% 100%
+);
+  pointer-events: none;
+}
+
 .tab[data-active="true"] .tabBody {
   background: var(--folder-pink);
-  border-color: rgb(120 82 98 / 0.2);
-  border-bottom: none;
   filter: none;
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.36),
-    -2px -3px 7px rgb(95 60 78 / 0.18),
-    2px -3px 7px rgb(95 60 78 / 0.18),
-    0 -1px 3px rgb(95 60 78 / 0.1);
+    -1px -2px 5px rgb(95 60 78 / 0.12),
+    1px -2px 5px rgb(95 60 78 / 0.12);
 }
 
 .label {
   position: absolute;
-  inset: 0;
+  inset: 0 0 calc(var(--tab-embed) * -1);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1;
   font-family: var(--font-body);
   font-weight: var(--font-weight-medium);
-  font-size: clamp(0.5rem, 0.58vw, 0.65rem);
-  letter-spacing: 0.09em;
+  font-size: clamp(0.5rem, 0.60vw, 0.74rem);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgb(58 40 48 / 0.6);
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
+  padding: clamp(10px, 1vw, 14px) clamp(10px, 1.1vw, 18px)
+    clamp(10px, 1vw, 14px);
 }
 
 .tab[data-active="true"] .label {
