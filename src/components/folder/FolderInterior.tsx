@@ -14,6 +14,7 @@ export function FolderInterior({
   isPending,
 }: FolderInteriorProps) {
   const isHome = activeSection.id === "work";
+  const allowsOverflow = isHome || activeSection.id === "about";
 
   return (
     <div className={styles.interiorFrame} data-home={isHome}>
@@ -29,6 +30,7 @@ export function FolderInterior({
         tabIndex={0}
         data-pending={isPending}
         data-home={isHome}
+        data-overflow={allowsOverflow}
         className={styles.paperSheet}
       >
         <ContentPanel activeSection={activeSection} />

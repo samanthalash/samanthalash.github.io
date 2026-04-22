@@ -2,18 +2,16 @@
   position: relative;
   display: grid;
   height: 100%;
-  grid-template-rows: auto 1fr auto;
-  padding: clamp(30px, 3vw, 44px) clamp(30px, 3vw, 46px) clamp(24px, 2.2vw, 34px);
   color: var(--ink-soft);
+}
+
+.content::before {
+  display: none;
 }
 
 .homeContent {
   overflow: hidden;
   padding: clamp(28px, 3vw, 40px);
-}
-
-.homeContent::before {
-  display: none;
 }
 
 .homeMonogram {
@@ -68,177 +66,155 @@
   filter: drop-shadow(0 8px 8px rgb(39 39 39 / 0.15));
 }
 
-.content::before {
-  display: none;
-}
-
-.header {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(180px, 280px);
-  gap: 24px;
-  align-items: start;
-  padding-bottom: 28px;
-}
-
-.eyebrow,
-.noteLabel,
-.headerMeta p:first-child {
-  margin: 0 0 10px;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-
-.title {
-  margin: 0;
-  max-width: 12ch;
-  font-family: var(--font-editorial);
-  font-weight: var(--font-weight-medium);
-  font-size: clamp(3rem, 4.8vw, 5.2rem);
-  line-height: 0.92;
-  letter-spacing: -0.03em;
-  color: rgb(38 31 28 / 0.96);
-}
-
-.headerMeta {
-  max-width: 28ch;
-  padding-top: 10px;
-  font-family: var(--font-body);
-  font-weight: var(--font-weight-light);
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--ink-muted);
-}
-
-.headerMeta p {
-  margin: 0 0 10px;
-}
-
-.body {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(250px, 0.74fr);
-  gap: clamp(24px, 3vw, 40px);
-  align-items: start;
-}
-
-.copyBlock {
-  max-width: 60ch;
-}
-
-.lede,
-.list,
-.noteBlock p,
-.footer p {
-  margin: 0;
-  font-family: var(--font-body);
-  font-weight: var(--font-weight-light);
-  font-size: clamp(1rem, 1.15vw, 1.1rem);
-  line-height: 1.8;
-  color: var(--ink-muted);
-}
-
-.list {
-  margin-top: 24px;
-  padding-left: 20px;
-}
-
-.list li + li {
-  margin-top: 10px;
-}
-
-.sidebar {
-  display: grid;
-  gap: 22px;
-  justify-items: end;
-}
-
-.placeholderPhoto {
-  position: relative;
-  width: min(100%, 250px);
-  aspect-ratio: 0.78;
-  border-radius: 4px;
-  background:
-    linear-gradient(180deg, rgb(222 227 228 / 0.85), rgb(195 203 209 / 0.9)),
-    linear-gradient(135deg, rgb(255 255 255 / 0.6), transparent);
-  box-shadow:
-    0 12px 18px rgb(92 85 70 / 0.18),
-    inset 0 0 0 8px rgb(250 246 239 / 0.85),
-    inset 0 0 0 9px rgb(161 150 131 / 0.14);
-  transform: rotate(-1.8deg);
+.creativeDirectionContent {
+  grid-template-columns: minmax(0, 1.12fr) minmax(340px, 0.92fr);
+  grid-template-rows: 1fr auto;
+  column-gap: clamp(30px, 4vw, 72px);
+  row-gap: clamp(20px, 2vw, 36px);
+  align-items: center;
+  padding: clamp(26px, 2.8vw, 40px) clamp(34px, 3.1vw, 52px)
+    clamp(30px, 2.8vw, 44px);
   overflow: hidden;
 }
 
-.placeholderPhoto::before {
-  content: "";
-  position: absolute;
-  inset: 12% 14%;
-  background:
-    linear-gradient(180deg, rgb(216 225 230 / 0.24), transparent 36%),
-    radial-gradient(circle at 55% 24%, rgb(255 255 255 / 0.7), transparent 20%),
-    linear-gradient(180deg, rgb(196 208 212 / 0.9), rgb(160 174 184 / 0.8));
+.creativePhotoCluster {
+  position: relative;
+  grid-row: 1 / span 2;
+  align-self: center;
+  width: min(100%, 660px);
+  aspect-ratio: 1.06;
 }
 
-.photoTape {
+.creativePhotoCard {
   position: absolute;
-  top: 10px;
-  left: 50%;
-  width: 76px;
-  height: 20px;
-  transform: translateX(-50%) rotate(3deg);
-  background: rgb(248 235 197 / 0.55);
-  box-shadow: 0 1px 1px rgb(94 80 56 / 0.06);
-}
-
-.photoInk {
-  position: absolute;
-  inset: auto 18px 18px auto;
-  font-family: var(--font-editorial);
-  font-weight: var(--font-weight-medium);
-  font-size: 2.3rem;
-  color: rgb(43 64 123 / 0.82);
-}
-
-.noteBlock {
-  width: min(100%, 250px);
-  padding: 18px 18px 20px;
-  border-radius: 4px;
-  background: rgb(248 241 225 / 0.74);
+  overflow: hidden;
+  background: rgb(255 252 247 / 0.98);
   box-shadow:
-    inset 0 0 0 1px rgb(148 133 112 / 0.12),
-    0 8px 12px rgb(98 85 64 / 0.06);
+    0 18px 28px rgb(39 39 39 / 0.18),
+    0 3px 8px rgb(39 39 39 / 0.12);
 }
 
-.noteBlock p + p {
-  margin-top: 8px;
+.creativePhotoCard img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.footer {
+.creativePhotoBillboard {
+  top: 5%;
+  left: 5%;
+  width: 57%;
+  aspect-ratio: 1518 / 1018;
+  transform: rotate(1.8deg);
+  z-index: 1;
+}
+
+.creativePhotoCyclist {
+  top: 10%;
+  left: 1%;
+  width: 58%;
+  aspect-ratio: 1422 / 958;
+  transform: rotate(4.2deg);
+  z-index: 2;
+}
+
+.creativePhotoBeach {
+  top: 14%;
+  left: 34%;
+  width: 51%;
+  aspect-ratio: 1740 / 1156;
+  transform: rotate(3.2deg);
+  z-index: 3;
+}
+
+.creativePhotoHero {
+  top: 8%;
+  left: 8%;
+  width: 52%;
+  aspect-ratio: 994 / 1494;
+  transform: rotate(-4.7deg);
+  z-index: 4;
+}
+
+.creativeCopyBlock {
+  align-self: center;
+  justify-self: end;
+  width: min(100%, 560px);
+  padding-top: clamp(10px, 2vw, 26px);
+  text-align: center;
+}
+
+.creativeTitle {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(2.55rem, 4.35vw, 4.65rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  color: rgb(39 39 39 / 0.98);
+}
+
+.creativeBody {
+  margin: clamp(22px, 2.6vw, 34px) auto 0;
+  max-width: 24.5ch;
+  font-family: var(--font-body);
+  font-size: clamp(1.08rem, 1.55vw, 1.32rem);
+  font-weight: var(--font-weight-light);
+  line-height: 1.47;
+  letter-spacing: -0.03em;
+  color: rgb(39 39 39 / 0.88);
+  text-wrap: pretty;
+}
+
+.creativeStampRow {
   display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  padding-top: 24px;
-  border-top: 1px solid rgb(140 122 102 / 0.14);
+  justify-content: flex-end;
+  align-items: end;
+  gap: clamp(10px, 1.1vw, 18px);
+  justify-self: end;
+  width: min(100%, 610px);
+  padding-bottom: 6px;
 }
 
-.footer p:last-child {
-  text-align: right;
+.creativeStamp {
+  width: min(23%, 128px);
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  opacity: 0.84;
+}
+
+.creativePaperclip {
+  position: absolute;
+  top: clamp(-34px, -2vw, -16px);
+  left: clamp(46px, 4vw, 72px);
+  width: clamp(74px, 7vw, 112px);
+  height: auto;
+  object-fit: contain;
+  transform: rotate(11deg);
+  z-index: 9;
+  pointer-events: none;
+  filter: drop-shadow(0 9px 10px rgb(39 39 39 / 0.17));
 }
 
 @media (max-width: 1180px) {
-  .title {
-    font-size: clamp(2.4rem, 5vw, 4.2rem);
+  .creativeDirectionContent {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.88fr);
+    column-gap: clamp(24px, 3vw, 42px);
+    padding-inline: clamp(24px, 2.6vw, 34px);
   }
 
-  .body {
-    grid-template-columns: 1fr;
+  .creativePhotoCluster {
+    width: min(100%, 560px);
   }
 
-  .sidebar {
-    justify-items: start;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: start;
+  .creativeCopyBlock {
+    width: min(100%, 460px);
+  }
+
+  .creativeStampRow {
+    width: min(100%, 480px);
   }
 }
 
@@ -263,5 +239,114 @@
     width: 72px;
     right: -7%;
     bottom: -18%;
+  }
+
+  .creativeDirectionContent {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    justify-items: center;
+    align-content: center;
+    gap: 18px;
+    padding: 26px 22px 28px;
+    overflow: auto;
+  }
+
+  .creativePhotoCluster {
+    grid-row: auto;
+    width: min(100%, 520px);
+    aspect-ratio: 1.04;
+  }
+
+  .creativeCopyBlock,
+  .creativeStampRow {
+    justify-self: center;
+    width: min(100%, 500px);
+  }
+
+  .creativeCopyBlock {
+    padding-top: 0;
+  }
+
+  .creativeBody {
+    max-width: 31ch;
+    font-size: clamp(1rem, 2.1vw, 1.12rem);
+  }
+
+  .creativeStampRow {
+    justify-content: center;
+    gap: 8px;
+    padding-bottom: 0;
+  }
+
+  .creativeStamp {
+    width: min(24%, 110px);
+  }
+
+  .creativePaperclip {
+    top: 12px;
+    left: 20px;
+    width: 82px;
+  }
+}
+
+@media (max-width: 640px) {
+  .creativeDirectionContent {
+    gap: 14px;
+    padding: 20px 16px 22px;
+  }
+
+  .creativePhotoCluster {
+    width: min(100%, 420px);
+    aspect-ratio: 1;
+  }
+
+  .creativePhotoBillboard {
+    top: 7%;
+    left: 6%;
+    width: 54%;
+  }
+
+  .creativePhotoCyclist {
+    top: 12%;
+    left: 2%;
+    width: 55%;
+  }
+
+  .creativePhotoBeach {
+    top: 16%;
+    left: 35%;
+    width: 49%;
+  }
+
+  .creativePhotoHero {
+    top: 10%;
+    left: 9%;
+    width: 50%;
+  }
+
+  .creativeTitle {
+    font-size: clamp(1.85rem, 7.4vw, 2.7rem);
+  }
+
+  .creativeBody {
+    max-width: 26ch;
+    margin-top: 16px;
+    font-size: 0.98rem;
+    line-height: 1.42;
+  }
+
+  .creativeStampRow {
+    width: 100%;
+    gap: 4px;
+  }
+
+  .creativeStamp {
+    width: min(24%, 88px);
+  }
+
+  .creativePaperclip {
+    top: 10px;
+    left: 14px;
+    width: 66px;
   }
 }
