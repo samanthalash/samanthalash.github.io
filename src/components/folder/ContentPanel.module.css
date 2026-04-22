@@ -67,9 +67,9 @@
 }
 
 .creativeDirectionContent {
-  grid-template-columns: minmax(0, 1.12fr) minmax(340px, 0.92fr);
+  grid-template-columns: minmax(0, 2.1fr) minmax(280px, 0.65fr);
   grid-template-rows: 1fr auto;
-  column-gap: clamp(30px, 4vw, 72px);
+  column-gap: clamp(16px, 2.4vw, 44px);
   row-gap: clamp(20px, 2vw, 36px);
   align-items: center;
   padding: clamp(26px, 2.8vw, 40px) clamp(34px, 3.1vw, 52px)
@@ -81,7 +81,7 @@
   position: relative;
   grid-row: 1 / span 2;
   align-self: center;
-  width: min(100%, 660px);
+  width: min(100%, 990px);
   aspect-ratio: 1.06;
 }
 
@@ -104,27 +104,27 @@
 .creativePhotoBillboard {
   top: 5%;
   left: 5%;
-  width: 57%;
+  width: 70%;
   aspect-ratio: 1518 / 1018;
-  transform: rotate(1.8deg);
+  transform: rotate(1.8deg) scale(1.25);
   z-index: 1;
 }
 
 .creativePhotoCyclist {
   top: 10%;
-  left: 1%;
-  width: 58%;
+  left: 20%;
+  width: 70%;
   aspect-ratio: 1422 / 958;
-  transform: rotate(4.2deg);
+  transform: rotate(-10deg) scale(1.25);
   z-index: 2;
 }
 
 .creativePhotoBeach {
   top: 14%;
-  left: 34%;
-  width: 51%;
+  left: 22%;
+  width: 68%;
   aspect-ratio: 1740 / 1156;
-  transform: rotate(3.2deg);
+  transform: rotate(3.2deg) scale(1.25);
   z-index: 3;
 }
 
@@ -133,33 +133,35 @@
   left: 8%;
   width: 52%;
   aspect-ratio: 994 / 1494;
-  transform: rotate(-4.7deg);
+  transform: rotate(-4.7deg) scale(1.25);
   z-index: 4;
 }
 
 .creativeCopyBlock {
   align-self: center;
-  justify-self: end;
+  justify-self: center;
   width: min(100%, 560px);
   padding-top: clamp(10px, 2vw, 26px);
-  text-align: center;
+  text-align: right;
+  transform: translateY(-4px);
 }
 
 .creativeTitle {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: clamp(2.55rem, 4.35vw, 4.65rem);
+  font-size: clamp(1rem, 2vw, 3.7rem);
   font-weight: 400;
   letter-spacing: -0.055em;
-  line-height: 0.95;
+  line-height: 0.7;
+  white-space: nowrap;
   color: rgb(39 39 39 / 0.98);
 }
 
 .creativeBody {
-  margin: clamp(22px, 2.6vw, 34px) auto 0;
-  max-width: 24.5ch;
+  margin: clamp(18px, 2.2vw, 28px) 0 0 auto;
+  max-width: 35ch;
   font-family: var(--font-body);
-  font-size: clamp(1.08rem, 1.55vw, 1.32rem);
+  font-size: clamp(1rem, 1vw, 1rem);
   font-weight: var(--font-weight-light);
   line-height: 1.47;
   letter-spacing: -0.03em;
@@ -171,50 +173,55 @@
   display: flex;
   justify-content: flex-end;
   align-items: end;
-  gap: clamp(10px, 1.1vw, 18px);
+  gap: 0;
   justify-self: end;
-  width: min(100%, 610px);
+  width: min(100%, 400px);
   padding-bottom: 6px;
+  transform: translateX(18px);
 }
 
 .creativeStamp {
-  width: min(23%, 128px);
+  width: min(60%, 160px);
   height: auto;
   object-fit: contain;
   mix-blend-mode: multiply;
   opacity: 0.84;
 }
 
+.creativeStamp + .creativeStamp {
+  margin-left: -42px;
+}
+
 .creativePaperclip {
   position: absolute;
-  top: clamp(-34px, -2vw, -16px);
-  left: clamp(46px, 4vw, 72px);
-  width: clamp(74px, 7vw, 112px);
+  top: 40px; 
+  left: -14.5px;
+  width: 70px;
   height: auto;
   object-fit: contain;
-  transform: rotate(11deg);
-  z-index: 9;
+  transform: rotate(240deg);
+  z-index: 20;
   pointer-events: none;
   filter: drop-shadow(0 9px 10px rgb(39 39 39 / 0.17));
 }
 
 @media (max-width: 1180px) {
   .creativeDirectionContent {
-    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.88fr);
-    column-gap: clamp(24px, 3vw, 42px);
+    grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.76fr);
+    column-gap: clamp(18px, 2vw, 30px);
     padding-inline: clamp(24px, 2.6vw, 34px);
   }
 
   .creativePhotoCluster {
-    width: min(100%, 560px);
+    width: min(100%, 840px);
   }
 
   .creativeCopyBlock {
-    width: min(100%, 460px);
+    width: min(100%, 420px);
   }
 
   .creativeStampRow {
-    width: min(100%, 480px);
+    width: min(100%, 420px);
   }
 }
 
@@ -253,7 +260,7 @@
 
   .creativePhotoCluster {
     grid-row: auto;
-    width: min(100%, 520px);
+    width: min(100%, 780px);
     aspect-ratio: 1.04;
   }
 
@@ -268,24 +275,29 @@
   }
 
   .creativeBody {
-    max-width: 31ch;
+    max-width: 34ch;
     font-size: clamp(1rem, 2.1vw, 1.12rem);
   }
 
   .creativeStampRow {
     justify-content: center;
-    gap: 8px;
+    gap: 0;
     padding-bottom: 0;
+    transform: translateX(12px);
   }
 
   .creativeStamp {
     width: min(24%, 110px);
   }
 
+  .creativeStamp + .creativeStamp {
+    margin-left: -30px;
+  }
+
   .creativePaperclip {
     top: 12px;
     left: 20px;
-    width: 82px;
+    width: 72px;
   }
 }
 
@@ -296,26 +308,26 @@
   }
 
   .creativePhotoCluster {
-    width: min(100%, 420px);
+    width: min(100%, 630px);
     aspect-ratio: 1;
   }
 
   .creativePhotoBillboard {
     top: 7%;
     left: 6%;
-    width: 54%;
+    width: 66%;
   }
 
   .creativePhotoCyclist {
     top: 12%;
     left: 2%;
-    width: 55%;
+    width: 66%;
   }
 
   .creativePhotoBeach {
     top: 16%;
-    left: 35%;
-    width: 49%;
+    left: 18%;
+    width: 64%;
   }
 
   .creativePhotoHero {
@@ -325,11 +337,11 @@
   }
 
   .creativeTitle {
-    font-size: clamp(1.85rem, 7.4vw, 2.7rem);
+    font-size: clamp(1.55rem, 6.2vw, 2.2rem);
   }
 
   .creativeBody {
-    max-width: 26ch;
+    max-width: 30ch;
     margin-top: 16px;
     font-size: 0.98rem;
     line-height: 1.42;
@@ -337,16 +349,21 @@
 
   .creativeStampRow {
     width: 100%;
-    gap: 4px;
+    gap: 0;
+    transform: translateX(8px);
   }
 
   .creativeStamp {
     width: min(24%, 88px);
   }
 
+  .creativeStamp + .creativeStamp {
+    margin-left: -22px;
+  }
+
   .creativePaperclip {
     top: 10px;
     left: 14px;
-    width: 66px;
+    width: 72px;
   }
 }
