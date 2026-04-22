@@ -64,11 +64,11 @@ export const folderSections: FolderSection[] = [
     marginNote: "For catalogued fragments, references, and ephemera.",
     placeholderContent: {
       eyebrow: "Campaign Study",
-      title: "LEVI'S CAMPAIGN",
+      title: "HUNTER CAMPAIGN",
       body:
-        "Fit For Wherever is a campaign concept developed for Levi's, targeting the digital nomad lifestyle. The creative idea: wherever life takes you, denim is already there. In an era where travel is increasingly performed for an audience, the campaign leans into authenticity, positioning Levi's jeans as more than clothing, but a dependable, grounding companion through the unpredictable",
+        "A conceptual campaign for Hunter Wellington, built around a single creative constraint: sell the boot without showing it. Rooted in the insight that Y2K's comeback has cemented the Wellington as a festival essential for Gen Z, the visual tells the story entirely through context — a flatlay of festival essentials laid out on grass, the boots absent. The red props bring the frame back to Hunter's iconic brand colour, making the missing product impossible to forget.",
       bullets: [],
-      footer: "Levi's campaign concept sheet.",
+      footer: "Hunter Wellington campaign concept sheet.",
     },
   },
   {

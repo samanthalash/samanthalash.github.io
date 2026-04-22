@@ -77,6 +77,10 @@
   overflow: hidden;
 }
 
+.brandIdentityContent {
+  grid-template-columns: minmax(0, 1.95fr) minmax(300px, 0.78fr);
+}
+
 .creativePhotoCluster {
   position: relative;
   grid-row: 1 / span 2;
@@ -108,6 +112,39 @@
   object-fit: cover;
 }
 
+.brandIdentityPhotoCluster {
+  width: min(100%, 950px);
+  aspect-ratio: 1.04;
+}
+
+.brandIdentityPhotoCard img {
+  object-position: center;
+}
+
+.brandIdentityPhotoBackdrop {
+  --photo-top: 4  %;
+  --photo-left: 3%;
+  --photo-width: 80%;
+  --photo-aspect: 1490 / 996;
+  --photo-shift-x: 0%;
+  --photo-shift-y: 0%;
+  --photo-rotate: -5deg;
+  --photo-scale: 1.1;
+  --photo-layer: 1;
+}
+
+.brandIdentityPhotoTop {
+  --photo-top: 3%;
+  --photo-left: 0%;
+  --photo-width: 70%;
+  --photo-aspect: 1130 / 1470;
+  --photo-shift-x: 0%;
+  --photo-shift-y: 0%;
+  --photo-rotate: 4.5deg;
+  --photo-scale: 1.08;
+  --photo-layer: 2;
+}
+
 /* Adjust each photo by changing these vars instead of rewriting the card rule. */
 .creativePhotoBillboard {
   --photo-top: 5%;
@@ -135,7 +172,7 @@
 
 .creativePhotoBeach {
   --photo-top: 14%;
-  --photo-left: 1%;
+  --photo-left: 3%;
   --photo-width: 68%;
   --photo-aspect: 1740 / 1156;
   --photo-shift-x: 0%;
@@ -166,6 +203,10 @@
   transform: translateY(-4px);
 }
 
+.brandIdentityCopyBlock {
+  width: min(100%, 580px);
+}
+
 .creativeTitle {
   margin: 0;
   font-family: var(--font-sans);
@@ -187,6 +228,10 @@
   letter-spacing: -0.03em;
   color: rgb(39 39 39 / 0.88);
   text-wrap: pretty;
+}
+
+.brandIdentityBody {
+  max-width: 38ch;
 }
 
 .creativeStampRow {
@@ -225,6 +270,13 @@
   filter: drop-shadow(0 9px 10px rgb(39 39 39 / 0.17));
 }
 
+.brandIdentityPaperclip {
+  top: 40px;
+  left: -25px;
+  width: 70px;
+  transform: rotate(270deg);
+}
+
 @media (max-width: 1180px) {
   .creativeDirectionContent {
     grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.76fr);
@@ -236,8 +288,20 @@
     width: min(100%, 840px);
   }
 
+  .brandIdentityContent {
+    grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.84fr);
+  }
+
+  .brandIdentityPhotoCluster {
+    width: min(100%, 820px);
+  }
+
   .creativeCopyBlock {
     width: min(100%, 420px);
+  }
+
+  .brandIdentityCopyBlock {
+    width: min(100%, 460px);
   }
 
   .creativeStampRow {
@@ -284,10 +348,31 @@
     aspect-ratio: 1.04;
   }
 
+  .brandIdentityPhotoCluster {
+    width: min(100%, 760px);
+    aspect-ratio: 1;
+  }
+
+  .brandIdentityPhotoBackdrop {
+    --photo-top: 18%;
+    --photo-left: 4%;
+    --photo-width: 74%;
+  }
+
+  .brandIdentityPhotoTop {
+    --photo-top: 4%;
+    --photo-left: 38%;
+    --photo-width: 40%;
+  }
+
   .creativeCopyBlock,
   .creativeStampRow {
     justify-self: center;
     width: min(100%, 500px);
+  }
+
+  .brandIdentityCopyBlock {
+    width: min(100%, 560px);
   }
 
   .creativeCopyBlock {
@@ -319,6 +404,12 @@
     left: 20px;
     width: 72px;
   }
+
+  .brandIdentityPaperclip {
+    top: 12px;
+    left: 20px;
+    width: 72px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -330,6 +421,23 @@
   .creativePhotoCluster {
     width: min(100%, 630px);
     aspect-ratio: 1;
+  }
+
+  .brandIdentityPhotoCluster {
+    width: min(100%, 610px);
+    aspect-ratio: 1.02;
+  }
+
+  .brandIdentityPhotoBackdrop {
+    --photo-top: 20%;
+    --photo-left: 4%;
+    --photo-width: 76%;
+  }
+
+  .brandIdentityPhotoTop {
+    --photo-top: 6%;
+    --photo-left: 41%;
+    --photo-width: 38%;
   }
 
   .creativePhotoBillboard {
@@ -382,6 +490,12 @@
   }
 
   .creativePaperclip {
+    top: 10px;
+    left: 14px;
+    width: 72px;
+  }
+
+  .brandIdentityPaperclip {
     top: 10px;
     left: 14px;
     width: 72px;
