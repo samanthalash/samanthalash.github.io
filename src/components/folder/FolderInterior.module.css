@@ -48,7 +48,7 @@
   overflow: hidden;
   border-radius: 12px 10px 16px 16px;
   background: #f5f0e8;
-  box-shadow: 0 12px 28px rgb(39 39 39 / 0.12);
+  box-shadow: 0 12px 28px rgb(39 39 39 / 0.17);
   transition:
     transform var(--motion-slow) var(--ease-paper),
     box-shadow var(--motion-slow) var(--ease-paper),

@@ -14,7 +14,8 @@ export function FolderInterior({
   isPending,
 }: FolderInteriorProps) {
   const isHome = activeSection.id === "work";
-  const allowsOverflow = isHome || activeSection.id === "about";
+  const usesPhotoTemplate = activeSection.id !== "work";
+  const allowsOverflow = isHome || usesPhotoTemplate;
 
   return (
     <div className={styles.interiorFrame} data-home={isHome}>

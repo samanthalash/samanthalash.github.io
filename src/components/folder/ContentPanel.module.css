@@ -87,11 +87,18 @@
 
 .creativePhotoCard {
   position: absolute;
+  top: var(--photo-top, 0);
+  left: var(--photo-left, 0);
+  width: var(--photo-width, 50%);
+  aspect-ratio: var(--photo-aspect, 1);
+  z-index: var(--photo-layer, 1);
   overflow: hidden;
   background: rgb(255 252 247 / 0.98);
   box-shadow:
-    0 18px 28px rgb(39 39 39 / 0.18),
-    0 3px 8px rgb(39 39 39 / 0.12);
+    0 18px 28px rgb(39 39 39 / 0.23),
+    0 3px 8px rgb(39 39 39 / 0.15);
+  transform: translate(var(--photo-shift-x, 0), var(--photo-shift-y, 0))
+    rotate(var(--photo-rotate, 0deg)) scale(var(--photo-scale, 1));
 }
 
 .creativePhotoCard img {
@@ -101,40 +108,53 @@
   object-fit: cover;
 }
 
+/* Adjust each photo by changing these vars instead of rewriting the card rule. */
 .creativePhotoBillboard {
-  top: 5%;
-  left: 5%;
-  width: 70%;
-  aspect-ratio: 1518 / 1018;
-  transform: rotate(1.8deg) scale(1.25);
-  z-index: 1;
+  --photo-top: 5%;
+  --photo-left: 5%;
+  --photo-width: 70%;
+  --photo-aspect: 1518 / 1018;
+  --photo-shift-x: 0%;
+  --photo-shift-y: 0%;
+  --photo-rotate: 1.8deg;
+  --photo-scale: 1.25;
+  --photo-layer: 1;
 }
 
 .creativePhotoCyclist {
-  top: 10%;
-  left: 20%;
-  width: 70%;
-  aspect-ratio: 1422 / 958;
-  transform: rotate(-10deg) scale(1.25);
-  z-index: 2;
+  --photo-top: 10%;
+  --photo-left: 5%;
+  --photo-width: 70%;
+  --photo-aspect: 1422 / 958;
+  --photo-shift-x: 0%;
+  --photo-shift-y: 0%;
+  --photo-rotate: -10deg;
+  --photo-scale: 1.25;
+  --photo-layer: 2;
 }
 
 .creativePhotoBeach {
-  top: 14%;
-  left: 22%;
-  width: 68%;
-  aspect-ratio: 1740 / 1156;
-  transform: rotate(3.2deg) scale(1.25);
-  z-index: 3;
+  --photo-top: 14%;
+  --photo-left: 17%;
+  --photo-width: 68%;
+  --photo-aspect: 1740 / 1156;
+  --photo-shift-x: 0%;
+  --photo-shift-y: 0%;
+  --photo-rotate: 3.2deg;
+  --photo-scale: 1.25;
+  --photo-layer: 3;
 }
 
 .creativePhotoHero {
-  top: 8%;
-  left: 8%;
-  width: 52%;
-  aspect-ratio: 994 / 1494;
-  transform: rotate(-4.7deg) scale(1.25);
-  z-index: 4;
+  --photo-top: 8%;
+  --photo-left: 8%;
+  --photo-width: 52%;
+  --photo-aspect: 994 / 1494;
+  --photo-shift-x: 0%;
+  --photo-shift-y: 0%;
+  --photo-rotate: -4.7deg;
+  --photo-scale: 1.25;
+  --photo-layer: 4;
 }
 
 .creativeCopyBlock {
@@ -177,7 +197,7 @@
   justify-self: end;
   width: min(100%, 400px);
   padding-bottom: 6px;
-  transform: translateX(18px);
+  transform: translate(30px, 10px);
 }
 
 .creativeStamp {
@@ -283,7 +303,7 @@
     justify-content: center;
     gap: 0;
     padding-bottom: 0;
-    transform: translateX(12px);
+    transform: translate(20px, 7px);
   }
 
   .creativeStamp {
@@ -313,27 +333,27 @@
   }
 
   .creativePhotoBillboard {
-    top: 7%;
-    left: 6%;
-    width: 66%;
+    --photo-top: 7%;
+    --photo-left: 6%;
+    --photo-width: 66%;
   }
 
   .creativePhotoCyclist {
-    top: 12%;
-    left: 2%;
-    width: 66%;
+    --photo-top: 12%;
+    --photo-left: 2%;
+    --photo-width: 66%;
   }
 
   .creativePhotoBeach {
-    top: 16%;
-    left: 18%;
-    width: 64%;
+    --photo-top: 16%;
+    --photo-left: 18%;
+    --photo-width: 64%;
   }
 
   .creativePhotoHero {
-    top: 10%;
-    left: 9%;
-    width: 50%;
+    --photo-top: 10%;
+    --photo-left: 9%;
+    --photo-width: 50%;
   }
 
   .creativeTitle {
@@ -350,7 +370,7 @@
   .creativeStampRow {
     width: 100%;
     gap: 0;
-    transform: translateX(8px);
+    transform: translate(16px, 5px);
   }
 
   .creativeStamp {

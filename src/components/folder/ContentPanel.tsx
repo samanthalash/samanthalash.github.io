@@ -20,7 +20,7 @@ interface ContentPanelProps {
 export function ContentPanel({ activeSection }: ContentPanelProps) {
   const { placeholderContent } = activeSection;
   const isHome = activeSection.id === "work";
-  const isCreativeDirection = activeSection.id === "about";
+  const usesCreativeTemplate = activeSection.id !== "work";
 
   if (isHome) {
     return (
@@ -56,7 +56,7 @@ export function ContentPanel({ activeSection }: ContentPanelProps) {
     );
   }
 
-  if (isCreativeDirection) {
+  if (usesCreativeTemplate) {
     return (
       <>
         <div className={`${styles.content} ${styles.creativeDirectionContent}`}>
