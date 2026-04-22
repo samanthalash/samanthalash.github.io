@@ -69,12 +69,7 @@
 }
 
 .content::before {
-  content: "";
-  position: absolute;
-  inset: 18px 22px;
-  border: 1px solid rgb(136 117 99 / 0.1);
-  border-radius: 8px;
-  pointer-events: none;
+  display: none;
 }
 
 .header {
