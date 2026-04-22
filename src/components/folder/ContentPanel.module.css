@@ -135,7 +135,7 @@
 
 .creativePhotoBeach {
   --photo-top: 14%;
-  --photo-left: 17%;
+  --photo-left: 1%;
   --photo-width: 68%;
   --photo-aspect: 1740 / 1156;
   --photo-shift-x: 0%;
@@ -197,7 +197,7 @@
   justify-self: end;
   width: min(100%, 400px);
   padding-bottom: 6px;
-  transform: translate(30px, 10px);
+  transform: translateX(18px);
 }
 
 .creativeStamp {
@@ -303,7 +303,7 @@
     justify-content: center;
     gap: 0;
     padding-bottom: 0;
-    transform: translate(20px, 7px);
+    transform: translateX(12px);
   }
 
   .creativeStamp {
@@ -370,7 +370,7 @@
   .creativeStampRow {
     width: 100%;
     gap: 0;
-    transform: translate(16px, 5px);
+    transform: translateX(8px);
   }
 
   .creativeStamp {
