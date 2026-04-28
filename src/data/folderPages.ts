@@ -2,6 +2,10 @@ import conceptStampImage from "../assets/creative-direction/concept.png";
 import copyWritingStampImage from "../assets/creative-direction/copy-writing.png";
 import graphicDesignStampImage from "../assets/creative-direction/graphic-design.png";
 import nylonPhotoImage from "../assets/creative-direction/nylon_photo.png";
+import laManuelaCoverImage from "../../inspo/la manuela/lamanu_firstlayer.png";
+import laManuelaVisionImage from "../../inspo/la manuela/lamanu_second.png";
+import laManuelaMeaningImage from "../../inspo/la manuela/lamanu_third.png";
+import laManuelaMoodboardImage from "../../inspo/la manuela/lamanu_fourth.png";
 import type { FolderSection, FolderSectionId } from "./folderSections";
 
 export type ContentPanelLayout = "default" | "brandIdentity";
@@ -17,7 +21,7 @@ export interface FolderPageConfig {
   titleWhiteSpace?: "normal" | "nowrap" | "pre-line";
   titleLineHeight?: string;
   titleTextAlign?: "left" | "center" | "right";
-  titleMarginRight?: string;
+  titleMaxWidth?: string;
   bodyWidth?: string;
   bodyMaxWidth?: string;
   bodyMarginTop?: string;
@@ -26,6 +30,8 @@ export interface FolderPageConfig {
   bodyLetterSpacing?: string;
   bodyTextAlign?: "left" | "center" | "right";
   brandIdentityBackdropImageSrc?: string;
+  brandIdentityStackImageSrcs?: string[];
+  brandIdentityStampLabels?: string[];
   levelBrandIdentityBackdrop?: boolean;
   hideBrandIdentityTopPhoto?: boolean;
   omitPlanningStamp?: boolean;
@@ -122,7 +128,7 @@ export const folderPagesBySectionId: Partial<
       copyBlockWidth: "min(100%, 580px)",
       titleWhiteSpace: "nowrap",
       titleTextAlign: "right",
-      titleMarginRight: "clamp(18px, 2.8vw, 42px)",
+      titleMaxWidth: "38ch",
       bodyWidth: "auto",
       bodyMaxWidth: "38ch",
       stampImageSrcs: [
@@ -130,6 +136,32 @@ export const folderPagesBySectionId: Partial<
         graphicDesignStampImage,
         copyWritingStampImage,
       ],
+    },
+    {
+      id: "la-manuela",
+      referenceName: "LA MANUELA",
+      aliases: ["La Manuela", "La Manuela Rebrand", "La Ronda"],
+      sectionId: "archive",
+      layout: "brandIdentity",
+      content: {
+        eyebrow: "Brand Strategy",
+        title: "LA MANUELA",
+        body:
+          "A brand strategy project for La Manuela, a historic Madrid cafe with strong local roots but an undefined identity. Rooted in the insight that modern social life lacks spaces for meaningful, offline connection, the rebrand repositions the venue as La Ronda — a culturally grounded concept built around analogue play and intentional togetherness. The project encompassed full brand development: naming, positioning, brand pillars, tone of voice, and visual identity.",
+        bullets: [],
+        footer: "La Manuela rebrand concept sheet.",
+      },
+      copyBlockWidth: "min(100%, 620px)",
+      bodyWidth: "100%",
+      bodyMaxWidth: "44ch",
+      bodyTextAlign: "right",
+      brandIdentityStackImageSrcs: [
+        laManuelaCoverImage,
+        laManuelaVisionImage,
+        laManuelaMeaningImage,
+        laManuelaMoodboardImage,
+      ],
+      brandIdentityStampLabels: ["Strategy", "Pitch\nDeck", "Visual\nIdentity"],
     },
   ],
   experiments: [

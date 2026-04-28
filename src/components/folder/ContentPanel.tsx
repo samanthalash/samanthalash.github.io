@@ -18,6 +18,7 @@ import type { FolderSection } from "../../data/folderSections";
 import styles from "./ContentPanel.module.css";
 
 interface ContentPanelProps {
+  pageId?: string;
   activeSection: FolderSection;
   content?: FolderSection["placeholderContent"];
   layoutVariant?: ContentPanelLayout;
@@ -25,7 +26,7 @@ interface ContentPanelProps {
   titleWhiteSpace?: CSSProperties["whiteSpace"];
   titleLineHeight?: string;
   titleTextAlign?: "left" | "center" | "right";
-  titleMarginRight?: string;
+  titleMaxWidth?: string;
   bodyWidth?: string;
   bodyMaxWidth?: string;
   bodyMarginTop?: string;
@@ -34,6 +35,8 @@ interface ContentPanelProps {
   bodyLetterSpacing?: string;
   bodyTextAlign?: "left" | "center" | "right";
   brandIdentityBackdropImageSrc?: string;
+  brandIdentityStackImageSrcs?: string[];
+  brandIdentityStampLabels?: string[];
   levelBrandIdentityBackdrop?: boolean;
   hideBrandIdentityTopPhoto?: boolean;
   omitPlanningStamp?: boolean;
@@ -41,6 +44,7 @@ interface ContentPanelProps {
 }
 
 export function ContentPanel({
+  pageId,
   activeSection,
   content,
   layoutVariant = "default",
@@ -48,7 +52,7 @@ export function ContentPanel({
   titleWhiteSpace,
   titleLineHeight,
   titleTextAlign,
-  titleMarginRight,
+  titleMaxWidth,
   bodyWidth,
   bodyMaxWidth,
   bodyMarginTop,
@@ -57,6 +61,8 @@ export function ContentPanel({
   bodyLetterSpacing,
   bodyTextAlign,
   brandIdentityBackdropImageSrc,
+  brandIdentityStackImageSrcs,
+  brandIdentityStampLabels,
   levelBrandIdentityBackdrop = false,
   hideBrandIdentityTopPhoto = false,
   omitPlanningStamp = false,
@@ -134,12 +140,13 @@ export function ContentPanel({
       ? { width: copyBlockWidth }
       : undefined;
     const titleStyle: CSSProperties | undefined =
-      titleWhiteSpace || titleLineHeight || titleTextAlign || titleMarginRight
+      titleWhiteSpace || titleLineHeight || titleTextAlign || titleMaxWidth
         ? {
             whiteSpace: titleWhiteSpace,
             lineHeight: titleLineHeight,
             textAlign: titleTextAlign,
-            marginRight: titleMarginRight,
+            maxWidth: titleMaxWidth,
+            marginLeft: titleMaxWidth ? "auto" : undefined,
           }
         : undefined;
     const bodyStyle: CSSProperties | undefined =
@@ -163,28 +170,43 @@ export function ContentPanel({
 
     return (
       <>
-        <div className={contentClassName}>
+        <div className={contentClassName} data-page-id={pageId}>
           <div className={photoClusterClassName} aria-hidden="true">
             {isBrandIdentity ? (
-              <>
-                <div
-                  className={`${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityPhotoBackdrop}${
-                    levelBrandIdentityBackdrop
-                      ? ` ${styles.levelBrandIdentityPhotoBackdrop}`
-                      : ""
-                  }`}
-                >
-                  <img src={brandIdentityBackdropImage} alt="" />
+              brandIdentityStackImageSrcs ? (
+                <div className={styles.brandIdentityImageStack}>
+                  {brandIdentityStackImageSrcs.map((imageSrc, index) => (
+                    <div
+                      className={`${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityStackCard} ${
+                        styles[`brandIdentityStackCard${index + 1}`]
+                      }`}
+                      key={imageSrc}
+                    >
+                      <img src={imageSrc} alt="" />
+                    </div>
+                  ))}
                 </div>
-
-                {!hideBrandIdentityTopPhoto && (
+              ) : (
+                <>
                   <div
-                    className={`${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityPhotoTop}`}
+                    className={`${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityPhotoBackdrop}${
+                      levelBrandIdentityBackdrop
+                        ? ` ${styles.levelBrandIdentityPhotoBackdrop}`
+                        : ""
+                    }`}
                   >
-                    <img src={hunterFlatlayImage} alt="" />
+                    <img src={brandIdentityBackdropImage} alt="" />
                   </div>
-                )}
-              </>
+
+                  {!hideBrandIdentityTopPhoto && (
+                    <div
+                      className={`${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityPhotoTop}`}
+                    >
+                      <img src={hunterFlatlayImage} alt="" />
+                    </div>
+                  )}
+                </>
+              )
             ) : (
               <>
                 <div
@@ -223,22 +245,36 @@ export function ContentPanel({
             </p>
           </div>
 
-          <div className={styles.creativeStampRow} aria-hidden="true">
-            {stampImages.map((stampImage) => (
-              <img
-                src={stampImage}
-                alt=""
-                className={styles.creativeStamp}
-                key={stampImage}
-              />
-            ))}
-          </div>
+          {brandIdentityStampLabels ? (
+            <div
+              className={styles.brandIdentityTextStampRow}
+              aria-hidden="true"
+            >
+              {brandIdentityStampLabels.map((stampLabel) => (
+                <span className={styles.brandIdentityTextStamp} key={stampLabel}>
+                  {stampLabel}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <div className={styles.creativeStampRow} aria-hidden="true">
+              {stampImages.map((stampImage) => (
+                <img
+                  src={stampImage}
+                  alt=""
+                  className={styles.creativeStamp}
+                  key={stampImage}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         <img
           src={paperclipImage}
           alt=""
           className={paperclipClassName}
+          data-page-id={pageId}
           aria-hidden="true"
         />
       </>

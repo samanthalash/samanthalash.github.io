@@ -53,6 +53,7 @@ export function FolderInterior({
 
       return (
         <ContentPanel
+          pageId={page.id}
           activeSection={pageSection}
           content={page.content}
           layoutVariant={page.layout}
@@ -60,7 +61,7 @@ export function FolderInterior({
           titleWhiteSpace={page.titleWhiteSpace}
           titleLineHeight={page.titleLineHeight}
           titleTextAlign={page.titleTextAlign}
-          titleMarginRight={page.titleMarginRight}
+          titleMaxWidth={page.titleMaxWidth}
           bodyWidth={page.bodyWidth}
           bodyMaxWidth={page.bodyMaxWidth}
           bodyMarginTop={page.bodyMarginTop}
@@ -69,6 +70,8 @@ export function FolderInterior({
           bodyLetterSpacing={page.bodyLetterSpacing}
           bodyTextAlign={page.bodyTextAlign}
           brandIdentityBackdropImageSrc={page.brandIdentityBackdropImageSrc}
+          brandIdentityStackImageSrcs={page.brandIdentityStackImageSrcs}
+          brandIdentityStampLabels={page.brandIdentityStampLabels}
           levelBrandIdentityBackdrop={page.levelBrandIdentityBackdrop}
           hideBrandIdentityTopPhoto={page.hideBrandIdentityTopPhoto}
           omitPlanningStamp={page.omitPlanningStamp}

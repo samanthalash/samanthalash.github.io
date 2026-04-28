@@ -155,6 +155,68 @@
   --photo-layer: 2;
 }
 
+.brandIdentityImageStack {
+  position: absolute;
+  inset: 0;
+}
+
+.content[data-page-id="la-manuela"] {
+  /* Move the whole La Manuela picture stack with these two values. */
+  --la-manuela-stack-shift-x: -4%;
+  --la-manuela-stack-shift-y: -30%;
+  --la-manuela-stack-card-width: 86%;
+
+  /* Adjust each La Manuela card's position and rotation here. */
+  --la-manuela-stack-card-1-top: 13%;
+  --la-manuela-stack-card-1-left: 0%;
+  --la-manuela-stack-card-1-rotate:-3deg;
+  --la-manuela-stack-card-2-top: 17%;
+  --la-manuela-stack-card-2-left: 3.5%;
+  --la-manuela-stack-card-2-rotate: -2.5deg;
+  --la-manuela-stack-card-3-top: 21%;
+  --la-manuela-stack-card-3-left: 7%;
+  --la-manuela-stack-card-3-rotate: 4.5deg;
+  --la-manuela-stack-card-4-top: 25%;
+  --la-manuela-stack-card-4-left: 10.5%;
+  --la-manuela-stack-card-4-rotate: -6.5deg;
+}
+
+.brandIdentityStackCard {
+  --photo-width: var(--la-manuela-stack-card-width, 86%);
+  --photo-aspect: 1808 / 1008;
+  --photo-shift-x: var(--la-manuela-stack-shift-x, 0%);
+  --photo-shift-y: var(--la-manuela-stack-shift-y, 0%);
+  background: rgb(255 252 247 / 0.96);
+}
+
+.brandIdentityStackCard1 {
+  --photo-top: var(--la-manuela-stack-card-1-top, 13%);
+  --photo-left: var(--la-manuela-stack-card-1-left, 0%);
+  --photo-rotate: var(--la-manuela-stack-card-1-rotate, 0deg);
+  --photo-layer: 4;
+}
+
+.brandIdentityStackCard2 {
+  --photo-top: var(--la-manuela-stack-card-2-top, 17%);
+  --photo-left: var(--la-manuela-stack-card-2-left, 3.5%);
+  --photo-rotate: var(--la-manuela-stack-card-2-rotate, -2.5deg);
+  --photo-layer: 3;
+}
+
+.brandIdentityStackCard3 {
+  --photo-top: var(--la-manuela-stack-card-3-top, 21%);
+  --photo-left: var(--la-manuela-stack-card-3-left, 7%);
+  --photo-rotate: var(--la-manuela-stack-card-3-rotate, 4.5deg);
+  --photo-layer: 2;
+}
+
+.brandIdentityStackCard4 {
+  --photo-top: var(--la-manuela-stack-card-4-top, 25%);
+  --photo-left: var(--la-manuela-stack-card-4-left, 10.5%);
+  --photo-rotate: var(--la-manuela-stack-card-4-rotate, -6.5deg);
+  --photo-layer: 1;
+}
+
 /* Adjust each photo by changing these vars instead of rewriting the card rule. */
 .creativePhotoBillboard {
   --photo-top: 5%;
@@ -267,6 +329,34 @@
   margin-left: -42px;
 }
 
+.brandIdentityTextStampRow {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: clamp(10px, 1vw, 18px);
+  justify-self: end;
+  width: min(100%, 430px);
+  padding-bottom: 2px;
+  transform: translateX(8px);
+}
+
+.brandIdentityTextStamp {
+  display: grid;
+  place-items: center;
+  width: clamp(86px, 6.5vw, 116px);
+  aspect-ratio: 1;
+  border: 3px solid rgb(39 39 39 / 0.9);
+  border-radius: 50%;
+  color: rgb(39 39 39 / 0.9);
+  font-family: var(--font-sans);
+  font-size: clamp(0.74rem, 0.9vw, 1rem);
+  font-weight: 700;
+  line-height: 0.9;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: pre-line;
+}
+
 .creativePaperclip {
   position: absolute;
   top: 40px; 
@@ -281,10 +371,41 @@
 }
 
 .brandIdentityPaperclip {
-  top: 5px;
-  left: -25px;
-  width: 70px;
-  transform: rotate(270deg);
+  --brand-identity-paperclip-top: 0px;
+  --brand-identity-paperclip-left: -25px;
+  --brand-identity-paperclip-width: 70px;
+  --brand-identity-paperclip-shift-x: 0px;
+  --brand-identity-paperclip-shift-y: 0px;
+  --brand-identity-paperclip-rotate: 270deg;
+
+  top: var(--brand-identity-paperclip-top);
+  left: var(--brand-identity-paperclip-left);
+  width: var(--brand-identity-paperclip-width);
+  transform: translate(
+      var(--brand-identity-paperclip-shift-x),
+      var(--brand-identity-paperclip-shift-y)
+    )
+    rotate(var(--brand-identity-paperclip-rotate));
+}
+
+.brandIdentityPaperclip[data-page-id="tomorrowland-rebrand"] {
+  /* Tomorrowland paperclip controls. */
+  --brand-identity-paperclip-top: 0px;
+  --brand-identity-paperclip-left: -25px;
+  --brand-identity-paperclip-width: 70px;
+  --brand-identity-paperclip-shift-x: 0px;
+  --brand-identity-paperclip-shift-y: 0px;
+  --brand-identity-paperclip-rotate: 270deg;
+}
+
+.brandIdentityPaperclip[data-page-id="la-manuela"] {
+  /* La Manuela paperclip controls. */
+  --brand-identity-paperclip-top: 50px;
+  --brand-identity-paperclip-left: -13px;
+  --brand-identity-paperclip-width: 70px;
+  --brand-identity-paperclip-shift-x: 0px;
+  --brand-identity-paperclip-shift-y: 0px;
+  --brand-identity-paperclip-rotate: 230deg;
 }
 
 @media (max-width: 1180px) {
@@ -316,6 +437,15 @@
 
   .creativeStampRow {
     width: min(100%, 420px);
+  }
+
+  .brandIdentityTextStampRow {
+    width: min(100%, 380px);
+  }
+
+  .brandIdentityTextStamp {
+    width: clamp(78px, 7vw, 100px);
+    font-size: clamp(0.66rem, 0.9vw, 0.86rem);
   }
 }
 
@@ -375,8 +505,33 @@
     --photo-width: 40%;
   }
 
+  .brandIdentityStackCard {
+    --photo-width: 82%;
+  }
+
+  .brandIdentityStackCard1 {
+    --photo-top: 10%;
+    --photo-left: 2%;
+  }
+
+  .brandIdentityStackCard2 {
+    --photo-top: 14%;
+    --photo-left: 5%;
+  }
+
+  .brandIdentityStackCard3 {
+    --photo-top: 18%;
+    --photo-left: 8%;
+  }
+
+  .brandIdentityStackCard4 {
+    --photo-top: 22%;
+    --photo-left: 11%;
+  }
+
   .creativeCopyBlock,
-  .creativeStampRow {
+  .creativeStampRow,
+  .brandIdentityTextStampRow {
     justify-self: center;
     width: min(100%, 500px);
   }
@@ -409,6 +564,18 @@
     margin-left: -30px;
   }
 
+  .brandIdentityTextStampRow {
+    justify-content: center;
+    gap: 12px;
+    padding-bottom: 0;
+    transform: none;
+  }
+
+  .brandIdentityTextStamp {
+    width: clamp(74px, 14vw, 100px);
+    font-size: clamp(0.62rem, 1.8vw, 0.82rem);
+  }
+
   .creativePaperclip {
     top: 12px;
     left: 20px;
@@ -416,9 +583,29 @@
   }
 
   .brandIdentityPaperclip {
-    top: 12px;
-    left: 20px;
-    width: 72px;
+    --brand-identity-paperclip-top: 12px;
+    --brand-identity-paperclip-left: 20px;
+    --brand-identity-paperclip-width: 72px;
+  }
+
+  .brandIdentityPaperclip[data-page-id="tomorrowland-rebrand"] {
+    /* Tomorrowland mobile paperclip controls. */
+    --brand-identity-paperclip-top: 12px;
+    --brand-identity-paperclip-left: 20px;
+    --brand-identity-paperclip-width: 72px;
+    --brand-identity-paperclip-shift-x: 0px;
+    --brand-identity-paperclip-shift-y: 0px;
+    --brand-identity-paperclip-rotate: 270deg;
+  }
+
+  .brandIdentityPaperclip[data-page-id="la-manuela"] {
+    /* La Manuela mobile paperclip controls. */
+    --brand-identity-paperclip-top: 12px;
+    --brand-identity-paperclip-left: 20px;
+    --brand-identity-paperclip-width: 72px;
+    --brand-identity-paperclip-shift-x: 0px;
+    --brand-identity-paperclip-shift-y: 0px;
+    --brand-identity-paperclip-rotate: 270deg;
   }
 }
 
@@ -448,6 +635,30 @@
     --photo-top: 6%;
     --photo-left: 41%;
     --photo-width: 38%;
+  }
+
+  .brandIdentityStackCard {
+    --photo-width: 84%;
+  }
+
+  .brandIdentityStackCard1 {
+    --photo-top: 12%;
+    --photo-left: 1%;
+  }
+
+  .brandIdentityStackCard2 {
+    --photo-top: 16%;
+    --photo-left: 4%;
+  }
+
+  .brandIdentityStackCard3 {
+    --photo-top: 20%;
+    --photo-left: 7%;
+  }
+
+  .brandIdentityStackCard4 {
+    --photo-top: 24%;
+    --photo-left: 10%;
   }
 
   .creativePhotoBillboard {
@@ -499,6 +710,17 @@
     margin-left: -22px;
   }
 
+  .brandIdentityTextStampRow {
+    gap: 8px;
+    width: 100%;
+  }
+
+  .brandIdentityTextStamp {
+    width: clamp(64px, 21vw, 86px);
+    border-width: 2px;
+    font-size: clamp(0.54rem, 2.4vw, 0.7rem);
+  }
+
   .creativePaperclip {
     top: 10px;
     left: 14px;
@@ -506,8 +728,28 @@
   }
 
   .brandIdentityPaperclip {
-    top: 10px;
-    left: 14px;
-    width: 72px;
+    --brand-identity-paperclip-top: 10px;
+    --brand-identity-paperclip-left: 14px;
+    --brand-identity-paperclip-width: 72px;
+  }
+
+  .brandIdentityPaperclip[data-page-id="tomorrowland-rebrand"] {
+    /* Tomorrowland small-mobile paperclip controls. */
+    --brand-identity-paperclip-top: 10px;
+    --brand-identity-paperclip-left: 14px;
+    --brand-identity-paperclip-width: 72px;
+    --brand-identity-paperclip-shift-x: 0px;
+    --brand-identity-paperclip-shift-y: 0px;
+    --brand-identity-paperclip-rotate: 270deg;
+  }
+
+  .brandIdentityPaperclip[data-page-id="la-manuela"] {
+    /* La Manuela small-mobile paperclip controls. */
+    --brand-identity-paperclip-top: 10px;
+    --brand-identity-paperclip-left: 14px;
+    --brand-identity-paperclip-width: 72px;
+    --brand-identity-paperclip-shift-x: 0px;
+    --brand-identity-paperclip-shift-y: 0px;
+    --brand-identity-paperclip-rotate: 270deg;
   }
 }
