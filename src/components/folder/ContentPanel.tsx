@@ -22,6 +22,10 @@ interface ContentPanelProps {
   content?: FolderSection["placeholderContent"];
   layoutVariant?: ContentPanelLayout;
   copyBlockWidth?: string;
+  titleWhiteSpace?: CSSProperties["whiteSpace"];
+  titleLineHeight?: string;
+  titleTextAlign?: "left" | "center" | "right";
+  titleMarginRight?: string;
   bodyWidth?: string;
   bodyMaxWidth?: string;
   bodyMarginTop?: string;
@@ -41,6 +45,10 @@ export function ContentPanel({
   content,
   layoutVariant = "default",
   copyBlockWidth,
+  titleWhiteSpace,
+  titleLineHeight,
+  titleTextAlign,
+  titleMarginRight,
   bodyWidth,
   bodyMaxWidth,
   bodyMarginTop,
@@ -125,6 +133,15 @@ export function ContentPanel({
     const copyBlockStyle: CSSProperties | undefined = copyBlockWidth
       ? { width: copyBlockWidth }
       : undefined;
+    const titleStyle: CSSProperties | undefined =
+      titleWhiteSpace || titleLineHeight || titleTextAlign || titleMarginRight
+        ? {
+            whiteSpace: titleWhiteSpace,
+            lineHeight: titleLineHeight,
+            textAlign: titleTextAlign,
+            marginRight: titleMarginRight,
+          }
+        : undefined;
     const bodyStyle: CSSProperties | undefined =
       bodyWidth ||
       bodyMaxWidth ||
@@ -198,7 +215,9 @@ export function ContentPanel({
           </div>
 
           <div className={copyBlockClassName} style={copyBlockStyle}>
-            <h2 className={styles.creativeTitle}>{panelContent.title}</h2>
+            <h2 className={styles.creativeTitle} style={titleStyle}>
+              {panelContent.title}
+            </h2>
             <p className={bodyClassName} style={bodyStyle}>
               {panelContent.body}
             </p>

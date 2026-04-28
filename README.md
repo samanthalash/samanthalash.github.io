@@ -52,6 +52,9 @@ than a conventional scrolling portfolio.
 - Update tab labels and fallback section copy in `src/data/folderSections.ts`.
 - Update individual page content, layout variants, image overrides, and stamp
   choices in `src/data/folderPages.ts`.
+- Creative Direction pages have header-based IDs and aliases in
+  `src/data/folderPages.ts`, so they can be referenced as Levi's Campaign,
+  Hunter Campaign, or Nylon Editorial.
 - Add or replace campaign imagery in `src/assets/`, then import it into the
   relevant data or component file.
 - Keep long-form notes and drafts in `content/` until they are ready to become

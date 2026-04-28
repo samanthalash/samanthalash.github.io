@@ -8,10 +8,16 @@ export type ContentPanelLayout = "default" | "brandIdentity";
 
 export interface FolderPageConfig {
   id: string;
+  referenceName?: string;
+  aliases?: string[];
   sectionId: FolderSectionId;
   layout?: ContentPanelLayout;
   content: FolderSection["placeholderContent"];
   copyBlockWidth?: string;
+  titleWhiteSpace?: "normal" | "nowrap" | "pre-line";
+  titleLineHeight?: string;
+  titleTextAlign?: "left" | "center" | "right";
+  titleMarginRight?: string;
   bodyWidth?: string;
   bodyMaxWidth?: string;
   bodyMarginTop?: string;
@@ -26,14 +32,18 @@ export interface FolderPageConfig {
   stampImageSrcs?: string[];
 }
 
-// Edit page text and per-page visual overrides here. Duplicated pages should
-// copy the content object so each page can be changed independently later.
+// Edit page text and per-page visual overrides here. Use referenceName and
+// aliases for human-readable page references that match the visible headers.
+// Duplicated pages should copy the content object so each page can be changed
+// independently later.
 export const folderPagesBySectionId: Partial<
   Record<FolderSectionId, FolderPageConfig[]>
 > = {
   about: [
     {
-      id: "creative-direction-page-1",
+      id: "levis-campaign",
+      referenceName: "LEVI'S CAMPAIGN",
+      aliases: ["Levi's Campaign", "Levis Campaign", "Fit For Wherever"],
       sectionId: "about",
       content: {
         eyebrow: "Campaign Study",
@@ -48,7 +58,9 @@ export const folderPagesBySectionId: Partial<
       bodyMaxWidth: "35ch",
     },
     {
-      id: "creative-direction-page-2",
+      id: "hunter-campaign",
+      referenceName: "HUNTER CAMPAIGN",
+      aliases: ["Hunter Campaign", "Hunter Wellington"],
       sectionId: "archive",
       layout: "brandIdentity",
       content: {
@@ -64,7 +76,9 @@ export const folderPagesBySectionId: Partial<
       bodyMaxWidth: "38ch",
     },
     {
-      id: "creative-direction-page-3",
+      id: "nylon-editorial",
+      referenceName: "NYLON EDITORIAL",
+      aliases: ["Nylon Editorial", "The Post-Clean Girl Era"],
       sectionId: "archive",
       layout: "brandIdentity",
       content: {
@@ -92,20 +106,30 @@ export const folderPagesBySectionId: Partial<
   ],
   archive: [
     {
-      id: "brand-identity-page-1",
+      id: "tomorrowland-rebrand",
+      referenceName: "TOMORROWLAND REBRAND",
+      aliases: ["Tomorrowland", "Tomorrowland Rebrand"],
       sectionId: "archive",
       layout: "brandIdentity",
       content: {
         eyebrow: "Campaign Study",
-        title: "HUNTER CAMPAIGN",
+        title: "TOMORROWLAND REBRAND",
         body:
-          "A conceptual campaign for Hunter Wellington, built around a single creative constraint: sell the boot without showing it. Rooted in the insight that Y2K's comeback has cemented the Wellington as a festival essential for Gen Z, the visual tells the story entirely through context — a flatlay of festival essentials laid out on grass, the boots absent. The red props bring the frame back to Hunter's iconic brand colour, making the missing product impossible to forget.",
+          "A reimagining of Tomorrowland's visual identity, drawing inspiration from Woodstock's ethos of \"3 days of peace and music\" and translating it for a modern audience. The concept informed every creative decision – from the artist lineup curation to the logo, typography, and colour system – resulting in a cohesive identity applied consistently across multiple assets.",
         bullets: [],
-        footer: "Hunter Wellington campaign concept sheet.",
+        footer: "Tomorrowland rebrand concept sheet.",
       },
       copyBlockWidth: "min(100%, 580px)",
+      titleWhiteSpace: "nowrap",
+      titleTextAlign: "right",
+      titleMarginRight: "clamp(18px, 2.8vw, 42px)",
       bodyWidth: "auto",
       bodyMaxWidth: "38ch",
+      stampImageSrcs: [
+        conceptStampImage,
+        graphicDesignStampImage,
+        copyWritingStampImage,
+      ],
     },
   ],
   experiments: [

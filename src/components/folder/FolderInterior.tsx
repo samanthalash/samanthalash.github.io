@@ -57,6 +57,10 @@ export function FolderInterior({
           content={page.content}
           layoutVariant={page.layout}
           copyBlockWidth={page.copyBlockWidth}
+          titleWhiteSpace={page.titleWhiteSpace}
+          titleLineHeight={page.titleLineHeight}
+          titleTextAlign={page.titleTextAlign}
+          titleMarginRight={page.titleMarginRight}
           bodyWidth={page.bodyWidth}
           bodyMaxWidth={page.bodyMaxWidth}
           bodyMarginTop={page.bodyMarginTop}
