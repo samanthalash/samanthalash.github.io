@@ -17,17 +17,37 @@ import styles from "./ContentPanel.module.css";
 
 interface ContentPanelProps {
   activeSection: FolderSection;
+  brandIdentityBackdropImageSrc?: string;
+  levelBrandIdentityBackdrop?: boolean;
   hideBrandIdentityTopPhoto?: boolean;
+  omitPlanningStamp?: boolean;
+  stampImageSrcs?: string[];
 }
 
 export function ContentPanel({
   activeSection,
+  brandIdentityBackdropImageSrc,
+  levelBrandIdentityBackdrop = false,
   hideBrandIdentityTopPhoto = false,
+  omitPlanningStamp = false,
+  stampImageSrcs,
 }: ContentPanelProps) {
   const { placeholderContent } = activeSection;
   const isHome = activeSection.id === "work";
   const isBrandIdentity = activeSection.id === "archive";
   const usesCreativeTemplate = activeSection.id !== "work";
+  const brandIdentityBackdropImage =
+    brandIdentityBackdropImageSrc ?? hunterBillboardImage;
+  const stampImages =
+    stampImageSrcs ??
+    (omitPlanningStamp
+      ? [conceptStampImage, stylingStampImage, photoStampImage]
+      : [
+          conceptStampImage,
+          planningStampImage,
+          stylingStampImage,
+          photoStampImage,
+        ]);
 
   if (isHome) {
     return (
@@ -87,9 +107,13 @@ export function ContentPanel({
             {isBrandIdentity ? (
               <>
                 <div
-                  className={`${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityPhotoBackdrop}`}
+                  className={`${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityPhotoBackdrop}${
+                    levelBrandIdentityBackdrop
+                      ? ` ${styles.levelBrandIdentityPhotoBackdrop}`
+                      : ""
+                  }`}
                 >
-                  <img src={hunterBillboardImage} alt="" />
+                  <img src={brandIdentityBackdropImage} alt="" />
                 </div>
 
                 {!hideBrandIdentityTopPhoto && (
@@ -135,26 +159,14 @@ export function ContentPanel({
           </div>
 
           <div className={styles.creativeStampRow} aria-hidden="true">
-            <img
-              src={conceptStampImage}
-              alt=""
-              className={styles.creativeStamp}
-            />
-            <img
-              src={planningStampImage}
-              alt=""
-              className={styles.creativeStamp}
-            />
-            <img
-              src={stylingStampImage}
-              alt=""
-              className={styles.creativeStamp}
-            />
-            <img
-              src={photoStampImage}
-              alt=""
-              className={styles.creativeStamp}
-            />
+            {stampImages.map((stampImage) => (
+              <img
+                src={stampImage}
+                alt=""
+                className={styles.creativeStamp}
+                key={stampImage}
+              />
+            ))}
           </div>
         </div>
 

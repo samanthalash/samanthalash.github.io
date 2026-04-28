@@ -137,6 +137,12 @@
   --photo-layer: 1;
 }
 
+.levelBrandIdentityPhotoBackdrop {
+  --photo-aspect: 1802 / 1008;
+  --photo-rotate: 0deg;
+  --photo-scale: 1.2;
+}
+
 .brandIdentityPhotoTop {
   --photo-top: 3%;
   --photo-left: 0%;
@@ -275,7 +281,7 @@
 }
 
 .brandIdentityPaperclip {
-  top: 40px;
+  top: 5px;
   left: -25px;
   width: 70px;
   transform: rotate(270deg);

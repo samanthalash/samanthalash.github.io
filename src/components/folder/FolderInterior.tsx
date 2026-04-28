@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { ContentPanel } from "./ContentPanel";
 import { PageFlip } from "./PageFlip";
+import conceptStampImage from "../../assets/creative-direction/concept.png";
+import copyWritingStampImage from "../../assets/creative-direction/copy-writing.png";
+import graphicDesignStampImage from "../../assets/creative-direction/graphic-design.png";
+import nylonPhotoImage from "../../assets/creative-direction/nylon_photo.png";
 import { folderSections } from "../../data/folderSections";
 import type { FolderSection, FolderSectionId } from "../../data/folderSections";
 import styles from "./FolderInterior.module.css";
@@ -42,10 +46,18 @@ export function FolderInterior({
     const renderBrandIdentityPage = (
       key: string,
       hideTopPhoto = false,
+      backdropImageSrc?: string,
+      omitPlanningStamp = false,
+      levelBackdrop = false,
+      stampImageSrcs?: string[],
     ) => BRAND_IDENTITY_SECTION ? (
       <ContentPanel
         activeSection={BRAND_IDENTITY_SECTION}
+        brandIdentityBackdropImageSrc={backdropImageSrc}
+        levelBrandIdentityBackdrop={levelBackdrop}
         hideBrandIdentityTopPhoto={hideTopPhoto}
+        omitPlanningStamp={omitPlanningStamp}
+        stampImageSrcs={stampImageSrcs}
         key={key}
       />
     ) : (
@@ -61,7 +73,13 @@ export function FolderInterior({
         <div className={styles.blankPage} key="page-2" />
       ),
       ...(activeSectionId === "about"
-        ? [renderBrandIdentityPage("page-3", true)]
+        ? [
+            renderBrandIdentityPage("page-3", true, nylonPhotoImage, true, true, [
+              conceptStampImage,
+              graphicDesignStampImage,
+              copyWritingStampImage,
+            ]),
+          ]
         : []),
     ];
 
