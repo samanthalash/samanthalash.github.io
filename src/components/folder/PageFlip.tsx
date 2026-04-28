@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import type {
   ReactNode,
   CSSProperties,
@@ -20,7 +20,14 @@ interface PageFlipProps {
   allowOverflow?: boolean;
   pageIndex: number;
   onPageChange: (index: number) => void;
+  onClearingFolderChange?: (isClearingFolder: boolean) => void;
 }
+
+const PAGE_TURN_DURATION_MS = 1080;
+const DRAG_SETTLE_DURATION_MS = 640;
+const FORWARD_RESTACK_PROGRESS = 0.5;
+const DRAG_RESTACK_PROGRESS = 0.5;
+const BACKWARD_FRONT_PROGRESS = 0.6;
 
 /**
  * Map drag progress (0→1) to the same out-and-under path as the click turn.
@@ -64,6 +71,7 @@ export function PageFlip({
   allowOverflow = false,
   pageIndex,
   onPageChange,
+  onClearingFolderChange,
 }: PageFlipProps) {
   const count = pages.length;
   const [phase, setPhase] = useState<FlipPhase>("idle");
@@ -75,6 +83,8 @@ export function PageFlip({
   const containerWidthRef = useRef(0);
   const progressRef = useRef(0);
   const hasDraggedRef = useRef(false);
+  const isClearingFolderRef = useRef(false);
+  const clearingFolderTimerRef = useRef<number | null>(null);
 
   const nextIdx = (pageIndex + 1) % count;
   const prevIdx = (pageIndex - 1 + count) % count;
@@ -83,6 +93,44 @@ export function PageFlip({
   const isForward = phase !== "flip-backward";
   const baseIdx = isActive ? (isForward ? nextIdx : pageIndex) : pageIndex;
   const flipIdx = isForward ? pageIndex : prevIdx;
+
+  const clearClearingFolderTimer = useCallback(() => {
+    if (clearingFolderTimerRef.current === null) return;
+    window.clearTimeout(clearingFolderTimerRef.current);
+    clearingFolderTimerRef.current = null;
+  }, []);
+
+  const setClearingFolder = useCallback(
+    (isClearingFolder: boolean) => {
+      if (isClearingFolderRef.current === isClearingFolder) return;
+      isClearingFolderRef.current = isClearingFolder;
+      onClearingFolderChange?.(isClearingFolder);
+    },
+    [onClearingFolderChange],
+  );
+
+  const scheduleClearingFolder = useCallback(
+    (isClearingFolder: boolean, delayMs: number) => {
+      clearClearingFolderTimer();
+      if (delayMs <= 0) {
+        setClearingFolder(isClearingFolder);
+        return;
+      }
+      clearingFolderTimerRef.current = window.setTimeout(() => {
+        clearingFolderTimerRef.current = null;
+        setClearingFolder(isClearingFolder);
+      }, delayMs);
+    },
+    [clearClearingFolderTimer, setClearingFolder],
+  );
+
+  useEffect(
+    () => () => {
+      clearClearingFolderTimer();
+      setClearingFolder(false);
+    },
+    [clearClearingFolderTimer, setClearingFolder],
+  );
 
   // --- Forward corner: pointer interactions ---
 
@@ -97,10 +145,12 @@ export function PageFlip({
       containerWidthRef.current = rect.width;
       progressRef.current = 0;
       hasDraggedRef.current = false;
+      clearClearingFolderTimer();
+      setClearingFolder(true);
       setDragProgress(0);
       setPhase("dragging");
     },
-    [isActive, count],
+    [clearClearingFolderTimer, count, isActive, setClearingFolder],
   );
 
   const handlePointerMove = useCallback(
@@ -113,30 +163,60 @@ export function PageFlip({
         Math.min(1, dx / (containerWidthRef.current * 0.55)),
       );
       progressRef.current = p;
+      setClearingFolder(p < DRAG_RESTACK_PROGRESS);
       setDragProgress(p);
     },
-    [phase],
+    [phase, setClearingFolder],
   );
 
   const handlePointerUp = useCallback(() => {
     if (phase !== "dragging") return;
     if (!hasDraggedRef.current) {
       // Short click — use CSS keyframe animation
+      setClearingFolder(true);
+      scheduleClearingFolder(
+        false,
+        PAGE_TURN_DURATION_MS * FORWARD_RESTACK_PROGRESS,
+      );
       setPhase("flip-forward");
       return;
     }
+    const currentProgress = progressRef.current;
     const target = progressRef.current >= 0.38 ? 1 : 0;
     settleTargetRef.current = target;
+    if (target === 1) {
+      const settleRange = 1 - currentProgress;
+      const restackDelay =
+        currentProgress >= DRAG_RESTACK_PROGRESS || settleRange <= 0
+          ? 0
+          : ((DRAG_RESTACK_PROGRESS - currentProgress) / settleRange) *
+            DRAG_SETTLE_DURATION_MS;
+      scheduleClearingFolder(false, restackDelay);
+    } else {
+      setClearingFolder(true);
+    }
     setDragProgress(target);
     setPhase("settling");
-  }, [phase]);
+  }, [phase, scheduleClearingFolder, setClearingFolder]);
 
   // --- Backward corner: click ---
 
   const handleBackwardClick = useCallback(() => {
     if (isActive || count < 2) return;
+    clearClearingFolderTimer();
+    setClearingFolder(false);
+    scheduleClearingFolder(
+      true,
+      PAGE_TURN_DURATION_MS * BACKWARD_FRONT_PROGRESS,
+    );
     setPhase("flip-backward");
-  }, [isActive, count]);
+  }, [
+    clearClearingFolderTimer,
+    count,
+    isActive,
+    scheduleClearingFolder,
+    setClearingFolder,
+  ]);
 
   // --- Keyboard support ---
 
@@ -145,10 +225,15 @@ export function PageFlip({
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         if (isActive || count < 2) return;
+        setClearingFolder(true);
+        scheduleClearingFolder(
+          false,
+          PAGE_TURN_DURATION_MS * FORWARD_RESTACK_PROGRESS,
+        );
         setPhase("flip-forward");
       }
     },
-    [isActive, count],
+    [count, isActive, scheduleClearingFolder, setClearingFolder],
   );
 
   const handleBackwardKey = useCallback(
@@ -164,14 +249,23 @@ export function PageFlip({
   // --- Animation end (CSS keyframe flips) ---
 
   const handleAnimationEnd = useCallback(() => {
+    clearClearingFolderTimer();
     if (phase === "flip-forward") {
       onPageChange(nextIdx);
     } else if (phase === "flip-backward") {
       onPageChange(prevIdx);
     }
+    setClearingFolder(false);
     setPhase("idle");
     setDragProgress(0);
-  }, [phase, nextIdx, prevIdx, onPageChange]);
+  }, [
+    clearClearingFolderTimer,
+    phase,
+    nextIdx,
+    prevIdx,
+    onPageChange,
+    setClearingFolder,
+  ]);
 
   // --- Transition end (drag settle) ---
 
@@ -179,13 +273,15 @@ export function PageFlip({
     (e: ReactTransitionEvent) => {
       if (phase !== "settling" || e.propertyName !== "transform") return;
       if (e.currentTarget !== e.target) return;
+      clearClearingFolderTimer();
       if (settleTargetRef.current === 1) {
         onPageChange(nextIdx);
       }
+      setClearingFolder(false);
       setPhase("idle");
       setDragProgress(0);
     },
-    [phase, nextIdx, onPageChange],
+    [clearClearingFolderTimer, phase, nextIdx, onPageChange, setClearingFolder],
   );
 
   if (count < 2) {

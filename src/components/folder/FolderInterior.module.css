@@ -6,6 +6,10 @@
   box-shadow: none;
 }
 
+.interiorFrame[data-flip-page-front="true"] {
+  z-index: 20;
+}
+
 .interiorFrame[data-home="true"] {
   inset: 0;
   border-radius: inherit;

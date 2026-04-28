@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { ContentPanel } from "./ContentPanel";
 import { PageFlip } from "./PageFlip";
+import { folderSections } from "../../data/folderSections";
 import type { FolderSection, FolderSectionId } from "../../data/folderSections";
 import styles from "./FolderInterior.module.css";
 
 const FLIP_TABS: FolderSectionId[] = ["about", "archive", "experiments"];
+const BRAND_IDENTITY_SECTION = folderSections.find(
+  (section) => section.id === "archive",
+);
 
 interface FolderInteriorProps {
   activeSection: FolderSection;
@@ -21,6 +25,7 @@ export function FolderInterior({
   const usesPhotoTemplate = activeSection.id !== "work";
   const allowsOverflow = isHome || usesPhotoTemplate;
   const isFlipEnabled = (FLIP_TABS as string[]).includes(activeSectionId);
+  const [isFlipPageFront, setIsFlipPageFront] = useState(false);
 
   // Preserve per-tab page position across tab switches
   const [pageIndices, setPageIndices] = useState<Record<string, number>>({});
@@ -34,10 +39,30 @@ export function FolderInterior({
       return <ContentPanel activeSection={activeSection} />;
     }
 
+    const renderBrandIdentityPage = (
+      key: string,
+      hideTopPhoto = false,
+    ) => BRAND_IDENTITY_SECTION ? (
+      <ContentPanel
+        activeSection={BRAND_IDENTITY_SECTION}
+        hideBrandIdentityTopPhoto={hideTopPhoto}
+        key={key}
+      />
+    ) : (
+      <div className={styles.blankPage} key={key} />
+    );
+
     // To add more pages: append elements to this array
     const pages = [
       <ContentPanel activeSection={activeSection} key="page-1" />,
-      <div className={styles.blankPage} key="page-2" />,
+      activeSectionId === "about" ? (
+        renderBrandIdentityPage("page-2")
+      ) : (
+        <div className={styles.blankPage} key="page-2" />
+      ),
+      ...(activeSectionId === "about"
+        ? [renderBrandIdentityPage("page-3", true)]
+        : []),
     ];
 
     return (
@@ -46,12 +71,17 @@ export function FolderInterior({
         allowOverflow={allowsOverflow}
         pageIndex={currentPageIndex}
         onPageChange={handlePageChange}
+        onClearingFolderChange={setIsFlipPageFront}
       />
     );
   };
 
   return (
-    <div className={styles.interiorFrame} data-home={isHome}>
+    <div
+      className={styles.interiorFrame}
+      data-home={isHome}
+      data-flip-page-front={isFlipPageFront}
+    >
       <div className={styles.sheetStack} aria-hidden="true">
         <span className={styles.sheetBack} />
         <span className={styles.sheetMid} />

@@ -17,9 +17,13 @@ import styles from "./ContentPanel.module.css";
 
 interface ContentPanelProps {
   activeSection: FolderSection;
+  hideBrandIdentityTopPhoto?: boolean;
 }
 
-export function ContentPanel({ activeSection }: ContentPanelProps) {
+export function ContentPanel({
+  activeSection,
+  hideBrandIdentityTopPhoto = false,
+}: ContentPanelProps) {
   const { placeholderContent } = activeSection;
   const isHome = activeSection.id === "work";
   const isBrandIdentity = activeSection.id === "archive";
@@ -88,11 +92,13 @@ export function ContentPanel({ activeSection }: ContentPanelProps) {
                   <img src={hunterBillboardImage} alt="" />
                 </div>
 
-                <div
-                  className={`${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityPhotoTop}`}
-                >
-                  <img src={hunterFlatlayImage} alt="" />
-                </div>
+                {!hideBrandIdentityTopPhoto && (
+                  <div
+                    className={`${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityPhotoTop}`}
+                  >
+                    <img src={hunterFlatlayImage} alt="" />
+                  </div>
+                )}
               </>
             ) : (
               <>
