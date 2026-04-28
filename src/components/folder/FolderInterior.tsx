@@ -1,17 +1,14 @@
 import { useState } from "react";
 import { ContentPanel } from "./ContentPanel";
 import { PageFlip } from "./PageFlip";
-import conceptStampImage from "../../assets/creative-direction/concept.png";
-import copyWritingStampImage from "../../assets/creative-direction/copy-writing.png";
-import graphicDesignStampImage from "../../assets/creative-direction/graphic-design.png";
-import nylonPhotoImage from "../../assets/creative-direction/nylon_photo.png";
+import { folderPagesBySectionId } from "../../data/folderPages";
 import { folderSections } from "../../data/folderSections";
 import type { FolderSection, FolderSectionId } from "../../data/folderSections";
 import styles from "./FolderInterior.module.css";
 
 const FLIP_TABS: FolderSectionId[] = ["about", "archive", "experiments"];
-const BRAND_IDENTITY_SECTION = folderSections.find(
-  (section) => section.id === "archive",
+const SECTION_BY_ID = new Map(
+  folderSections.map((section) => [section.id, section]),
 );
 
 interface FolderInteriorProps {
@@ -43,45 +40,43 @@ export function FolderInterior({
       return <ContentPanel activeSection={activeSection} />;
     }
 
-    const renderBrandIdentityPage = (
-      key: string,
-      hideTopPhoto = false,
-      backdropImageSrc?: string,
-      omitPlanningStamp = false,
-      levelBackdrop = false,
-      stampImageSrcs?: string[],
-    ) => BRAND_IDENTITY_SECTION ? (
-      <ContentPanel
-        activeSection={BRAND_IDENTITY_SECTION}
-        brandIdentityBackdropImageSrc={backdropImageSrc}
-        levelBrandIdentityBackdrop={levelBackdrop}
-        hideBrandIdentityTopPhoto={hideTopPhoto}
-        omitPlanningStamp={omitPlanningStamp}
-        stampImageSrcs={stampImageSrcs}
-        key={key}
-      />
-    ) : (
-      <div className={styles.blankPage} key={key} />
-    );
-
-    // To add more pages: append elements to this array
-    const pages = [
-      <ContentPanel activeSection={activeSection} key="page-1" />,
-      activeSectionId === "about" ? (
-        renderBrandIdentityPage("page-2")
-      ) : (
-        <div className={styles.blankPage} key="page-2" />
-      ),
-      ...(activeSectionId === "about"
-        ? [
-            renderBrandIdentityPage("page-3", true, nylonPhotoImage, true, true, [
-              conceptStampImage,
-              graphicDesignStampImage,
-              copyWritingStampImage,
-            ]),
-          ]
-        : []),
+    const configuredPages = folderPagesBySectionId[activeSectionId] ?? [
+      {
+        id: `${activeSectionId}-page-1`,
+        sectionId: activeSectionId,
+        content: activeSection.placeholderContent,
+      },
     ];
+
+    const pages = configuredPages.map((page) => {
+      const pageSection = SECTION_BY_ID.get(page.sectionId) ?? activeSection;
+
+      return (
+        <ContentPanel
+          activeSection={pageSection}
+          content={page.content}
+          layoutVariant={page.layout}
+          copyBlockWidth={page.copyBlockWidth}
+          bodyWidth={page.bodyWidth}
+          bodyMaxWidth={page.bodyMaxWidth}
+          bodyMarginTop={page.bodyMarginTop}
+          bodyFontSize={page.bodyFontSize}
+          bodyLineHeight={page.bodyLineHeight}
+          bodyLetterSpacing={page.bodyLetterSpacing}
+          bodyTextAlign={page.bodyTextAlign}
+          brandIdentityBackdropImageSrc={page.brandIdentityBackdropImageSrc}
+          levelBrandIdentityBackdrop={page.levelBrandIdentityBackdrop}
+          hideBrandIdentityTopPhoto={page.hideBrandIdentityTopPhoto}
+          omitPlanningStamp={page.omitPlanningStamp}
+          stampImageSrcs={page.stampImageSrcs}
+          key={page.id}
+        />
+      );
+    });
+
+    if (pages.length < 2) {
+      pages.push(<div className={styles.blankPage} key="blank-page-2" />);
+    }
 
     return (
       <PageFlip

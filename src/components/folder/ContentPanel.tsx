@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import paperclipImage from "../../assets/paperclip.png";
 import monogramImage from "../../assets/monogram.png";
 import postcardImage from "../../assets/postcard.png";
@@ -12,11 +13,22 @@ import leviDesertImage from "../../assets/creative-direction/levi-desert.png";
 import leviBeachImage from "../../assets/creative-direction/levi-beach.png";
 import hunterFlatlayImage from "../../assets/brand-identity/hunter-flatlay.png";
 import hunterBillboardImage from "../../assets/brand-identity/hunter-billboard.png";
+import type { ContentPanelLayout } from "../../data/folderPages";
 import type { FolderSection } from "../../data/folderSections";
 import styles from "./ContentPanel.module.css";
 
 interface ContentPanelProps {
   activeSection: FolderSection;
+  content?: FolderSection["placeholderContent"];
+  layoutVariant?: ContentPanelLayout;
+  copyBlockWidth?: string;
+  bodyWidth?: string;
+  bodyMaxWidth?: string;
+  bodyMarginTop?: string;
+  bodyFontSize?: string;
+  bodyLineHeight?: string;
+  bodyLetterSpacing?: string;
+  bodyTextAlign?: "left" | "center" | "right";
   brandIdentityBackdropImageSrc?: string;
   levelBrandIdentityBackdrop?: boolean;
   hideBrandIdentityTopPhoto?: boolean;
@@ -26,15 +38,26 @@ interface ContentPanelProps {
 
 export function ContentPanel({
   activeSection,
+  content,
+  layoutVariant = "default",
+  copyBlockWidth,
+  bodyWidth,
+  bodyMaxWidth,
+  bodyMarginTop,
+  bodyFontSize,
+  bodyLineHeight,
+  bodyLetterSpacing,
+  bodyTextAlign,
   brandIdentityBackdropImageSrc,
   levelBrandIdentityBackdrop = false,
   hideBrandIdentityTopPhoto = false,
   omitPlanningStamp = false,
   stampImageSrcs,
 }: ContentPanelProps) {
-  const { placeholderContent } = activeSection;
+  const panelContent = content ?? activeSection.placeholderContent;
   const isHome = activeSection.id === "work";
-  const isBrandIdentity = activeSection.id === "archive";
+  const isBrandIdentity =
+    layoutVariant === "brandIdentity" || activeSection.id === "archive";
   const usesCreativeTemplate = activeSection.id !== "work";
   const brandIdentityBackdropImage =
     brandIdentityBackdropImageSrc ?? hunterBillboardImage;
@@ -99,6 +122,27 @@ export function ContentPanel({
     const paperclipClassName = `${styles.creativePaperclip}${
       isBrandIdentity ? ` ${styles.brandIdentityPaperclip}` : ""
     }`;
+    const copyBlockStyle: CSSProperties | undefined = copyBlockWidth
+      ? { width: copyBlockWidth }
+      : undefined;
+    const bodyStyle: CSSProperties | undefined =
+      bodyWidth ||
+      bodyMaxWidth ||
+      bodyMarginTop ||
+      bodyFontSize ||
+      bodyLineHeight ||
+      bodyLetterSpacing ||
+      bodyTextAlign
+        ? {
+            width: bodyWidth,
+            maxWidth: bodyMaxWidth,
+            marginTop: bodyMarginTop,
+            fontSize: bodyFontSize,
+            lineHeight: bodyLineHeight,
+            letterSpacing: bodyLetterSpacing,
+            textAlign: bodyTextAlign,
+          }
+        : undefined;
 
     return (
       <>
@@ -153,9 +197,11 @@ export function ContentPanel({
             )}
           </div>
 
-          <div className={copyBlockClassName}>
-            <h2 className={styles.creativeTitle}>{placeholderContent.title}</h2>
-            <p className={bodyClassName}>{placeholderContent.body}</p>
+          <div className={copyBlockClassName} style={copyBlockStyle}>
+            <h2 className={styles.creativeTitle}>{panelContent.title}</h2>
+            <p className={bodyClassName} style={bodyStyle}>
+              {panelContent.body}
+            </p>
           </div>
 
           <div className={styles.creativeStampRow} aria-hidden="true">
