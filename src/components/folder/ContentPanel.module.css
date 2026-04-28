@@ -37,7 +37,9 @@
   transform: rotate(-1deg);
   z-index: 6;
   pointer-events: none;
-  filter: drop-shadow(0 4px 6px rgb(39 39 39 / 0.14));
+  filter:
+    drop-shadow(0 14px 16px rgb(39 39 39 / 0.2))
+    drop-shadow(0 4px 8px rgb(39 39 39 / 0.14));
 }
 
 .homeLibraryCard {
@@ -50,7 +52,9 @@
   transform: rotate(-20.5deg);
   z-index: 5;
   pointer-events: none;
-  filter: drop-shadow(0 3px 5px rgb(39 39 39 / 0.12));
+  filter:
+    drop-shadow(0 12px 15px rgb(39 39 39 / 0.18))
+    drop-shadow(0 4px 7px rgb(39 39 39 / 0.13));
 }
 
 .homePaperclip {
@@ -99,8 +103,8 @@
   overflow: hidden;
   background: rgb(255 252 247 / 0.98);
   box-shadow:
-    0 18px 28px rgb(39 39 39 / 0.23),
-    0 3px 8px rgb(39 39 39 / 0.15);
+    0 24px 34px rgb(39 39 39 / 0.27),
+    0 8px 14px rgb(39 39 39 / 0.17);
   transform: translate(var(--photo-shift-x, 0), var(--photo-shift-y, 0))
     rotate(var(--photo-rotate, 0deg)) scale(var(--photo-scale, 1));
 }

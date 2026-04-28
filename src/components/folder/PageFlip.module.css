@@ -1,0 +1,360 @@
+.flipContainer {
+  --page-turn-duration: 1080ms;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 1800px;
+  transform-style: preserve-3d;
+  isolation: isolate;
+}
+
+/* --- Page layers --- */
+
+.pageLayer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #f5f0e8;
+  z-index: 2;
+  transform: translateZ(0);
+}
+
+.pageLayer[data-overflow="true"] {
+  overflow: visible;
+}
+
+/* --- Flipping layer (lift → arc → settle behind) --- */
+
+.flippingLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  transform-origin: 48% 42%;
+  overflow: hidden;
+  background: #f5f0e8;
+  pointer-events: none;
+  will-change: transform;
+  box-shadow:
+    0 22px 34px rgb(39 39 39 / 0.18),
+    0 8px 14px rgb(39 39 39 / 0.12);
+}
+
+/* Click forward: the outgoing page clears the stack, tucks behind, then returns underneath. */
+.flippingLayer[data-phase="flip-forward"] {
+  animation: flipToBack var(--page-turn-duration) linear forwards;
+}
+
+/* Click backward: the previous page comes from behind, clears the stack, then lands on top. */
+.flippingLayer[data-phase="flip-backward"] {
+  animation: flipFromBack var(--page-turn-duration) linear forwards;
+}
+
+/* Real-time drag control — no transition */
+.flippingLayer[data-phase="dragging"] {
+  transition: none;
+}
+
+/* Smooth settle after drag release */
+.flippingLayer[data-phase="settling"] {
+  transition: transform 640ms var(--ease-paper);
+}
+
+@keyframes flipToBack {
+  0% {
+    z-index: 4;
+    transform:
+      translate3d(0%, 0%, 4px)
+      rotateX(0deg)
+      rotateZ(0deg)
+      scale(1);
+  }
+  22% {
+    z-index: 4;
+    transform:
+      translate3d(-70%, -4%, 50px)
+      rotateX(-4deg)
+      rotateZ(-2.7deg)
+      scale(0.988);
+  }
+  40% {
+    z-index: 4;
+    transform:
+      translate3d(-126%, -7%, 92px)
+      rotateX(-7deg)
+      rotateZ(-4.8deg)
+      scale(0.975);
+  }
+  50% {
+    z-index: 0;
+    transform:
+      translate3d(-136%, -7%, -34px)
+      rotateX(-6deg)
+      rotateZ(-4.8deg)
+      scale(0.975);
+  }
+  62% {
+    z-index: 0;
+    transform:
+      translate3d(-102%, -5%, -34px)
+      rotateX(-4deg)
+      rotateZ(-3.5deg)
+      scale(0.978);
+  }
+  82% {
+    z-index: 0;
+    transform:
+      translate3d(-38%, -2%, -34px)
+      rotateX(-2deg)
+      rotateZ(-1.3deg)
+      scale(0.982);
+  }
+  100% {
+    z-index: 0;
+    transform:
+      translate3d(0%, 0%, -34px)
+      rotateX(0deg)
+      rotateZ(0deg)
+      scale(0.985);
+  }
+}
+
+@keyframes flipFromBack {
+  0% {
+    z-index: 0;
+    transform:
+      translate3d(0%, 0%, -34px)
+      rotateX(0deg)
+      rotateZ(0deg)
+      scale(0.985);
+  }
+  18% {
+    z-index: 0;
+    transform:
+      translate3d(-38%, -2%, -34px)
+      rotateX(-2deg)
+      rotateZ(-1.3deg)
+      scale(0.982);
+  }
+  38% {
+    z-index: 0;
+    transform:
+      translate3d(-102%, -5%, -34px)
+      rotateX(-4deg)
+      rotateZ(-3.5deg)
+      scale(0.978);
+  }
+  50% {
+    z-index: 0;
+    transform:
+      translate3d(-136%, -7%, -34px)
+      rotateX(-6deg)
+      rotateZ(-4.8deg)
+      scale(0.975);
+  }
+  60% {
+    z-index: 4;
+    transform:
+      translate3d(-126%, -7%, 92px)
+      rotateX(-7deg)
+      rotateZ(-4.8deg)
+      scale(0.975);
+  }
+  78% {
+    z-index: 4;
+    transform:
+      translate3d(-70%, -4%, 50px)
+      rotateX(-4deg)
+      rotateZ(-2.7deg)
+      scale(0.988);
+  }
+  100% {
+    z-index: 4;
+    transform:
+      translate3d(0%, 0%, 4px)
+      rotateX(0deg)
+      rotateZ(0deg)
+      scale(1);
+  }
+}
+
+/* --- Corner hotspots --- */
+
+.cornerHotspot {
+  position: absolute;
+  bottom: 0;
+  z-index: 5;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+}
+
+.cornerHotspot:focus-visible {
+  outline: 2px solid rgb(39 39 39 / 0.3);
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+/* Forward (bottom-right) */
+.cornerRight {
+  right: 0;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
+/* Corner-peel hint — always-visible fold at rest, grows on hover */
+.cornerRight::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 42px 42px;
+  border-color: transparent transparent #e2d9cb transparent;
+  transition:
+    border-width 300ms cubic-bezier(0.2, 0.82, 0.18, 1),
+    filter 300ms ease,
+    border-color 300ms ease;
+  filter: drop-shadow(-2px -2px 4px rgb(0 0 0 / 0.12));
+  pointer-events: none;
+}
+
+/* Subtle inner highlight to sell the fold */
+.cornerRight::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 38px 38px;
+  border-color: transparent transparent rgb(255 255 255 / 0.35) transparent;
+  transition:
+    border-width 300ms cubic-bezier(0.2, 0.82, 0.18, 1),
+    opacity 300ms ease;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.cornerRight:hover::before {
+  border-width: 0 0 62px 62px;
+  border-color: transparent transparent #ddd3c3 transparent;
+  filter: drop-shadow(-3px -3px 7px rgb(0 0 0 / 0.18));
+}
+
+.cornerRight:hover::after {
+  border-width: 0 0 56px 56px;
+  opacity: 0.8;
+}
+
+/* Backward (bottom-left) */
+.cornerLeft {
+  left: 0;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+}
+
+.cornerLeft::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 28px 0 0 28px;
+  border-color: transparent transparent transparent #e5ddd0;
+  transition:
+    border-width 300ms cubic-bezier(0.2, 0.82, 0.18, 1),
+    filter 300ms ease,
+    opacity 300ms ease;
+  filter: drop-shadow(1px -1px 2px rgb(0 0 0 / 0.07));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cornerLeft:hover::before {
+  opacity: 1;
+  border-width: 40px 0 0 40px;
+  filter: drop-shadow(1px -1px 4px rgb(0 0 0 / 0.11));
+}
+
+/* Hide hotspots during flip */
+.cornerHotspot[data-hidden="true"] {
+  pointer-events: none;
+}
+
+.cornerHotspot[data-hidden="true"]::before,
+.cornerHotspot[data-hidden="true"]::after {
+  opacity: 0 !important;
+  border-width: 0 !important;
+}
+
+/* --- Reduced motion --- */
+
+@media (prefers-reduced-motion: reduce) {
+  .flippingLayer[data-phase="flip-forward"],
+  .flippingLayer[data-phase="flip-backward"] {
+    animation-duration: 1ms;
+  }
+
+  .flippingLayer[data-phase="settling"] {
+    transition-duration: 1ms;
+  }
+
+  .cornerRight::before,
+  .cornerLeft::before {
+    transition: none;
+  }
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 900px) {
+  .cornerRight {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cornerLeft {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cornerRight {
+    width: 64px;
+    height: 64px;
+  }
+
+  .cornerLeft {
+    width: 48px;
+    height: 48px;
+  }
+
+  .cornerRight::before {
+    border-width: 0 0 32px 32px;
+  }
+
+  .cornerRight::after {
+    border-width: 0 0 28px 28px;
+  }
+
+  .cornerRight:hover::before {
+    border-width: 0 0 46px 46px;
+  }
+
+  .cornerRight:hover::after {
+    border-width: 0 0 40px 40px;
+  }
+}

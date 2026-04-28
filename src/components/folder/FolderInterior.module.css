@@ -46,9 +46,11 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
-  border-radius: 12px 10px 16px 16px;
+  border-radius: 0;
   background: #f5f0e8;
-  box-shadow: 0 12px 28px rgb(39 39 39 / 0.17);
+  box-shadow:
+    0 26px 42px rgb(39 39 39 / 0.24),
+    0 8px 16px rgb(39 39 39 / 0.15);
   transition:
     transform var(--motion-slow) var(--ease-paper),
     box-shadow var(--motion-slow) var(--ease-paper),
@@ -79,7 +81,15 @@
     inset 0 0 0 1px rgb(145 126 104 / 0.12),
     inset 0 1px 0 rgb(255 255 255 / 0.92),
     inset 0 -18px 32px rgb(191 170 143 / 0.14),
-    0 18px 18px rgb(92 78 57 / 0.08);
+    0 24px 30px rgb(92 78 57 / 0.16),
+    0 8px 14px rgb(92 78 57 / 0.1);
+}
+
+/* Blank placeholder page inside the flip stack */
+.blankPage {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
