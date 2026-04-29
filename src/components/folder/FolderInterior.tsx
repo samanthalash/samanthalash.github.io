@@ -87,6 +87,11 @@ export function FolderInterior({
           bodyShiftY={page.bodyShiftY}
           brandIdentityBackdropImageSrc={page.brandIdentityBackdropImageSrc}
           brandIdentityStackImageSrcs={page.brandIdentityStackImageSrcs}
+          brandIdentityStackShiftX={page.brandIdentityStackShiftX}
+          brandIdentityStackShiftY={page.brandIdentityStackShiftY}
+          brandIdentityStackCardWidth={page.brandIdentityStackCardWidth}
+          brandIdentityStackCardAspect={page.brandIdentityStackCardAspect}
+          brandIdentityStackImageControls={page.brandIdentityStackImageControls}
           brandIdentityStampLabels={page.brandIdentityStampLabels}
           levelBrandIdentityBackdrop={page.levelBrandIdentityBackdrop}
           hideBrandIdentityTopPhoto={page.hideBrandIdentityTopPhoto}

@@ -20,6 +20,20 @@ import type { FolderSection, FolderSectionId } from "./folderSections";
 
 export type ContentPanelLayout = "default" | "brandIdentity";
 
+export interface BrandIdentityStackImageControl {
+  top?: string;
+  left?: string;
+  width?: string;
+  aspect?: string;
+  rotate?: string;
+  layer?: number;
+  scale?: string;
+  shiftX?: string;
+  shiftY?: string;
+  imageObjectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
+  imageObjectPosition?: string;
+}
+
 export interface FolderPageConfig {
   id: string;
   referenceName?: string;
@@ -57,6 +71,11 @@ export interface FolderPageConfig {
   bodyShiftY?: string;
   brandIdentityBackdropImageSrc?: string;
   brandIdentityStackImageSrcs?: string[];
+  brandIdentityStackShiftX?: string;
+  brandIdentityStackShiftY?: string;
+  brandIdentityStackCardWidth?: string;
+  brandIdentityStackCardAspect?: string;
+  brandIdentityStackImageControls?: BrandIdentityStackImageControl[];
   brandIdentityStampLabels?: string[];
   levelBrandIdentityBackdrop?: boolean;
   hideBrandIdentityTopPhoto?: boolean;
@@ -254,6 +273,56 @@ export const folderPagesBySectionId: Partial<
         spotifyConceptImage,
         spotifyContentIdeasImage,
         spotifyMoodboardImage,
+      ],
+      // Move or resize the whole Spotify picture stack here.
+      brandIdentityStackShiftX: "-7%",
+      brandIdentityStackShiftY: "-40%",
+      brandIdentityStackCardWidth: "86%",
+      brandIdentityStackCardAspect: "1828 / 1026",
+      // Fine-tune each Spotify image card here.
+      // top/left move the card, width changes size, rotate tilts it,
+      // layer controls which image sits on top, and imageObjectPosition crops.
+      brandIdentityStackImageControls: [
+        {
+          top: "13%",
+          left: "0%",
+          width: "86%",
+          aspect: "1828 / 1026",
+          rotate: "-3deg",
+          layer: 4,
+          scale: "1",
+          imageObjectPosition: "center",
+        },
+        {
+          top: "17%",
+          left: "3.5%",
+          width: "86%",
+          aspect: "1826 / 1024",
+          rotate: "-2.5deg",
+          layer: 3,
+          scale: "1",
+          imageObjectPosition: "center",
+        },
+        {
+          top: "21%",
+          left: "7%",
+          width: "86%",
+          aspect: "1826 / 1022",
+          rotate: "4.5deg",
+          layer: 2,
+          scale: "1",
+          imageObjectPosition: "center",
+        },
+        {
+          top: "25%",
+          left: "10.5%",
+          width: "86%",
+          aspect: "1828 / 1024",
+          rotate: "-6.5deg",
+          layer: 1,
+          scale: "1",
+          imageObjectPosition: "center",
+        },
       ],
       stampImageSrcs: [
         laManuelaStrategyStampImage,

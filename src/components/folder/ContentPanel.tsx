@@ -13,7 +13,10 @@ import leviDesertImage from "../../assets/creative-direction/levi-desert.png";
 import leviBeachImage from "../../assets/creative-direction/levi-beach.png";
 import hunterFlatlayImage from "../../assets/brand-identity/hunter-flatlay.png";
 import hunterBillboardImage from "../../assets/brand-identity/hunter-billboard.png";
-import type { ContentPanelLayout } from "../../data/folderPages";
+import type {
+  BrandIdentityStackImageControl,
+  ContentPanelLayout,
+} from "../../data/folderPages";
 import type { FolderSection } from "../../data/folderSections";
 import styles from "./ContentPanel.module.css";
 
@@ -52,6 +55,11 @@ interface ContentPanelProps {
   bodyShiftY?: string;
   brandIdentityBackdropImageSrc?: string;
   brandIdentityStackImageSrcs?: string[];
+  brandIdentityStackShiftX?: string;
+  brandIdentityStackShiftY?: string;
+  brandIdentityStackCardWidth?: string;
+  brandIdentityStackCardAspect?: string;
+  brandIdentityStackImageControls?: BrandIdentityStackImageControl[];
   brandIdentityStampLabels?: string[];
   levelBrandIdentityBackdrop?: boolean;
   hideBrandIdentityTopPhoto?: boolean;
@@ -94,6 +102,11 @@ export function ContentPanel({
   bodyShiftY,
   brandIdentityBackdropImageSrc,
   brandIdentityStackImageSrcs,
+  brandIdentityStackShiftX,
+  brandIdentityStackShiftY,
+  brandIdentityStackCardWidth,
+  brandIdentityStackCardAspect,
+  brandIdentityStackImageControls,
   brandIdentityStampLabels,
   levelBrandIdentityBackdrop = false,
   hideBrandIdentityTopPhoto = false,
@@ -117,6 +130,39 @@ export function ContentPanel({
           stylingStampImage,
           photoStampImage,
         ]);
+
+  const getStackCardStyle = (
+    imageControl?: BrandIdentityStackImageControl,
+  ): CSSProperties | undefined => {
+    if (!imageControl) {
+      return undefined;
+    }
+
+    return {
+      "--photo-top": imageControl.top,
+      "--photo-left": imageControl.left,
+      "--photo-width": imageControl.width,
+      "--photo-aspect": imageControl.aspect,
+      "--photo-rotate": imageControl.rotate,
+      "--photo-layer": imageControl.layer,
+      "--photo-scale": imageControl.scale,
+      "--photo-shift-x": imageControl.shiftX,
+      "--photo-shift-y": imageControl.shiftY,
+    } as CSSProperties;
+  };
+
+  const getStackImageStyle = (
+    imageControl?: BrandIdentityStackImageControl,
+  ): CSSProperties | undefined => {
+    if (!imageControl?.imageObjectFit && !imageControl?.imageObjectPosition) {
+      return undefined;
+    }
+
+    return {
+      objectFit: imageControl.imageObjectFit,
+      objectPosition: imageControl.imageObjectPosition,
+    };
+  };
 
   if (isHome) {
     return (
@@ -252,6 +298,18 @@ export function ContentPanel({
                 : undefined,
           }
         : undefined;
+    const stackStyle: CSSProperties | undefined =
+      brandIdentityStackShiftX ||
+      brandIdentityStackShiftY ||
+      brandIdentityStackCardWidth ||
+      brandIdentityStackCardAspect
+        ? ({
+            "--brand-identity-stack-shift-x": brandIdentityStackShiftX,
+            "--brand-identity-stack-shift-y": brandIdentityStackShiftY,
+            "--brand-identity-stack-card-width": brandIdentityStackCardWidth,
+            "--brand-identity-stack-card-aspect": brandIdentityStackCardAspect,
+          } as CSSProperties)
+        : undefined;
 
     return (
       <>
@@ -259,15 +317,27 @@ export function ContentPanel({
           <div className={photoClusterClassName} aria-hidden="true">
             {isBrandIdentity ? (
               brandIdentityStackImageSrcs ? (
-                <div className={styles.brandIdentityImageStack}>
+                <div
+                  className={styles.brandIdentityImageStack}
+                  style={stackStyle}
+                >
                   {brandIdentityStackImageSrcs.map((imageSrc, index) => (
                     <div
                       className={`${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityStackCard} ${
                         styles[`brandIdentityStackCard${index + 1}`]
                       }`}
+                      style={getStackCardStyle(
+                        brandIdentityStackImageControls?.[index],
+                      )}
                       key={imageSrc}
                     >
-                      <img src={imageSrc} alt="" />
+                      <img
+                        src={imageSrc}
+                        alt=""
+                        style={getStackImageStyle(
+                          brandIdentityStackImageControls?.[index],
+                        )}
+                      />
                     </div>
                   ))}
                 </div>
