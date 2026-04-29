@@ -6,6 +6,8 @@ import laManuelaCoverImage from "../../inspo/la manuela/lamanu_firstlayer.png";
 import laManuelaVisionImage from "../../inspo/la manuela/lamanu_second.png";
 import laManuelaMeaningImage from "../../inspo/la manuela/lamanu_third.png";
 import laManuelaMoodboardImage from "../../inspo/la manuela/lamanu_fourth.png";
+import laManuelaStrategyStampImage from "../../inspo/strategy.png";
+import laManuelaPitchDeckStampImage from "../../inspo/pitch deck.png";
 import tomorrowlandPosterImage from "../../inspo/tomorrowland /1st.png";
 import tomorrowlandInstagramImage from "../../inspo/tomorrowland /2nd.png";
 import tomorrowlandVinylImage from "../../inspo/tomorrowland /3rd.png";
@@ -177,7 +179,10 @@ export const folderPagesBySectionId: Partial<
         laManuelaMeaningImage,
         laManuelaMoodboardImage,
       ],
-      brandIdentityStampLabels: ["Strategy", "Pitch\nDeck", "Visual\nIdentity"],
+      stampImageSrcs: [
+        laManuelaStrategyStampImage,
+        laManuelaPitchDeckStampImage,
+      ],
     },
   ],
   experiments: [

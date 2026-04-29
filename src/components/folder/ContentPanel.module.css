@@ -190,25 +190,25 @@
 
   --brand-identity-stack-card-1-top: 5%;
   --brand-identity-stack-card-1-left: 0%;
-  --brand-identity-stack-card-1-width: 50%;
+  --brand-identity-stack-card-1-width: 60%;
   --brand-identity-stack-card-1-aspect: 1730 / 1314;
   --brand-identity-stack-card-1-rotate: -30deg;
   --brand-identity-stack-card-1-layer: 3;
   --brand-identity-stack-card-2-top: 2%;
   --brand-identity-stack-card-2-left:0%;
-  --brand-identity-stack-card-2-width: 50%;
+  --brand-identity-stack-card-2-width: 60%;
   --brand-identity-stack-card-2-aspect: 918 / 1380;
   --brand-identity-stack-card-2-rotate: 7deg;
   --brand-identity-stack-card-2-layer: 14;
   --brand-identity-stack-card-3-top: 0%;
   --brand-identity-stack-card-3-left: 0%;
-  --brand-identity-stack-card-3-width: 50%;
+  --brand-identity-stack-card-3-width: 60%;
   --brand-identity-stack-card-3-aspect: 634 / 790;
   --brand-identity-stack-card-3-rotate: -10deg;
   --brand-identity-stack-card-3-layer: 13;
   --brand-identity-stack-card-4-top: 2%;
   --brand-identity-stack-card-4-left: 2%;
-  --brand-identity-stack-card-4-width: 40%;
+  --brand-identity-stack-card-4-width: 45%;
   --brand-identity-stack-card-4-aspect: 522 / 1128;
   --brand-identity-stack-card-4-rotate: -10deg;
   --brand-identity-stack-card-4-layer: 1;
@@ -455,7 +455,7 @@
 
 .brandIdentityPaperclip[data-page-id="tomorrowland-rebrand"] {
   /* Tomorrowland paperclip controls. */
-  --brand-identity-paperclip-top: 0px;
+  --brand-identity-paperclip-top: 50px;
   --brand-identity-paperclip-left: -25px;
   --brand-identity-paperclip-width: 70px;
   --brand-identity-paperclip-shift-x: 0px;
