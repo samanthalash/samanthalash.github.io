@@ -23,19 +23,33 @@ interface ContentPanelProps {
   content?: FolderSection["placeholderContent"];
   layoutVariant?: ContentPanelLayout;
   copyBlockWidth?: string;
+  copyBlockMaxWidth?: string;
+  copyBlockJustifySelf?: CSSProperties["justifySelf"];
+  copyBlockAlignSelf?: CSSProperties["alignSelf"];
+  copyBlockShiftX?: string;
+  copyBlockShiftY?: string;
+  titleWidth?: string;
   titleWhiteSpace?: CSSProperties["whiteSpace"];
+  titleFontSize?: string;
   titleLineHeight?: string;
+  titleLetterSpacing?: string;
   titleTextAlign?: "left" | "center" | "right";
   titleMaxWidth?: string;
+  titleMarginTop?: string;
+  titleMarginBottom?: string;
   titleShiftX?: string;
   titleShiftY?: string;
   bodyWidth?: string;
+  bodyMinWidth?: string;
   bodyMaxWidth?: string;
   bodyMarginTop?: string;
+  bodyMarginBottom?: string;
   bodyFontSize?: string;
   bodyLineHeight?: string;
   bodyLetterSpacing?: string;
   bodyTextAlign?: "left" | "center" | "right";
+  bodyShiftX?: string;
+  bodyShiftY?: string;
   brandIdentityBackdropImageSrc?: string;
   brandIdentityStackImageSrcs?: string[];
   brandIdentityStampLabels?: string[];
@@ -51,19 +65,33 @@ export function ContentPanel({
   content,
   layoutVariant = "default",
   copyBlockWidth,
+  copyBlockMaxWidth,
+  copyBlockJustifySelf,
+  copyBlockAlignSelf,
+  copyBlockShiftX,
+  copyBlockShiftY,
+  titleWidth,
   titleWhiteSpace,
+  titleFontSize,
   titleLineHeight,
+  titleLetterSpacing,
   titleTextAlign,
   titleMaxWidth,
+  titleMarginTop,
+  titleMarginBottom,
   titleShiftX,
   titleShiftY,
   bodyWidth,
+  bodyMinWidth,
   bodyMaxWidth,
   bodyMarginTop,
+  bodyMarginBottom,
   bodyFontSize,
   bodyLineHeight,
   bodyLetterSpacing,
   bodyTextAlign,
+  bodyShiftX,
+  bodyShiftY,
   brandIdentityBackdropImageSrc,
   brandIdentityStackImageSrcs,
   brandIdentityStampLabels,
@@ -140,22 +168,56 @@ export function ContentPanel({
     const paperclipClassName = `${styles.creativePaperclip}${
       isBrandIdentity ? ` ${styles.brandIdentityPaperclip}` : ""
     }`;
-    const copyBlockStyle: CSSProperties | undefined = copyBlockWidth
-      ? { width: copyBlockWidth }
-      : undefined;
+    const copyBlockStyle: CSSProperties | undefined =
+      copyBlockWidth ||
+      copyBlockMaxWidth ||
+      copyBlockJustifySelf ||
+      copyBlockAlignSelf ||
+      copyBlockShiftX ||
+      copyBlockShiftY
+        ? {
+            width: copyBlockWidth,
+            maxWidth: copyBlockMaxWidth,
+            justifySelf: copyBlockJustifySelf,
+            alignSelf: copyBlockAlignSelf,
+            transform:
+              copyBlockShiftX || copyBlockShiftY
+                ? `translate(${copyBlockShiftX ?? "0px"}, calc(-4px + ${
+                    copyBlockShiftY ?? "0px"
+                  }))`
+                : undefined,
+          }
+        : undefined;
     const titleStyle: CSSProperties | undefined =
+      titleWidth ||
       titleWhiteSpace ||
+      titleFontSize ||
       titleLineHeight ||
+      titleLetterSpacing ||
       titleTextAlign ||
       titleMaxWidth ||
+      titleMarginTop ||
+      titleMarginBottom ||
       titleShiftX ||
       titleShiftY
         ? {
+            width: titleWidth,
             whiteSpace: titleWhiteSpace,
+            fontSize: titleFontSize,
             lineHeight: titleLineHeight,
+            letterSpacing: titleLetterSpacing,
             textAlign: titleTextAlign,
             maxWidth: titleMaxWidth,
-            marginLeft: titleMaxWidth ? "auto" : undefined,
+            marginTop: titleMarginTop,
+            marginRight:
+              (titleWidth || titleMaxWidth) && titleTextAlign === "left"
+                ? "auto"
+                : undefined,
+            marginBottom: titleMarginBottom,
+            marginLeft:
+              (titleWidth || titleMaxWidth) && titleTextAlign !== "left"
+                ? "auto"
+                : undefined,
             transform:
               titleShiftX || titleShiftY
                 ? `translate(${titleShiftX ?? "0px"}, ${titleShiftY ?? "0px"})`
@@ -164,20 +226,30 @@ export function ContentPanel({
         : undefined;
     const bodyStyle: CSSProperties | undefined =
       bodyWidth ||
+      bodyMinWidth ||
       bodyMaxWidth ||
       bodyMarginTop ||
+      bodyMarginBottom ||
       bodyFontSize ||
       bodyLineHeight ||
       bodyLetterSpacing ||
-      bodyTextAlign
+      bodyTextAlign ||
+      bodyShiftX ||
+      bodyShiftY
         ? {
             width: bodyWidth,
+            minWidth: bodyMinWidth,
             maxWidth: bodyMaxWidth,
             marginTop: bodyMarginTop,
+            marginBottom: bodyMarginBottom,
             fontSize: bodyFontSize,
             lineHeight: bodyLineHeight,
             letterSpacing: bodyLetterSpacing,
             textAlign: bodyTextAlign,
+            transform:
+              bodyShiftX || bodyShiftY
+                ? `translate(${bodyShiftX ?? "0px"}, ${bodyShiftY ?? "0px"})`
+                : undefined,
           }
         : undefined;
 

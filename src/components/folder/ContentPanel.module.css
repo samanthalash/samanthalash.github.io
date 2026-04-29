@@ -182,6 +182,28 @@
   --brand-identity-stack-card-4-rotate: -6.5deg;
 }
 
+.content[data-page-id="strategy-concept-page-1"] {
+  /* Move the whole Spotify picture stack with these two values. */
+  --brand-identity-stack-shift-x: -4%;
+  --brand-identity-stack-shift-y: -29%;
+  --brand-identity-stack-card-width: 86%;
+  --brand-identity-stack-card-aspect: 1828 / 1026;
+
+  /* Adjust each Spotify card's position and rotation here. */
+  --brand-identity-stack-card-1-top: 13%;
+  --brand-identity-stack-card-1-left: 0%;
+  --brand-identity-stack-card-1-rotate: -3deg;
+  --brand-identity-stack-card-2-top: 17%;
+  --brand-identity-stack-card-2-left: 3.5%;
+  --brand-identity-stack-card-2-rotate: -2.5deg;
+  --brand-identity-stack-card-3-top: 21%;
+  --brand-identity-stack-card-3-left: 7%;
+  --brand-identity-stack-card-3-rotate: 4.5deg;
+  --brand-identity-stack-card-4-top: 25%;
+  --brand-identity-stack-card-4-left: 10.5%;
+  --brand-identity-stack-card-4-rotate: -6.5deg;
+}
+
 .content[data-page-id="tomorrowland-rebrand"] {
   /* Tomorrowland stacked-picture controls. */
   --brand-identity-stack-shift-x: -2%;
@@ -473,6 +495,16 @@
   --brand-identity-paperclip-rotate: 230deg;
 }
 
+.brandIdentityPaperclip[data-page-id="strategy-concept-page-1"] {
+  /* Spotify paperclip controls. */
+  --brand-identity-paperclip-top: 50px;
+  --brand-identity-paperclip-left: -13px;
+  --brand-identity-paperclip-width: 70px;
+  --brand-identity-paperclip-shift-x: 0px;
+  --brand-identity-paperclip-shift-y: 0px;
+  --brand-identity-paperclip-rotate: 230deg;
+}
+
 @media (max-width: 1180px) {
   .creativeDirectionContent {
     grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.76fr);
@@ -575,6 +607,17 @@
   }
 
   .content[data-page-id="la-manuela"] {
+    --brand-identity-stack-card-1-top: 10%;
+    --brand-identity-stack-card-1-left: 2%;
+    --brand-identity-stack-card-2-top: 14%;
+    --brand-identity-stack-card-2-left: 5%;
+    --brand-identity-stack-card-3-top: 18%;
+    --brand-identity-stack-card-3-left: 8%;
+    --brand-identity-stack-card-4-top: 22%;
+    --brand-identity-stack-card-4-left: 11%;
+  }
+
+  .content[data-page-id="strategy-concept-page-1"] {
     --brand-identity-stack-card-1-top: 10%;
     --brand-identity-stack-card-1-left: 2%;
     --brand-identity-stack-card-2-top: 14%;
@@ -700,6 +743,16 @@
     --brand-identity-paperclip-shift-y: 0px;
     --brand-identity-paperclip-rotate: 270deg;
   }
+
+  .brandIdentityPaperclip[data-page-id="strategy-concept-page-1"] {
+    /* Spotify mobile paperclip controls. */
+    --brand-identity-paperclip-top: 10px;
+    --brand-identity-paperclip-left: 20px;
+    --brand-identity-paperclip-width: 72px;
+    --brand-identity-paperclip-shift-x: 0px;
+    --brand-identity-paperclip-shift-y: 0px;
+    --brand-identity-paperclip-rotate: 270deg;
+  }
 }
 
 @media (max-width: 640px) {
@@ -735,6 +788,17 @@
   }
 
   .content[data-page-id="la-manuela"] {
+    --brand-identity-stack-card-1-top: 12%;
+    --brand-identity-stack-card-1-left: 1%;
+    --brand-identity-stack-card-2-top: 16%;
+    --brand-identity-stack-card-2-left: 4%;
+    --brand-identity-stack-card-3-top: 20%;
+    --brand-identity-stack-card-3-left: 7%;
+    --brand-identity-stack-card-4-top: 24%;
+    --brand-identity-stack-card-4-left: 10%;
+  }
+
+  .content[data-page-id="strategy-concept-page-1"] {
     --brand-identity-stack-card-1-top: 12%;
     --brand-identity-stack-card-1-left: 1%;
     --brand-identity-stack-card-2-top: 16%;
@@ -864,6 +928,16 @@
 
   .brandIdentityPaperclip[data-page-id="la-manuela"] {
     /* La Manuela small-mobile paperclip controls. */
+    --brand-identity-paperclip-top: 10px;
+    --brand-identity-paperclip-left: 14px;
+    --brand-identity-paperclip-width: 72px;
+    --brand-identity-paperclip-shift-x: 0px;
+    --brand-identity-paperclip-shift-y: 0px;
+    --brand-identity-paperclip-rotate: 270deg;
+  }
+
+  .brandIdentityPaperclip[data-page-id="strategy-concept-page-1"] {
+    /* Spotify small-mobile paperclip controls. */
     --brand-identity-paperclip-top: 10px;
     --brand-identity-paperclip-left: 14px;
     --brand-identity-paperclip-width: 72px;

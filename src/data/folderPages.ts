@@ -8,6 +8,10 @@ import laManuelaMeaningImage from "../../inspo/la manuela/lamanu_third.png";
 import laManuelaMoodboardImage from "../../inspo/la manuela/lamanu_fourth.png";
 import laManuelaStrategyStampImage from "../../inspo/strategy.png";
 import laManuelaPitchDeckStampImage from "../../inspo/pitch deck.png";
+import spotifyCoverImage from "../../inspo/spotify/sp1.png";
+import spotifyConceptImage from "../../inspo/spotify/sp2.png";
+import spotifyContentIdeasImage from "../../inspo/spotify/sp3.png";
+import spotifyMoodboardImage from "../../inspo/spotify/sp4.png";
 import tomorrowlandPosterImage from "../../inspo/tomorrowland /1st.png";
 import tomorrowlandInstagramImage from "../../inspo/tomorrowland /2nd.png";
 import tomorrowlandVinylImage from "../../inspo/tomorrowland /3rd.png";
@@ -24,19 +28,33 @@ export interface FolderPageConfig {
   layout?: ContentPanelLayout;
   content: FolderSection["placeholderContent"];
   copyBlockWidth?: string;
+  copyBlockMaxWidth?: string;
+  copyBlockJustifySelf?: "start" | "center" | "end" | "stretch";
+  copyBlockAlignSelf?: "start" | "center" | "end" | "stretch";
+  copyBlockShiftX?: string;
+  copyBlockShiftY?: string;
+  titleWidth?: string;
   titleWhiteSpace?: "normal" | "nowrap" | "pre-line";
+  titleFontSize?: string;
   titleLineHeight?: string;
+  titleLetterSpacing?: string;
   titleTextAlign?: "left" | "center" | "right";
   titleMaxWidth?: string;
+  titleMarginTop?: string;
+  titleMarginBottom?: string;
   titleShiftX?: string;
   titleShiftY?: string;
   bodyWidth?: string;
+  bodyMinWidth?: string;
   bodyMaxWidth?: string;
   bodyMarginTop?: string;
+  bodyMarginBottom?: string;
   bodyFontSize?: string;
   bodyLineHeight?: string;
   bodyLetterSpacing?: string;
   bodyTextAlign?: "left" | "center" | "right";
+  bodyShiftX?: string;
+  bodyShiftY?: string;
   brandIdentityBackdropImageSrc?: string;
   brandIdentityStackImageSrcs?: string[];
   brandIdentityStampLabels?: string[];
@@ -188,18 +206,59 @@ export const folderPagesBySectionId: Partial<
   experiments: [
     {
       id: "strategy-concept-page-1",
+      referenceName: "SPOTIFY CONTENT STRATEGY",
+      aliases: ["Spotify", "Spotify Content Strategy"],
       sectionId: "experiments",
+      layout: "brandIdentity",
       content: {
-        eyebrow: "Campaign Study",
-        title: "LEVI'S CAMPAIGN",
+        eyebrow: "Brand Strategy",
+        title: "SPOTIFY CONTENT STRATEGY",
         body:
-          "Fit For Wherever is a campaign concept developed for Levi's, targeting the digital nomad lifestyle. The creative idea: wherever life takes you, denim is already there. In an era where travel is increasingly performed for an audience, the campaign leans into authenticity, positioning Levi's jeans as more than clothing, but a dependable, grounding companion through the unpredictable",
+          "A brand ambassador program pitched to Spotify, built around the insight that while Spotify dominates music culture digitally, it has little presence in the physical spaces where that culture actually lives – nightlife. The concept positions a nightlife influencer as a cultural translator for Gen Z women, using music to reframe the party girl narrative. The pitch covered brand analysis, competitor landscape, audience profiling, creative concept, and a full content strategy.",
         bullets: [],
-        footer: "Levi's campaign concept sheet.",
+        footer: "Spotify content strategy concept sheet.",
       },
-      copyBlockWidth: "min(100%, 560px)",
-      bodyWidth: "auto",
-      bodyMaxWidth: "35ch",
+      copyBlockWidth: "min(100%, 660px)",
+      copyBlockMaxWidth: "700px",
+      copyBlockJustifySelf: "center",
+      copyBlockAlignSelf: "center",
+      // Move the whole Spotify text group with these two values.
+      // Positive X moves right, negative X moves left; positive Y moves down.
+      copyBlockShiftX: "0px",
+      copyBlockShiftY: "0px",
+      titleWidth: "130%",
+      titleWhiteSpace: "normal",
+      titleFontSize: "clamp(1rem, 2vw, 3.7rem)",
+      titleLineHeight: "0.82",
+      titleLetterSpacing: "-0.055em",
+      titleMaxWidth: "100ch",
+      titleTextAlign: "right",
+      // Move only the Spotify title by changing these two values.
+      // Positive X moves right, negative X moves left; positive Y moves down.
+      titleShiftX: "-90px",
+      titleShiftY: "0px",
+      bodyWidth: "110%",
+      bodyMinWidth: "0",
+      bodyMaxWidth: "48ch",
+      bodyMarginTop: "clamp(18px, 2.2vw, 28px)",
+      bodyFontSize: "clamp(1rem, 1vw, 1rem)",
+      bodyLineHeight: "1.47",
+      bodyLetterSpacing: "-0.03em",
+      bodyTextAlign: "right",
+      // Move only the Spotify body copy with these two values.
+      // Positive X moves right, negative X moves left; positive Y moves down.
+      bodyShiftX: "-30px",
+      bodyShiftY: "0px",
+      brandIdentityStackImageSrcs: [
+        spotifyCoverImage,
+        spotifyConceptImage,
+        spotifyContentIdeasImage,
+        spotifyMoodboardImage,
+      ],
+      stampImageSrcs: [
+        laManuelaStrategyStampImage,
+        laManuelaPitchDeckStampImage,
+      ],
     },
   ],
 };
