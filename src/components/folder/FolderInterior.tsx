@@ -62,6 +62,8 @@ export function FolderInterior({
           titleLineHeight={page.titleLineHeight}
           titleTextAlign={page.titleTextAlign}
           titleMaxWidth={page.titleMaxWidth}
+          titleShiftX={page.titleShiftX}
+          titleShiftY={page.titleShiftY}
           bodyWidth={page.bodyWidth}
           bodyMaxWidth={page.bodyMaxWidth}
           bodyMarginTop={page.bodyMarginTop}

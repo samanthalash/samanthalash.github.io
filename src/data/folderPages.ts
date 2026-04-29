@@ -6,6 +6,10 @@ import laManuelaCoverImage from "../../inspo/la manuela/lamanu_firstlayer.png";
 import laManuelaVisionImage from "../../inspo/la manuela/lamanu_second.png";
 import laManuelaMeaningImage from "../../inspo/la manuela/lamanu_third.png";
 import laManuelaMoodboardImage from "../../inspo/la manuela/lamanu_fourth.png";
+import tomorrowlandPosterImage from "../../inspo/tomorrowland /1st.png";
+import tomorrowlandInstagramImage from "../../inspo/tomorrowland /2nd.png";
+import tomorrowlandVinylImage from "../../inspo/tomorrowland /3rd.png";
+import tomorrowlandSteviePosterImage from "../../inspo/tomorrowland /4th.png";
 import type { FolderSection, FolderSectionId } from "./folderSections";
 
 export type ContentPanelLayout = "default" | "brandIdentity";
@@ -22,6 +26,8 @@ export interface FolderPageConfig {
   titleLineHeight?: string;
   titleTextAlign?: "left" | "center" | "right";
   titleMaxWidth?: string;
+  titleShiftX?: string;
+  titleShiftY?: string;
   bodyWidth?: string;
   bodyMaxWidth?: string;
   bodyMarginTop?: string;
@@ -128,9 +134,19 @@ export const folderPagesBySectionId: Partial<
       copyBlockWidth: "min(100%, 580px)",
       titleWhiteSpace: "nowrap",
       titleTextAlign: "right",
-      titleMaxWidth: "38ch",
+      titleMaxWidth: "50ch",
+      // Move only the Tomorrowland title by changing these two values.
+      // Positive X moves right, negative X moves left; positive Y moves down.
+      titleShiftX: "-70px",
+      titleShiftY: "0px",
       bodyWidth: "auto",
       bodyMaxWidth: "38ch",
+      brandIdentityStackImageSrcs: [
+        tomorrowlandVinylImage,
+        tomorrowlandPosterImage,
+        tomorrowlandSteviePosterImage,
+        tomorrowlandInstagramImage,
+      ],
       stampImageSrcs: [
         conceptStampImage,
         graphicDesignStampImage,

@@ -27,6 +27,8 @@ interface ContentPanelProps {
   titleLineHeight?: string;
   titleTextAlign?: "left" | "center" | "right";
   titleMaxWidth?: string;
+  titleShiftX?: string;
+  titleShiftY?: string;
   bodyWidth?: string;
   bodyMaxWidth?: string;
   bodyMarginTop?: string;
@@ -53,6 +55,8 @@ export function ContentPanel({
   titleLineHeight,
   titleTextAlign,
   titleMaxWidth,
+  titleShiftX,
+  titleShiftY,
   bodyWidth,
   bodyMaxWidth,
   bodyMarginTop,
@@ -140,13 +144,22 @@ export function ContentPanel({
       ? { width: copyBlockWidth }
       : undefined;
     const titleStyle: CSSProperties | undefined =
-      titleWhiteSpace || titleLineHeight || titleTextAlign || titleMaxWidth
+      titleWhiteSpace ||
+      titleLineHeight ||
+      titleTextAlign ||
+      titleMaxWidth ||
+      titleShiftX ||
+      titleShiftY
         ? {
             whiteSpace: titleWhiteSpace,
             lineHeight: titleLineHeight,
             textAlign: titleTextAlign,
             maxWidth: titleMaxWidth,
             marginLeft: titleMaxWidth ? "auto" : undefined,
+            transform:
+              titleShiftX || titleShiftY
+                ? `translate(${titleShiftX ?? "0px"}, ${titleShiftY ?? "0px"})`
+                : undefined,
           }
         : undefined;
     const bodyStyle: CSSProperties | undefined =

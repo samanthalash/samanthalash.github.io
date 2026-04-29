@@ -162,59 +162,124 @@
 
 .content[data-page-id="la-manuela"] {
   /* Move the whole La Manuela picture stack with these two values. */
-  --la-manuela-stack-shift-x: -4%;
-  --la-manuela-stack-shift-y: -30%;
-  --la-manuela-stack-card-width: 86%;
+  --brand-identity-stack-shift-x: -4%;
+  --brand-identity-stack-shift-y: -30%;
+  --brand-identity-stack-card-width: 86%;
+  --brand-identity-stack-card-aspect: 1808 / 1008;
 
   /* Adjust each La Manuela card's position and rotation here. */
-  --la-manuela-stack-card-1-top: 13%;
-  --la-manuela-stack-card-1-left: 0%;
-  --la-manuela-stack-card-1-rotate:-3deg;
-  --la-manuela-stack-card-2-top: 17%;
-  --la-manuela-stack-card-2-left: 3.5%;
-  --la-manuela-stack-card-2-rotate: -2.5deg;
-  --la-manuela-stack-card-3-top: 21%;
-  --la-manuela-stack-card-3-left: 7%;
-  --la-manuela-stack-card-3-rotate: 4.5deg;
-  --la-manuela-stack-card-4-top: 25%;
-  --la-manuela-stack-card-4-left: 10.5%;
-  --la-manuela-stack-card-4-rotate: -6.5deg;
+  --brand-identity-stack-card-1-top: 13%;
+  --brand-identity-stack-card-1-left: 0%;
+  --brand-identity-stack-card-1-rotate: -3deg;
+  --brand-identity-stack-card-2-top: 17%;
+  --brand-identity-stack-card-2-left: 3.5%;
+  --brand-identity-stack-card-2-rotate: -2.5deg;
+  --brand-identity-stack-card-3-top: 21%;
+  --brand-identity-stack-card-3-left: 7%;
+  --brand-identity-stack-card-3-rotate: 4.5deg;
+  --brand-identity-stack-card-4-top: 25%;
+  --brand-identity-stack-card-4-left: 10.5%;
+  --brand-identity-stack-card-4-rotate: -6.5deg;
+}
+
+.content[data-page-id="tomorrowland-rebrand"] {
+  /* Tomorrowland stacked-picture controls. */
+  --brand-identity-stack-shift-x: -2%;
+  --brand-identity-stack-shift-y: -7%;
+  --brand-identity-stack-card-width: 68%;
+
+  --brand-identity-stack-card-1-top: 5%;
+  --brand-identity-stack-card-1-left: 0%;
+  --brand-identity-stack-card-1-width: 50%;
+  --brand-identity-stack-card-1-aspect: 1730 / 1314;
+  --brand-identity-stack-card-1-rotate: -30deg;
+  --brand-identity-stack-card-1-layer: 3;
+  --brand-identity-stack-card-2-top: 2%;
+  --brand-identity-stack-card-2-left:0%;
+  --brand-identity-stack-card-2-width: 50%;
+  --brand-identity-stack-card-2-aspect: 918 / 1380;
+  --brand-identity-stack-card-2-rotate: 7deg;
+  --brand-identity-stack-card-2-layer: 14;
+  --brand-identity-stack-card-3-top: 0%;
+  --brand-identity-stack-card-3-left: 0%;
+  --brand-identity-stack-card-3-width: 50%;
+  --brand-identity-stack-card-3-aspect: 634 / 790;
+  --brand-identity-stack-card-3-rotate: -10deg;
+  --brand-identity-stack-card-3-layer: 13;
+  --brand-identity-stack-card-4-top: 2%;
+  --brand-identity-stack-card-4-left: 2%;
+  --brand-identity-stack-card-4-width: 40%;
+  --brand-identity-stack-card-4-aspect: 522 / 1128;
+  --brand-identity-stack-card-4-rotate: -10deg;
+  --brand-identity-stack-card-4-layer: 1;
 }
 
 .brandIdentityStackCard {
-  --photo-width: var(--la-manuela-stack-card-width, 86%);
-  --photo-aspect: 1808 / 1008;
-  --photo-shift-x: var(--la-manuela-stack-shift-x, 0%);
-  --photo-shift-y: var(--la-manuela-stack-shift-y, 0%);
+  --photo-width: var(--brand-identity-stack-card-width, 86%);
+  --photo-aspect: var(--brand-identity-stack-card-aspect, 1808 / 1008);
+  --photo-shift-x: var(--brand-identity-stack-shift-x, 0%);
+  --photo-shift-y: var(--brand-identity-stack-shift-y, 0%);
   background: rgb(255 252 247 / 0.96);
 }
 
 .brandIdentityStackCard1 {
-  --photo-top: var(--la-manuela-stack-card-1-top, 13%);
-  --photo-left: var(--la-manuela-stack-card-1-left, 0%);
-  --photo-rotate: var(--la-manuela-stack-card-1-rotate, 0deg);
-  --photo-layer: 4;
+  --photo-top: var(--brand-identity-stack-card-1-top, 13%);
+  --photo-left: var(--brand-identity-stack-card-1-left, 0%);
+  --photo-width: var(
+    --brand-identity-stack-card-1-width,
+    var(--brand-identity-stack-card-width, 86%)
+  );
+  --photo-aspect: var(
+    --brand-identity-stack-card-1-aspect,
+    var(--brand-identity-stack-card-aspect, 1808 / 1008)
+  );
+  --photo-rotate: var(--brand-identity-stack-card-1-rotate, 0deg);
+  --photo-layer: var(--brand-identity-stack-card-1-layer, 4);
 }
 
 .brandIdentityStackCard2 {
-  --photo-top: var(--la-manuela-stack-card-2-top, 17%);
-  --photo-left: var(--la-manuela-stack-card-2-left, 3.5%);
-  --photo-rotate: var(--la-manuela-stack-card-2-rotate, -2.5deg);
-  --photo-layer: 3;
+  --photo-top: var(--brand-identity-stack-card-2-top, 17%);
+  --photo-left: var(--brand-identity-stack-card-2-left, 3.5%);
+  --photo-width: var(
+    --brand-identity-stack-card-2-width,
+    var(--brand-identity-stack-card-width, 86%)
+  );
+  --photo-aspect: var(
+    --brand-identity-stack-card-2-aspect,
+    var(--brand-identity-stack-card-aspect, 1808 / 1008)
+  );
+  --photo-rotate: var(--brand-identity-stack-card-2-rotate, -2.5deg);
+  --photo-layer: var(--brand-identity-stack-card-2-layer, 3);
 }
 
 .brandIdentityStackCard3 {
-  --photo-top: var(--la-manuela-stack-card-3-top, 21%);
-  --photo-left: var(--la-manuela-stack-card-3-left, 7%);
-  --photo-rotate: var(--la-manuela-stack-card-3-rotate, 4.5deg);
-  --photo-layer: 2;
+  --photo-top: var(--brand-identity-stack-card-3-top, 21%);
+  --photo-left: var(--brand-identity-stack-card-3-left, 7%);
+  --photo-width: var(
+    --brand-identity-stack-card-3-width,
+    var(--brand-identity-stack-card-width, 86%)
+  );
+  --photo-aspect: var(
+    --brand-identity-stack-card-3-aspect,
+    var(--brand-identity-stack-card-aspect, 1808 / 1008)
+  );
+  --photo-rotate: var(--brand-identity-stack-card-3-rotate, 4.5deg);
+  --photo-layer: var(--brand-identity-stack-card-3-layer, 2);
 }
 
 .brandIdentityStackCard4 {
-  --photo-top: var(--la-manuela-stack-card-4-top, 25%);
-  --photo-left: var(--la-manuela-stack-card-4-left, 10.5%);
-  --photo-rotate: var(--la-manuela-stack-card-4-rotate, -6.5deg);
-  --photo-layer: 1;
+  --photo-top: var(--brand-identity-stack-card-4-top, 25%);
+  --photo-left: var(--brand-identity-stack-card-4-left, 10.5%);
+  --photo-width: var(
+    --brand-identity-stack-card-4-width,
+    var(--brand-identity-stack-card-width, 86%)
+  );
+  --photo-aspect: var(
+    --brand-identity-stack-card-4-aspect,
+    var(--brand-identity-stack-card-aspect, 1808 / 1008)
+  );
+  --photo-rotate: var(--brand-identity-stack-card-4-rotate, -6.5deg);
+  --photo-layer: var(--brand-identity-stack-card-4-layer, 1);
 }
 
 /* Adjust each photo by changing these vars instead of rewriting the card rule. */
@@ -506,27 +571,55 @@
   }
 
   .brandIdentityStackCard {
-    --photo-width: 82%;
+    --brand-identity-stack-card-width: 82%;
+  }
+
+  .content[data-page-id="la-manuela"] {
+    --brand-identity-stack-card-1-top: 10%;
+    --brand-identity-stack-card-1-left: 2%;
+    --brand-identity-stack-card-2-top: 14%;
+    --brand-identity-stack-card-2-left: 5%;
+    --brand-identity-stack-card-3-top: 18%;
+    --brand-identity-stack-card-3-left: 8%;
+    --brand-identity-stack-card-4-top: 22%;
+    --brand-identity-stack-card-4-left: 11%;
+  }
+
+  .content[data-page-id="tomorrowland-rebrand"] {
+    --brand-identity-stack-shift-x: 0%;
+    --brand-identity-stack-shift-y: 0%;
+    --brand-identity-stack-card-1-width: 72%;
+    --brand-identity-stack-card-1-top: 21%;
+    --brand-identity-stack-card-1-left: 8%;
+    --brand-identity-stack-card-2-width: 28%;
+    --brand-identity-stack-card-2-top: 2%;
+    --brand-identity-stack-card-2-left: 2%;
+    --brand-identity-stack-card-3-width: 32%;
+    --brand-identity-stack-card-3-top: 1%;
+    --brand-identity-stack-card-3-left: 50%;
+    --brand-identity-stack-card-4-width: 24%;
+    --brand-identity-stack-card-4-top: 38%;
+    --brand-identity-stack-card-4-left: 60%;
   }
 
   .brandIdentityStackCard1 {
-    --photo-top: 10%;
-    --photo-left: 2%;
+    --photo-top: var(--brand-identity-stack-card-1-top, 10%);
+    --photo-left: var(--brand-identity-stack-card-1-left, 2%);
   }
 
   .brandIdentityStackCard2 {
-    --photo-top: 14%;
-    --photo-left: 5%;
+    --photo-top: var(--brand-identity-stack-card-2-top, 14%);
+    --photo-left: var(--brand-identity-stack-card-2-left, 5%);
   }
 
   .brandIdentityStackCard3 {
-    --photo-top: 18%;
-    --photo-left: 8%;
+    --photo-top: var(--brand-identity-stack-card-3-top, 18%);
+    --photo-left: var(--brand-identity-stack-card-3-left, 8%);
   }
 
   .brandIdentityStackCard4 {
-    --photo-top: 22%;
-    --photo-left: 11%;
+    --photo-top: var(--brand-identity-stack-card-4-top, 22%);
+    --photo-left: var(--brand-identity-stack-card-4-left, 11%);
   }
 
   .creativeCopyBlock,
@@ -638,27 +731,53 @@
   }
 
   .brandIdentityStackCard {
-    --photo-width: 84%;
+    --brand-identity-stack-card-width: 84%;
+  }
+
+  .content[data-page-id="la-manuela"] {
+    --brand-identity-stack-card-1-top: 12%;
+    --brand-identity-stack-card-1-left: 1%;
+    --brand-identity-stack-card-2-top: 16%;
+    --brand-identity-stack-card-2-left: 4%;
+    --brand-identity-stack-card-3-top: 20%;
+    --brand-identity-stack-card-3-left: 7%;
+    --brand-identity-stack-card-4-top: 24%;
+    --brand-identity-stack-card-4-left: 10%;
+  }
+
+  .content[data-page-id="tomorrowland-rebrand"] {
+    --brand-identity-stack-card-1-width: 78%;
+    --brand-identity-stack-card-1-top: 22%;
+    --brand-identity-stack-card-1-left: 4%;
+    --brand-identity-stack-card-2-width: 31%;
+    --brand-identity-stack-card-2-top: 3%;
+    --brand-identity-stack-card-2-left: 1%;
+    --brand-identity-stack-card-3-width: 35%;
+    --brand-identity-stack-card-3-top: 1%;
+    --brand-identity-stack-card-3-left: 48%;
+    --brand-identity-stack-card-4-width: 27%;
+    --brand-identity-stack-card-4-top: 40%;
+    --brand-identity-stack-card-4-left: 60%;
   }
 
   .brandIdentityStackCard1 {
-    --photo-top: 12%;
-    --photo-left: 1%;
+    --photo-top: var(--brand-identity-stack-card-1-top, 12%);
+    --photo-left: var(--brand-identity-stack-card-1-left, 1%);
   }
 
   .brandIdentityStackCard2 {
-    --photo-top: 16%;
-    --photo-left: 4%;
+    --photo-top: var(--brand-identity-stack-card-2-top, 16%);
+    --photo-left: var(--brand-identity-stack-card-2-left, 4%);
   }
 
   .brandIdentityStackCard3 {
-    --photo-top: 20%;
-    --photo-left: 7%;
+    --photo-top: var(--brand-identity-stack-card-3-top, 20%);
+    --photo-left: var(--brand-identity-stack-card-3-left, 7%);
   }
 
   .brandIdentityStackCard4 {
-    --photo-top: 24%;
-    --photo-left: 10%;
+    --photo-top: var(--brand-identity-stack-card-4-top, 24%);
+    --photo-left: var(--brand-identity-stack-card-4-left, 10%);
   }
 
   .creativePhotoBillboard {
