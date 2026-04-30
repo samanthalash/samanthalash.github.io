@@ -65,9 +65,94 @@
   height: auto;
   object-fit: contain;
   transform: rotate(180deg);
-  z-index: 20;
+  z-index: 10000;
   pointer-events: none;
   filter: drop-shadow(0 8px 8px rgb(39 39 39 / 0.15));
+}
+
+.contactContent {
+  /*
+   * Contact page controls.
+   * These are the only contact item size/position controls, so edits here
+   * apply at every viewport width.
+   */
+  --contact-thankyou-top: 25%;
+  --contact-thankyou-left: -15%;
+  --contact-thankyou-width: 75%;
+  --contact-thankyou-rotate: 9deg;
+  --contact-thankyou-layer: 2;
+
+  --contact-envelope-top: 0%;
+  --contact-envelope-left: 44%;
+  --contact-envelope-width: 70%;
+  --contact-envelope-rotate: 3deg;
+  --contact-envelope-layer: 3;
+
+  --contact-paperclip-1-top: 88.5%;
+  --contact-paperclip-1-left: 8%;
+  --contact-paperclip-1-width: 76px;
+  --contact-paperclip-1-rotate: 207deg;
+  --contact-paperclip-1-layer: 10000;
+
+  --contact-paperclip-2-top: 35%;
+  --contact-paperclip-2-left: 93%;
+  --contact-paperclip-2-width: 82px;
+  --contact-paperclip-2-rotate: 70deg;
+  --contact-paperclip-2-layer: 10000;
+
+  overflow: visible;
+}
+
+.contactImage,
+.contactPaperclip {
+  position: absolute;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.contactImage {
+  filter:
+    drop-shadow(0 20px 22px rgb(39 39 39 / 0.17))
+    drop-shadow(0 6px 9px rgb(39 39 39 / 0.11));
+}
+
+.contactThankYouImage {
+  top: var(--contact-thankyou-top);
+  left: var(--contact-thankyou-left);
+  width: var(--contact-thankyou-width);
+  z-index: var(--contact-thankyou-layer);
+  transform: rotate(var(--contact-thankyou-rotate));
+}
+
+.contactEnvelopeImage {
+  top: var(--contact-envelope-top);
+  left: var(--contact-envelope-left);
+  width: var(--contact-envelope-width);
+  z-index: var(--contact-envelope-layer);
+  transform: rotate(var(--contact-envelope-rotate));
+}
+
+.contactPaperclip {
+  z-index: 10000;
+  filter: drop-shadow(0 9px 10px rgb(39 39 39 / 0.17));
+}
+
+.contactPaperclipPrimary {
+  top: var(--contact-paperclip-1-top);
+  left: var(--contact-paperclip-1-left);
+  width: var(--contact-paperclip-1-width);
+  z-index: var(--contact-paperclip-1-layer);
+  transform: rotate(var(--contact-paperclip-1-rotate));
+}
+
+.contactPaperclipSecondary {
+  top: var(--contact-paperclip-2-top);
+  left: var(--contact-paperclip-2-left);
+  width: var(--contact-paperclip-2-width);
+  z-index: var(--contact-paperclip-2-layer);
+  transform: rotate(var(--contact-paperclip-2-rotate));
 }
 
 .creativeDirectionContent {
@@ -445,7 +530,7 @@
   height: auto;
   object-fit: contain;
   transform: rotate(240deg);
-  z-index: 20;
+  z-index: 10000;
   pointer-events: none;
   filter: drop-shadow(0 9px 10px rgb(39 39 39 / 0.17));
 }
@@ -490,12 +575,12 @@
 
 .brandIdentityPaperclip[data-page-id="strategy-concept-page-1"] {
   /* Spotify paperclip controls. */
-  --brand-identity-paperclip-top: 50px;
+  --brand-identity-paperclip-top: 150px;
   --brand-identity-paperclip-left: -13px;
   --brand-identity-paperclip-width: 70px;
   --brand-identity-paperclip-shift-x: 0px;
   --brand-identity-paperclip-shift-y: 0px;
-  --brand-identity-paperclip-rotate: 230deg;
+  --brand-identity-paperclip-rotate: 234deg;
 }
 
 @media (max-width: 1180px) {

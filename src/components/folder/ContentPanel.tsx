@@ -13,6 +13,8 @@ import leviDesertImage from "../../assets/creative-direction/levi-desert.png";
 import leviBeachImage from "../../assets/creative-direction/levi-beach.png";
 import hunterFlatlayImage from "../../assets/brand-identity/hunter-flatlay.png";
 import hunterBillboardImage from "../../assets/brand-identity/hunter-billboard.png";
+import contactThankYouImage from "../../../inspo/thankyou.png";
+import contactEnvelopeImage from "../../../inspo/envelope.png";
 import type {
   BrandIdentityStackImageControl,
   ContentPanelLayout,
@@ -195,6 +197,40 @@ export function ContentPanel({
           aria-hidden="true"
         />
       </>
+    );
+  }
+
+  if (activeSection.id === "contact") {
+    return (
+      <div className={`${styles.content} ${styles.contactContent}`}>
+        <img
+          src={contactThankYouImage}
+          alt=""
+          className={`${styles.contactImage} ${styles.contactThankYouImage}`}
+          aria-hidden="true"
+        />
+
+        <img
+          src={contactEnvelopeImage}
+          alt=""
+          className={`${styles.contactImage} ${styles.contactEnvelopeImage}`}
+          aria-hidden="true"
+        />
+
+        <img
+          src={paperclipImage}
+          alt=""
+          className={`${styles.contactPaperclip} ${styles.contactPaperclipPrimary}`}
+          aria-hidden="true"
+        />
+
+        <img
+          src={paperclipImage}
+          alt=""
+          className={`${styles.contactPaperclip} ${styles.contactPaperclipSecondary}`}
+          aria-hidden="true"
+        />
+      </div>
     );
   }
 

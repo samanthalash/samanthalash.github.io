@@ -289,7 +289,7 @@ export const folderPagesBySectionId: Partial<
       // layer controls which image sits on top, and imageObjectPosition crops.
       brandIdentityStackImageControls: [
         {
-          top: "13%",
+          top: "20%",
           left: "0%",
           width: "86%",
           aspect: "1828 / 1026",
@@ -299,7 +299,7 @@ export const folderPagesBySectionId: Partial<
           imageObjectPosition: "center",
         },
         {
-          top: "20%",
+          top: "24%",
           left: "3.5%",
           width: "86%",
           aspect: "1826 / 1024",
@@ -309,7 +309,7 @@ export const folderPagesBySectionId: Partial<
           imageObjectPosition: "center",
         },
         {
-          top: "30%",
+          top: "34%",
           left: "7%",
           width: "86%",
           aspect: "1826 / 1022",
@@ -319,7 +319,7 @@ export const folderPagesBySectionId: Partial<
           imageObjectPosition: "center",
         },
         {
-          top: "40%",
+          top: "44%",
           left: "10.5%",
           width: "86%",
           aspect: "1828 / 1024",
@@ -396,7 +396,7 @@ export const folderPagesBySectionId: Partial<
       // layer controls which image sits on top, and imageObjectPosition crops.
       brandIdentityStackImageControls: [
         {
-          top: "13%",
+          top: "18%",
           left: "0%",
           width: "86%",
           aspect: "1826 / 1020",
@@ -406,7 +406,7 @@ export const folderPagesBySectionId: Partial<
           imageObjectPosition: "center",
         },
         {
-          top: "18%",
+          top: "22%",
           left: "3.5%",
           width: "86%",
           aspect: "1832 / 1024",
@@ -416,7 +416,7 @@ export const folderPagesBySectionId: Partial<
           imageObjectPosition: "center",
         },
         {
-          top: "24%",
+          top: "28%",
           left: "7%",
           width: "86%",
           aspect: "1828 / 1022",
@@ -426,7 +426,7 @@ export const folderPagesBySectionId: Partial<
           imageObjectPosition: "center",
         },
         {
-          top: "35%",
+          top: "39%",
           left: "10.5%",
           width: "86%",
           aspect: "1860 / 1042",
@@ -436,7 +436,7 @@ export const folderPagesBySectionId: Partial<
           imageObjectPosition: "center",
         },
         {
-          top: "40%",
+          top: "44%",
           left: "14%",
           width: "86%",
           aspect: "1854 / 1040",
