@@ -313,7 +313,7 @@ export const folderPagesBySectionId: Partial<
           left: "7%",
           width: "86%",
           aspect: "1826 / 1022",
-          rotate: "6deg",
+          rotate: "10deg",
           layer: 2,
           scale: "1",
           imageObjectPosition: "center",
@@ -323,7 +323,7 @@ export const folderPagesBySectionId: Partial<
           left: "10.5%",
           width: "86%",
           aspect: "1828 / 1024",
-          rotate: "9deg",
+          rotate: "13deg",
           layer: 1,
           scale: "1",
           imageObjectPosition: "center",
@@ -367,7 +367,7 @@ export const folderPagesBySectionId: Partial<
       // Positive X moves right, negative X moves left; positive Y moves down.
       titleShiftX: "-90px",
       titleShiftY: "0px",
-      bodyWidth: "110%",
+      bodyWidth: "113%",
       bodyMinWidth: "0",
       bodyMaxWidth: "48ch",
       bodyMarginTop: "clamp(18px, 2.2vw, 28px)",
@@ -377,7 +377,7 @@ export const folderPagesBySectionId: Partial<
       bodyTextAlign: "right",
       // Move only the APRAMP body copy with these two values.
       // Positive X moves right, negative X moves left; positive Y moves down.
-      bodyShiftX: "-30px",
+      bodyShiftX: "-38px",
       bodyShiftY: "0px",
       brandIdentityStackImageSrcs: [
         aprampCoverImage,
@@ -396,7 +396,7 @@ export const folderPagesBySectionId: Partial<
       // layer controls which image sits on top, and imageObjectPosition crops.
       brandIdentityStackImageControls: [
         {
-          top: "9%",
+          top: "13%",
           left: "0%",
           width: "86%",
           aspect: "1826 / 1020",
@@ -406,7 +406,7 @@ export const folderPagesBySectionId: Partial<
           imageObjectPosition: "center",
         },
         {
-          top: "16%",
+          top: "18%",
           left: "3.5%",
           width: "86%",
           aspect: "1832 / 1024",
@@ -420,13 +420,13 @@ export const folderPagesBySectionId: Partial<
           left: "7%",
           width: "86%",
           aspect: "1828 / 1022",
-          rotate: "-5deg",
+          rotate: "9deg",
           layer: 3,
           scale: "1",
           imageObjectPosition: "center",
         },
         {
-          top: "32%",
+          top: "35%",
           left: "10.5%",
           width: "86%",
           aspect: "1860 / 1042",
@@ -440,7 +440,7 @@ export const folderPagesBySectionId: Partial<
           left: "14%",
           width: "86%",
           aspect: "1854 / 1040",
-          rotate: "-8deg",
+          rotate: "18deg",
           layer: 1,
           scale: "1",
           imageObjectPosition: "center",
