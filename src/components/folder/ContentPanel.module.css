@@ -282,6 +282,21 @@
   --photo-layer: var(--brand-identity-stack-card-4-layer, 1);
 }
 
+.brandIdentityStackCard5 {
+  --photo-top: var(--brand-identity-stack-card-5-top, 29%);
+  --photo-left: var(--brand-identity-stack-card-5-left, 14%);
+  --photo-width: var(
+    --brand-identity-stack-card-5-width,
+    var(--brand-identity-stack-card-width, 86%)
+  );
+  --photo-aspect: var(
+    --brand-identity-stack-card-5-aspect,
+    var(--brand-identity-stack-card-aspect, 1808 / 1008)
+  );
+  --photo-rotate: var(--brand-identity-stack-card-5-rotate, 0deg);
+  --photo-layer: var(--brand-identity-stack-card-5-layer, 1);
+}
+
 /* Adjust each photo by changing these vars instead of rewriting the card rule. */
 .creativePhotoBillboard {
   --photo-top: 5%;

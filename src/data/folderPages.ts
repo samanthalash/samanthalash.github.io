@@ -12,6 +12,11 @@ import spotifyCoverImage from "../../inspo/spotify/sp1.png";
 import spotifyConceptImage from "../../inspo/spotify/sp2.png";
 import spotifyContentIdeasImage from "../../inspo/spotify/sp3.png";
 import spotifyMoodboardImage from "../../inspo/spotify/sp4.png";
+import aprampCoverImage from "../../inspo/apramp/ap1.png";
+import aprampIntroImage from "../../inspo/apramp/ap2.png";
+import aprampGiftBoxImage from "../../inspo/apramp/ap3.png";
+import aprampInsideBoxImage from "../../inspo/apramp/ap4.png";
+import aprampExecutionPlanImage from "../../inspo/apramp/ap5.png";
 import tomorrowlandPosterImage from "../../inspo/tomorrowland /1st.png";
 import tomorrowlandInstagramImage from "../../inspo/tomorrowland /2nd.png";
 import tomorrowlandVinylImage from "../../inspo/tomorrowland /3rd.png";
@@ -294,31 +299,148 @@ export const folderPagesBySectionId: Partial<
           imageObjectPosition: "center",
         },
         {
-          top: "17%",
+          top: "20%",
           left: "3.5%",
           width: "86%",
           aspect: "1826 / 1024",
-          rotate: "-2.5deg",
+          rotate: "4deg",
           layer: 3,
           scale: "1",
           imageObjectPosition: "center",
         },
         {
-          top: "21%",
+          top: "30%",
           left: "7%",
           width: "86%",
           aspect: "1826 / 1022",
-          rotate: "4.5deg",
+          rotate: "6deg",
           layer: 2,
           scale: "1",
           imageObjectPosition: "center",
         },
         {
-          top: "25%",
+          top: "40%",
           left: "10.5%",
           width: "86%",
           aspect: "1828 / 1024",
-          rotate: "-6.5deg",
+          rotate: "9deg",
+          layer: 1,
+          scale: "1",
+          imageObjectPosition: "center",
+        },
+      ],
+      stampImageSrcs: [
+        laManuelaStrategyStampImage,
+        laManuelaPitchDeckStampImage,
+      ],
+    },
+    {
+      id: "apramp-campaign",
+      referenceName: "APRAMP CAMPAIGN",
+      aliases: ["APRAMP", "APRAMP Campaign", "Promesas Vacias"],
+      sectionId: "experiments",
+      layout: "brandIdentity",
+      content: {
+        eyebrow: "Creative Brief",
+        title: "APRAMP CAMPAIGN",
+        body:
+          "A creative brief and campaign for APRAMP, a frontline organisation fighting human trafficking in Spain. Built on the insight that trafficking often begins not with force but with false promises, Promesas Vacías turns that manipulation into an interactive experience. A walk-in gift box installation draws people in with the promise of something positive, only to confront them with the reality behind it. The campaign includes a full execution plan spanning guerrilla activation, print assets, and a TikTok strategy to extend reach beyond the installation.",
+        bullets: [],
+        footer: "APRAMP campaign concept sheet.",
+      },
+      copyBlockWidth: "min(100%, 660px)",
+      copyBlockMaxWidth: "700px",
+      copyBlockJustifySelf: "center",
+      copyBlockAlignSelf: "center",
+      // Move the whole APRAMP text group with these two values.
+      // Positive X moves right, negative X moves left; positive Y moves down.
+      copyBlockShiftX: "0px",
+      copyBlockShiftY: "0px",
+      titleWidth: "130%",
+      titleWhiteSpace: "normal",
+      titleFontSize: "clamp(1rem, 2vw, 3.7rem)",
+      titleLineHeight: "0.82",
+      titleLetterSpacing: "-0.055em",
+      titleMaxWidth: "100ch",
+      titleTextAlign: "right",
+      // Move only the APRAMP title by changing these two values.
+      // Positive X moves right, negative X moves left; positive Y moves down.
+      titleShiftX: "-90px",
+      titleShiftY: "0px",
+      bodyWidth: "110%",
+      bodyMinWidth: "0",
+      bodyMaxWidth: "48ch",
+      bodyMarginTop: "clamp(18px, 2.2vw, 28px)",
+      bodyFontSize: "clamp(1rem, 1vw, 1rem)",
+      bodyLineHeight: "1.47",
+      bodyLetterSpacing: "-0.03em",
+      bodyTextAlign: "right",
+      // Move only the APRAMP body copy with these two values.
+      // Positive X moves right, negative X moves left; positive Y moves down.
+      bodyShiftX: "-30px",
+      bodyShiftY: "0px",
+      brandIdentityStackImageSrcs: [
+        aprampCoverImage,
+        aprampIntroImage,
+        aprampGiftBoxImage,
+        aprampInsideBoxImage,
+        aprampExecutionPlanImage,
+      ],
+      // Move or resize the whole APRAMP picture stack here.
+      brandIdentityStackShiftX: "-7%",
+      brandIdentityStackShiftY: "-40%",
+      brandIdentityStackCardWidth: "86%",
+      brandIdentityStackCardAspect: "1828 / 1026",
+      // Fine-tune each APRAMP image card here.
+      // top/left move the card, width changes size, rotate tilts it,
+      // layer controls which image sits on top, and imageObjectPosition crops.
+      brandIdentityStackImageControls: [
+        {
+          top: "9%",
+          left: "0%",
+          width: "86%",
+          aspect: "1826 / 1020",
+          rotate: "-3deg",
+          layer: 5,
+          scale: "1",
+          imageObjectPosition: "center",
+        },
+        {
+          top: "16%",
+          left: "3.5%",
+          width: "86%",
+          aspect: "1832 / 1024",
+          rotate: "3deg",
+          layer: 4,
+          scale: "1",
+          imageObjectPosition: "center",
+        },
+        {
+          top: "24%",
+          left: "7%",
+          width: "86%",
+          aspect: "1828 / 1022",
+          rotate: "-5deg",
+          layer: 3,
+          scale: "1",
+          imageObjectPosition: "center",
+        },
+        {
+          top: "32%",
+          left: "10.5%",
+          width: "86%",
+          aspect: "1860 / 1042",
+          rotate: "6deg",
+          layer: 2,
+          scale: "1",
+          imageObjectPosition: "center",
+        },
+        {
+          top: "40%",
+          left: "14%",
+          width: "86%",
+          aspect: "1854 / 1040",
+          rotate: "-8deg",
           layer: 1,
           scale: "1",
           imageObjectPosition: "center",

@@ -321,25 +321,33 @@ export function ContentPanel({
                   className={styles.brandIdentityImageStack}
                   style={stackStyle}
                 >
-                  {brandIdentityStackImageSrcs.map((imageSrc, index) => (
-                    <div
-                      className={`${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityStackCard} ${
-                        styles[`brandIdentityStackCard${index + 1}`]
-                      }`}
-                      style={getStackCardStyle(
-                        brandIdentityStackImageControls?.[index],
-                      )}
-                      key={imageSrc}
-                    >
-                      <img
-                        src={imageSrc}
-                        alt=""
-                        style={getStackImageStyle(
-                          brandIdentityStackImageControls?.[index],
-                        )}
-                      />
-                    </div>
-                  ))}
+                  {brandIdentityStackImageSrcs.map((imageSrc, index) => {
+                    const stackCardClassName =
+                      styles[`brandIdentityStackCard${index + 1}`];
+                    const imageControl =
+                      brandIdentityStackImageControls?.[index];
+
+                    return (
+                      <div
+                        className={[
+                          styles.creativePhotoCard,
+                          styles.brandIdentityPhotoCard,
+                          styles.brandIdentityStackCard,
+                          stackCardClassName,
+                        ]
+                          .filter(Boolean)
+                          .join(" ")}
+                        style={getStackCardStyle(imageControl)}
+                        key={imageSrc}
+                      >
+                        <img
+                          src={imageSrc}
+                          alt=""
+                          style={getStackImageStyle(imageControl)}
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
               ) : (
                 <>
