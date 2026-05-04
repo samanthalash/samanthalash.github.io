@@ -1,5 +1,6 @@
 import { useState, useTransition } from "react";
 import { FolderScene } from "./components/folder/FolderScene";
+import { PortfolioGalleryOverlay } from "./components/portfolio/PortfolioGalleryOverlay";
 import { DesktopScreen } from "./components/desktop/DesktopScreen";
 import { folderSections } from "./data/folderSections";
 import type { FolderSectionId } from "./data/folderSections";
@@ -11,6 +12,7 @@ export default function App() {
   const [activeSectionId, setActiveSectionId] = useState<FolderSectionId>(
     folderSections[0].id,
   );
+  const [isPortfolioGalleryOpen, setIsPortfolioGalleryOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   const activeSection =
@@ -38,7 +40,13 @@ export default function App() {
         isIntroVisible={showIntro}
         isPending={isPending}
         onSectionChange={handleSectionChange}
+        onOpenPortfolioGallery={() => setIsPortfolioGalleryOpen(true)}
       />
+      {isPortfolioGalleryOpen && (
+        <PortfolioGalleryOverlay
+          onClose={() => setIsPortfolioGalleryOpen(false)}
+        />
+      )}
     </>
   );
 }

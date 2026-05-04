@@ -9,6 +9,7 @@ interface FolderSceneProps {
   isIntroVisible: boolean;
   isPending: boolean;
   onSectionChange: (sectionId: FolderSectionId) => void;
+  onOpenPortfolioGallery: () => void;
 }
 
 export function FolderScene(props: FolderSceneProps) {

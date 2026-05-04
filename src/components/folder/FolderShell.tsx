@@ -11,6 +11,7 @@ interface FolderShellProps {
   isIntroVisible: boolean;
   isPending: boolean;
   onSectionChange: (sectionId: FolderSectionId) => void;
+  onOpenPortfolioGallery: () => void;
 }
 
 export function FolderShell({
@@ -20,6 +21,7 @@ export function FolderShell({
   isIntroVisible,
   isPending,
   onSectionChange,
+  onOpenPortfolioGallery,
 }: FolderShellProps) {
   return (
     <section className={styles.folderWrap} aria-label="Portfolio folder">
@@ -44,6 +46,7 @@ export function FolderShell({
           activeSectionId={activeSectionId}
           isIntroVisible={isIntroVisible}
           isPending={isPending}
+          onOpenPortfolioGallery={onOpenPortfolioGallery}
         />
       </div>
     </section>

@@ -75,6 +75,7 @@ interface ContentPanelProps {
   hideBrandIdentityTopPhoto?: boolean;
   omitPlanningStamp?: boolean;
   stampImageSrcs?: string[];
+  onOpenPortfolioGallery?: () => void;
 }
 
 export function ContentPanel({
@@ -122,6 +123,7 @@ export function ContentPanel({
   hideBrandIdentityTopPhoto = false,
   omitPlanningStamp = false,
   stampImageSrcs,
+  onOpenPortfolioGallery,
 }: ContentPanelProps) {
   const [raisedPhotoLayers, setRaisedPhotoLayers] = useState<
     Record<string, number>
@@ -255,12 +257,14 @@ export function ContentPanel({
           aria-hidden="true"
         />
 
-        <img
-          src={contactEnvelopeImage}
-          alt=""
-          className={`${styles.contactImage} ${styles.contactEnvelopeImage}`}
-          aria-hidden="true"
-        />
+        <button
+          type="button"
+          className={`${styles.contactImage} ${styles.contactEnvelopeButton}`}
+          aria-label="See all portfolio images"
+          onClick={onOpenPortfolioGallery}
+        >
+          <img src={contactEnvelopeImage} alt="" aria-hidden="true" />
+        </button>
 
         <img
           src={paperclipImage}

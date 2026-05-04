@@ -18,6 +18,7 @@ interface FolderInteriorProps {
   activeSectionId: FolderSectionId;
   isIntroVisible: boolean;
   isPending: boolean;
+  onOpenPortfolioGallery: () => void;
 }
 
 export function FolderInterior({
@@ -25,6 +26,7 @@ export function FolderInterior({
   activeSectionId,
   isIntroVisible,
   isPending,
+  onOpenPortfolioGallery,
 }: FolderInteriorProps) {
   const isHome = activeSection.id === "work";
   const usesPhotoTemplate = activeSection.id !== "work";
@@ -72,7 +74,12 @@ export function FolderInterior({
 
   const renderContent = () => {
     if (!isFlipEnabled) {
-      return <ContentPanel activeSection={activeSection} />;
+      return (
+        <ContentPanel
+          activeSection={activeSection}
+          onOpenPortfolioGallery={onOpenPortfolioGallery}
+        />
+      );
     }
 
     const configuredPages = folderPagesBySectionId[activeSectionId] ?? [

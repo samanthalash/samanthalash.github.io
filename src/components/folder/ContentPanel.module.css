@@ -134,6 +134,40 @@
   transform: rotate(var(--contact-envelope-rotate));
 }
 
+.contactEnvelopeButton {
+  top: var(--contact-envelope-top);
+  left: var(--contact-envelope-left);
+  width: var(--contact-envelope-width);
+  z-index: var(--contact-envelope-layer);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  transform: rotate(var(--contact-envelope-rotate));
+}
+
+.contactEnvelopeButton img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.contactEnvelopeButton:hover,
+.contactEnvelopeButton:focus-visible {
+  filter:
+    drop-shadow(0 24px 26px rgb(39 39 39 / 0.2))
+    drop-shadow(0 7px 11px rgb(39 39 39 / 0.13));
+}
+
+.contactEnvelopeButton:focus-visible {
+  outline: 2px solid rgb(39 39 39 / 0.68);
+  outline-offset: 4px;
+}
+
 .contactPaperclip {
   z-index: 10000;
   filter: drop-shadow(0 9px 10px rgb(39 39 39 / 0.17));
