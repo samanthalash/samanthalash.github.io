@@ -299,7 +299,7 @@ export function PageFlip({
       {/* Base page (revealed underneath the lifting page) */}
       <div
         className={styles.pageLayer}
-        data-overflow={allowOverflow && !isActive}
+        data-overflow={allowOverflow}
       >
         {pages[baseIdx]}
       </div>
