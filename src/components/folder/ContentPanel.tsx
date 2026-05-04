@@ -1,4 +1,11 @@
-import type { CSSProperties } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 import paperclipImage from "../../assets/paperclip.png";
 import monogramImage from "../../assets/monogram.png";
 import postcardImage from "../../assets/postcard.png";
@@ -20,6 +27,7 @@ import type {
   ContentPanelLayout,
 } from "../../data/folderPages";
 import type { FolderSection } from "../../data/folderSections";
+import { DraggablePhotoCard } from "./DraggablePhotoCard";
 import styles from "./ContentPanel.module.css";
 
 interface ContentPanelProps {
@@ -115,6 +123,10 @@ export function ContentPanel({
   omitPlanningStamp = false,
   stampImageSrcs,
 }: ContentPanelProps) {
+  const [raisedPhotoLayers, setRaisedPhotoLayers] = useState<
+    Record<string, number>
+  >({});
+  const nextPhotoLayerRef = useRef(100);
   const panelContent = content ?? activeSection.placeholderContent;
   const isHome = activeSection.id === "work";
   const isBrandIdentity =
@@ -132,6 +144,39 @@ export function ContentPanel({
           stylingStampImage,
           photoStampImage,
         ]);
+  const resetPhotoStateKey = `${activeSection.id}:${pageId ?? "default"}`;
+
+  useEffect(() => {
+    nextPhotoLayerRef.current = 100;
+    setRaisedPhotoLayers({});
+  }, [resetPhotoStateKey]);
+
+  const handlePhotoActivate = useCallback((photoId: string) => {
+    const nextLayer = nextPhotoLayerRef.current + 1;
+    nextPhotoLayerRef.current = nextLayer;
+    setRaisedPhotoLayers((currentLayers) => ({
+      ...currentLayers,
+      [photoId]: nextLayer,
+    }));
+  }, []);
+
+  const renderPhotoCard = (
+    photoId: string,
+    className: string,
+    children: ReactNode,
+    style?: CSSProperties,
+  ) => (
+    <DraggablePhotoCard
+      id={photoId}
+      key={photoId}
+      className={className}
+      style={style}
+      raisedLayer={raisedPhotoLayers[photoId]}
+      onActivate={handlePhotoActivate}
+    >
+      {children}
+    </DraggablePhotoCard>
+  );
 
   const getStackCardStyle = (
     imageControl?: BrandIdentityStackImageControl,
@@ -364,7 +409,8 @@ export function ContentPanel({
                       brandIdentityStackImageControls?.[index];
 
                     return (
-                      <div
+                      <DraggablePhotoCard
+                        id={`${pageId ?? activeSection.id}-stack-${index}`}
                         className={[
                           styles.creativePhotoCard,
                           styles.brandIdentityPhotoCard,
@@ -374,63 +420,71 @@ export function ContentPanel({
                           .filter(Boolean)
                           .join(" ")}
                         style={getStackCardStyle(imageControl)}
-                        key={imageSrc}
+                        raisedLayer={
+                          raisedPhotoLayers[
+                            `${pageId ?? activeSection.id}-stack-${index}`
+                          ]
+                        }
+                        onActivate={handlePhotoActivate}
+                        key={`${pageId ?? activeSection.id}-stack-${index}`}
                       >
                         <img
                           src={imageSrc}
                           alt=""
                           style={getStackImageStyle(imageControl)}
                         />
-                      </div>
+                      </DraggablePhotoCard>
                     );
                   })}
                 </div>
               ) : (
                 <>
-                  <div
-                    className={`${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityPhotoBackdrop}${
+                  {renderPhotoCard(
+                    `${pageId ?? activeSection.id}-brand-backdrop`,
+                    `${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityPhotoBackdrop}${
                       levelBrandIdentityBackdrop
                         ? ` ${styles.levelBrandIdentityPhotoBackdrop}`
                         : ""
-                    }`}
-                  >
-                    <img src={brandIdentityBackdropImage} alt="" />
-                  </div>
+                    }`,
+                    <img src={brandIdentityBackdropImage} alt="" />,
+                  )}
 
                   {!hideBrandIdentityTopPhoto && (
-                    <div
-                      className={`${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityPhotoTop}`}
-                    >
-                      <img src={hunterFlatlayImage} alt="" />
-                    </div>
+                    <>
+                      {renderPhotoCard(
+                        `${pageId ?? activeSection.id}-brand-top`,
+                        `${styles.creativePhotoCard} ${styles.brandIdentityPhotoCard} ${styles.brandIdentityPhotoTop}`,
+                        <img src={hunterFlatlayImage} alt="" />,
+                      )}
+                    </>
                   )}
                 </>
               )
             ) : (
               <>
-                <div
-                  className={`${styles.creativePhotoCard} ${styles.creativePhotoBillboard}`}
-                >
-                  <img src={leviBillboardImage} alt="" />
-                </div>
+                {renderPhotoCard(
+                  `${pageId ?? activeSection.id}-creative-billboard`,
+                  `${styles.creativePhotoCard} ${styles.creativePhotoBillboard}`,
+                  <img src={leviBillboardImage} alt="" />,
+                )}
 
-                <div
-                  className={`${styles.creativePhotoCard} ${styles.creativePhotoCyclist}`}
-                >
-                  <img src={leviCyclistImage} alt="" />
-                </div>
+                {renderPhotoCard(
+                  `${pageId ?? activeSection.id}-creative-cyclist`,
+                  `${styles.creativePhotoCard} ${styles.creativePhotoCyclist}`,
+                  <img src={leviCyclistImage} alt="" />,
+                )}
 
-                <div
-                  className={`${styles.creativePhotoCard} ${styles.creativePhotoBeach}`}
-                >
-                  <img src={leviBeachImage} alt="" />
-                </div>
+                {renderPhotoCard(
+                  `${pageId ?? activeSection.id}-creative-beach`,
+                  `${styles.creativePhotoCard} ${styles.creativePhotoBeach}`,
+                  <img src={leviBeachImage} alt="" />,
+                )}
 
-                <div
-                  className={`${styles.creativePhotoCard} ${styles.creativePhotoHero}`}
-                >
-                  <img src={leviDesertImage} alt="" />
-                </div>
+                {renderPhotoCard(
+                  `${pageId ?? activeSection.id}-creative-hero`,
+                  `${styles.creativePhotoCard} ${styles.creativePhotoHero}`,
+                  <img src={leviDesertImage} alt="" />,
+                )}
               </>
             )}
           </div>
