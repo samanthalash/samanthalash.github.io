@@ -14,6 +14,7 @@ export interface PortfolioGalleryImage {
   id: string;
   src: string;
   alt: string;
+  dedupeKey?: string;
 }
 
 const collator = new Intl.Collator(undefined, {
@@ -27,7 +28,10 @@ const getFilename = (path: string) => {
   return filename.replace(/\.[^.]+$/, "");
 };
 
-const imagesFromGlob = (imagesByPath: Record<string, string>) =>
+const imagesFromGlob = (
+  imagesByPath: Record<string, string>,
+  duplicateKeysByPath: Record<string, string> = {},
+) =>
   Object.entries(imagesByPath)
     .sort(([firstPath], [secondPath]) =>
       collator.compare(getFilename(firstPath), getFilename(secondPath)),
@@ -36,6 +40,7 @@ const imagesFromGlob = (imagesByPath: Record<string, string>) =>
       id: path,
       src,
       alt: getFilename(path).replace(/[_-]+/g, " "),
+      dedupeKey: duplicateKeysByPath[path],
     }));
 
 const spotifyInspoImages = imagesFromGlob(
@@ -50,6 +55,12 @@ const hunterInspoImages = imagesFromGlob(
     eager: true,
     import: "default",
   }),
+  {
+    "../../inspo/hunter/Screenshot 2026-03-19 at 1.01.51 PM.png":
+      "hunter-flatlay",
+    "../../inspo/hunter/Screenshot 2026-04-01 at 2.02.30 PM.png":
+      "hunter-billboard",
+  },
 );
 
 const nylonInspoImages = imagesFromGlob(
@@ -85,52 +96,62 @@ const orderedPortfolioGalleryImages: PortfolioGalleryImage[] = [
     id: "portfolio-levis-billboard",
     src: leviBillboardImage,
     alt: "Levi's campaign billboard",
+    dedupeKey: "levis-billboard",
   },
   {
     id: "portfolio-levis-cyclist",
     src: leviCyclistImage,
     alt: "Levi's campaign cyclist",
+    dedupeKey: "levis-cyclist",
   },
   {
     id: "portfolio-levis-beach",
     src: leviBeachImage,
     alt: "Levi's campaign beach",
+    dedupeKey: "levis-beach",
   },
   {
     id: "portfolio-levis-desert",
     src: leviDesertImage,
     alt: "Levi's campaign desert",
+    dedupeKey: "levis-desert",
   },
   {
     id: "inspo-levis-cyclist",
     src: levisInspoCyclistImage,
     alt: "Levi's campaign cyclist",
+    dedupeKey: "levis-cyclist",
   },
   {
     id: "inspo-levis-billboard",
     src: levisInspoBillboardImage,
     alt: "Levi's campaign billboard",
+    dedupeKey: "levis-billboard",
   },
   {
     id: "inspo-levis-desert",
     src: levisInspoDesertImage,
     alt: "Levi's campaign desert",
+    dedupeKey: "levis-desert",
   },
   {
     id: "inspo-levis-beach",
     src: levisInspoBeachImage,
     alt: "Levi's campaign beach",
+    dedupeKey: "levis-beach",
   },
   ...spotifyInspoImages,
   {
     id: "portfolio-hunter-billboard",
     src: hunterBillboardImage,
     alt: "Hunter campaign billboard",
+    dedupeKey: "hunter-billboard",
   },
   {
     id: "portfolio-hunter-flatlay",
     src: hunterFlatlayImage,
     alt: "Hunter campaign flatlay",
+    dedupeKey: "hunter-flatlay",
   },
   ...hunterInspoImages,
   {
@@ -146,8 +167,9 @@ const orderedPortfolioGalleryImages: PortfolioGalleryImage[] = [
 
 export const portfolioGalleryImages: PortfolioGalleryImage[] =
   orderedPortfolioGalleryImages.filter((image, index, images) => {
+    const imageKey = image.dedupeKey ?? image.src;
     const firstMatchingImageIndex = images.findIndex(
-      (candidate) => candidate.src === image.src,
+      (candidate) => (candidate.dedupeKey ?? candidate.src) === imageKey,
     );
 
     return firstMatchingImageIndex === index;
