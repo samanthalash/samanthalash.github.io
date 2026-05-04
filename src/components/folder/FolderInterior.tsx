@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ContentPanel } from "./ContentPanel";
 import { PageFlip } from "./PageFlip";
+import { PortfolioHintOverlay } from "./PortfolioHintOverlay";
 import { folderPagesBySectionId } from "../../data/folderPages";
 import { folderSections } from "../../data/folderSections";
 import type { FolderSection, FolderSectionId } from "../../data/folderSections";
 import styles from "./FolderInterior.module.css";
 
 const FLIP_TABS: FolderSectionId[] = ["about", "archive", "experiments"];
+const PORTFOLIO_HINT_STORAGE_KEY = "portfolioInteractionHintSeen";
 const SECTION_BY_ID = new Map(
   folderSections.map((section) => [section.id, section]),
 );
@@ -14,12 +16,14 @@ const SECTION_BY_ID = new Map(
 interface FolderInteriorProps {
   activeSection: FolderSection;
   activeSectionId: FolderSectionId;
+  isIntroVisible: boolean;
   isPending: boolean;
 }
 
 export function FolderInterior({
   activeSection,
   activeSectionId,
+  isIntroVisible,
   isPending,
 }: FolderInteriorProps) {
   const isHome = activeSection.id === "work";
@@ -27,6 +31,14 @@ export function FolderInterior({
   const allowsOverflow = isHome || usesPhotoTemplate;
   const isFlipEnabled = (FLIP_TABS as string[]).includes(activeSectionId);
   const [isFlipPageFront, setIsFlipPageFront] = useState(false);
+  const [hasSeenPortfolioHint, setHasSeenPortfolioHint] = useState(() => {
+    try {
+      return localStorage.getItem(PORTFOLIO_HINT_STORAGE_KEY) === "1";
+    } catch {
+      return false;
+    }
+  });
+  const [isPortfolioHintVisible, setIsPortfolioHintVisible] = useState(false);
 
   // Preserve per-tab page position across tab switches
   const [pageIndices, setPageIndices] = useState<Record<string, number>>({});
@@ -34,6 +46,29 @@ export function FolderInterior({
   const handlePageChange = (index: number) => {
     setPageIndices((prev) => ({ ...prev, [activeSectionId]: index }));
   };
+  const dismissPortfolioHint = useCallback(() => {
+    try {
+      localStorage.setItem(PORTFOLIO_HINT_STORAGE_KEY, "1");
+    } catch {
+      // Storage can be unavailable in private or restricted browsing modes.
+    }
+
+    setHasSeenPortfolioHint(true);
+    setIsPortfolioHintVisible(false);
+  }, []);
+
+  useEffect(() => {
+    if (isIntroVisible || !isFlipEnabled) {
+      setIsPortfolioHintVisible(false);
+      return;
+    }
+
+    if (hasSeenPortfolioHint) {
+      return;
+    }
+
+    setIsPortfolioHintVisible(true);
+  }, [hasSeenPortfolioHint, isFlipEnabled, isIntroVisible]);
 
   const renderContent = () => {
     if (!isFlipEnabled) {
@@ -140,6 +175,10 @@ export function FolderInterior({
       >
         {renderContent()}
       </section>
+
+      {isPortfolioHintVisible && (
+        <PortfolioHintOverlay onDismiss={dismissPortfolioHint} />
+      )}
     </div>
   );
 }

@@ -35,6 +35,7 @@ export default function App() {
         sections={folderSections}
         activeSection={activeSection}
         activeSectionId={activeSectionId}
+        isIntroVisible={showIntro}
         isPending={isPending}
         onSectionChange={handleSectionChange}
       />

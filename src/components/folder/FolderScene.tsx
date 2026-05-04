@@ -6,6 +6,7 @@ interface FolderSceneProps {
   sections: FolderSection[];
   activeSection: FolderSection;
   activeSectionId: FolderSectionId;
+  isIntroVisible: boolean;
   isPending: boolean;
   onSectionChange: (sectionId: FolderSectionId) => void;
 }

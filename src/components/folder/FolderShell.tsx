@@ -8,6 +8,7 @@ interface FolderShellProps {
   sections: FolderSection[];
   activeSection: FolderSection;
   activeSectionId: FolderSectionId;
+  isIntroVisible: boolean;
   isPending: boolean;
   onSectionChange: (sectionId: FolderSectionId) => void;
 }
@@ -16,6 +17,7 @@ export function FolderShell({
   sections,
   activeSection,
   activeSectionId,
+  isIntroVisible,
   isPending,
   onSectionChange,
 }: FolderShellProps) {
@@ -40,6 +42,7 @@ export function FolderShell({
         <FolderInterior
           activeSection={activeSection}
           activeSectionId={activeSectionId}
+          isIntroVisible={isIntroVisible}
           isPending={isPending}
         />
       </div>
