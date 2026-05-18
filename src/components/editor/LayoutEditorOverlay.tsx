@@ -1,4 +1,11 @@
-import { useMemo, useRef, type ChangeEvent } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import type {
   EditableElement,
   EditableImageElement,
@@ -9,6 +16,36 @@ import { useLayoutEditor } from "../../editor/LayoutEditorContext";
 import styles from "./LayoutEditorOverlay.module.css";
 
 const numberValue = (value: string) => Number.parseFloat(value) || 0;
+const PANEL_POSITION_KEY = "layoutEditorPanelPosition";
+const PANEL_MARGIN = 12;
+
+interface PanelPosition {
+  x: number;
+  y: number;
+}
+
+const getInitialPanelPosition = (): PanelPosition => {
+  if (typeof window === "undefined") {
+    return { x: 16, y: 16 };
+  }
+
+  const savedPosition = window.localStorage.getItem(PANEL_POSITION_KEY);
+  if (savedPosition) {
+    try {
+      const parsed = JSON.parse(savedPosition) as PanelPosition;
+      if (Number.isFinite(parsed.x) && Number.isFinite(parsed.y)) {
+        return parsed;
+      }
+    } catch {
+      // Ignore invalid saved panel state.
+    }
+  }
+
+  return {
+    x: Math.max(PANEL_MARGIN, window.innerWidth - 346),
+    y: 16,
+  };
+};
 
 export function LayoutEditorOverlay() {
   const {
@@ -30,6 +67,10 @@ export function LayoutEditorOverlay() {
     uploadAsset,
   } = useLayoutEditor();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
+  const dragStartRef = useRef({ pointerX: 0, pointerY: 0, x: 0, y: 0 });
+  const [panelPosition, setPanelPosition] = useState(getInitialPanelPosition);
+  const [isDraggingPanel, setIsDraggingPanel] = useState(false);
 
   const activePage = useMemo(
     () => layout.pages.find((page) => page.id === activePageId),
@@ -40,6 +81,70 @@ export function LayoutEditorOverlay() {
       activePage?.elements.find((element) => element.id === selectedElementId),
     [activePage?.elements, selectedElementId],
   );
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      PANEL_POSITION_KEY,
+      JSON.stringify(panelPosition),
+    );
+  }, [panelPosition]);
+
+  const clampPanelPosition = (position: PanelPosition) => {
+    const rect = panelRef.current?.getBoundingClientRect();
+    const width = rect?.width ?? 330;
+    const height = rect?.height ?? 400;
+
+    return {
+      x: Math.min(
+        Math.max(PANEL_MARGIN, position.x),
+        Math.max(PANEL_MARGIN, window.innerWidth - width - PANEL_MARGIN),
+      ),
+      y: Math.min(
+        Math.max(PANEL_MARGIN, position.y),
+        Math.max(PANEL_MARGIN, window.innerHeight - height - PANEL_MARGIN),
+      ),
+    };
+  };
+
+  const startPanelDrag = (event: ReactPointerEvent<HTMLElement>) => {
+    if ((event.target as HTMLElement).closest("button, input, textarea, select")) {
+      return;
+    }
+
+    event.preventDefault();
+    event.currentTarget.setPointerCapture(event.pointerId);
+    dragStartRef.current = {
+      pointerX: event.clientX,
+      pointerY: event.clientY,
+      x: panelPosition.x,
+      y: panelPosition.y,
+    };
+    setIsDraggingPanel(true);
+  };
+
+  const movePanel = (event: ReactPointerEvent<HTMLElement>) => {
+    if (!isDraggingPanel) {
+      return;
+    }
+
+    event.preventDefault();
+    const start = dragStartRef.current;
+    setPanelPosition(
+      clampPanelPosition({
+        x: start.x + event.clientX - start.pointerX,
+        y: start.y + event.clientY - start.pointerY,
+      }),
+    );
+  };
+
+  const stopPanelDrag = (event: ReactPointerEvent<HTMLElement>) => {
+    if (!isDraggingPanel) {
+      return;
+    }
+
+    event.currentTarget.releasePointerCapture(event.pointerId);
+    setIsDraggingPanel(false);
+  };
 
   if (!canEdit) {
     return null;
@@ -133,8 +238,20 @@ export function LayoutEditorOverlay() {
   };
 
   return (
-    <aside className={styles.panel} aria-label="Layout editor">
-      <div className={styles.header}>
+    <aside
+      ref={panelRef}
+      className={styles.panel}
+      aria-label="Layout editor"
+      data-dragging={isDraggingPanel}
+      style={{ left: panelPosition.x, top: panelPosition.y }}
+    >
+      <div
+        className={styles.header}
+        onPointerDown={startPanelDrag}
+        onPointerMove={movePanel}
+        onPointerUp={stopPanelDrag}
+        onPointerCancel={stopPanelDrag}
+      >
         <div>
           <h2 className={styles.title}>Layout editor</h2>
           <p className={styles.pageName}>{activePage?.name ?? "No editable page"}</p>
@@ -191,9 +308,9 @@ export function LayoutEditorOverlay() {
               <button
                 type="button"
                 className={styles.button}
-                onClick={() => addShape("ellipse")}
+                onClick={() => addShape("plus")}
               >
-                Ellipse
+                Plus
               </button>
             </div>
             <input

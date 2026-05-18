@@ -10,6 +10,7 @@ import {
 import initialLayout from "../data/editableLayout.json";
 import type {
   EditableElement,
+  EditableImageElement,
   EditableLayoutDocument,
   EditablePage,
   NewEditableElement,
@@ -51,6 +52,7 @@ const LayoutEditorContext = createContext<LayoutEditorContextValue | null>(
 );
 
 const canEditLayout = import.meta.env.DEV;
+const PAPERCLIP_LAYER = 1000000;
 
 const readInitialEditMode = () => {
   if (!canEditLayout || typeof window === "undefined") {
@@ -76,6 +78,25 @@ const mapPage = (
 ): EditableLayoutDocument => ({
   ...layout,
   pages: layout.pages.map((page) => (page.id === pageId ? updater(page) : page)),
+});
+
+const isPaperclipElement = (element: EditableElement) =>
+  element.type === "image" &&
+  ((element as EditableImageElement).assetId === "paperclip" ||
+    element.id.toLowerCase().includes("paperclip"));
+
+const normalizeLayoutForSave = (
+  document: EditableLayoutDocument,
+): EditableLayoutDocument => ({
+  ...document,
+  pages: document.pages.map((page) => ({
+    ...page,
+    elements: page.elements.map((element) =>
+      isPaperclipElement(element)
+        ? ({ ...element, zIndex: PAPERCLIP_LAYER } as EditableElement)
+        : element,
+    ),
+  })),
 });
 
 const readJson = async <T,>(response: Response): Promise<T> => {
@@ -241,10 +262,11 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
     setSaveError(undefined);
 
     try {
+      const normalizedLayout = normalizeLayoutForSave(layout);
       await fetch("/__layout-editor/layout", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(layout),
+        body: JSON.stringify(normalizedLayout),
       }).then((response) => {
         if (!response.ok) {
           return response.text().then((message) => {
@@ -253,6 +275,7 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
         }
         return undefined;
       });
+      setLayout(normalizedLayout);
       setSaveStatus("saved");
     } catch (error) {
       setSaveStatus("error");

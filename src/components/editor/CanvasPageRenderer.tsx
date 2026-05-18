@@ -35,6 +35,12 @@ const clamp = (value: number, min: number, max: number) =>
   Math.max(min, Math.min(max, value));
 
 const round = (value: number) => Math.round(value * 100) / 100;
+const PAPERCLIP_LAYER = 1000000;
+
+const isPaperclipElement = (element: EditableElement) =>
+  element.type === "image" &&
+  ((element as EditableImageElement).assetId === "paperclip" ||
+    element.id.toLowerCase().includes("paperclip"));
 
 const getElementStyle = (element: EditableElement): CSSProperties => ({
   left: `${element.x}%`,
@@ -42,7 +48,7 @@ const getElementStyle = (element: EditableElement): CSSProperties => ({
   width: `${element.width}%`,
   height: `${element.height}%`,
   transform: `rotate(${element.rotation}deg)`,
-  zIndex: element.zIndex,
+  zIndex: isPaperclipElement(element) ? PAPERCLIP_LAYER : element.zIndex,
 });
 
 const getTextStyle = (element: EditableTextElement): CSSProperties =>
@@ -90,13 +96,20 @@ const renderElementContent = (element: EditableElement) => {
   }
 
   const shapeElement = element as EditableShapeElement;
+  const shapeClassName =
+    shapeElement.shape === "plus"
+      ? `${styles.shapeElement} ${styles.plusShape}`
+      : styles.shapeElement;
+
   return (
     <div
-      className={styles.shapeElement}
+      className={shapeClassName}
       style={{
         background: shapeElement.fill,
         border:
-          shapeElement.stroke && shapeElement.strokeWidth
+          shapeElement.shape !== "plus" &&
+          shapeElement.stroke &&
+          shapeElement.strokeWidth
             ? `${shapeElement.strokeWidth}px solid ${shapeElement.stroke}`
             : undefined,
         borderRadius:

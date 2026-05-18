@@ -1,7 +1,7 @@
 import type { FolderSectionId } from "./folderSections";
 
 export type EditableElementType = "text" | "image" | "shape";
-export type EditableShapeKind = "rectangle" | "ellipse";
+export type EditableShapeKind = "rectangle" | "ellipse" | "plus";
 
 export interface EditableBaseElement {
   id: string;
