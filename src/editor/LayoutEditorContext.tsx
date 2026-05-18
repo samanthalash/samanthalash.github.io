@@ -85,17 +85,25 @@ const isPaperclipElement = (element: EditableElement) =>
   ((element as EditableImageElement).assetId === "paperclip" ||
     element.id.toLowerCase().includes("paperclip"));
 
-const normalizeLayoutForSave = (
+const normalizeElement = (element: EditableElement): EditableElement => {
+  if (element.type !== "image") {
+    return element;
+  }
+
+  return {
+    ...element,
+    objectFit: "contain",
+    zIndex: isPaperclipElement(element) ? PAPERCLIP_LAYER : element.zIndex,
+  };
+};
+
+const normalizeLayout = (
   document: EditableLayoutDocument,
 ): EditableLayoutDocument => ({
   ...document,
   pages: document.pages.map((page) => ({
     ...page,
-    elements: page.elements.map((element) =>
-      isPaperclipElement(element)
-        ? ({ ...element, zIndex: PAPERCLIP_LAYER } as EditableElement)
-        : element,
-    ),
+    elements: page.elements.map(normalizeElement),
   })),
 });
 
@@ -117,7 +125,7 @@ const fileToDataUrl = (file: File) =>
 
 export function LayoutEditorProvider({ children }: { children: ReactNode }) {
   const [layout, setLayout] = useState<EditableLayoutDocument>(
-    initialLayout as EditableLayoutDocument,
+    normalizeLayout(initialLayout as EditableLayoutDocument),
   );
   const [isEditMode, setEditMode] = useState(readInitialEditMode);
   const [isPreviewing, setIsPreviewing] = useState(false);
@@ -174,7 +182,7 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
 
     fetch("/__layout-editor/layout")
       .then((response) => readJson<EditableLayoutDocument>(response))
-      .then(setLayout)
+      .then((document) => setLayout(normalizeLayout(document)))
       .catch(() => {
         // The committed JSON import is still available if the dev endpoint fails.
       });
@@ -186,7 +194,9 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
         mapPage(current, pageId, (page) => ({
           ...page,
           elements: page.elements.map((element) =>
-            element.id === elementId ? ({ ...element, ...patch } as EditableElement) : element,
+            element.id === elementId
+              ? normalizeElement({ ...element, ...patch } as EditableElement)
+              : element,
           ),
         })),
       );
@@ -207,10 +217,12 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
             zIndex: element.zIndex ?? nextZ,
           } as EditableElement;
 
-          setSelectedElementId(nextElement.id);
+          const normalizedElement = normalizeElement(nextElement);
+
+          setSelectedElementId(normalizedElement.id);
           return {
             ...page,
-            elements: [...page.elements, nextElement],
+            elements: [...page.elements, normalizedElement],
           };
         }),
       );
@@ -245,9 +257,10 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
           y: element.y + 3,
           zIndex: Math.max(0, ...page.elements.map((item) => item.zIndex)) + 1,
         } as EditableElement;
+        const normalizedDuplicate = normalizeElement(duplicate);
 
-        setSelectedElementId(duplicate.id);
-        return { ...page, elements: [...page.elements, duplicate] };
+        setSelectedElementId(normalizedDuplicate.id);
+        return { ...page, elements: [...page.elements, normalizedDuplicate] };
       }),
     );
     setSaveStatus("idle");
@@ -262,7 +275,7 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
     setSaveError(undefined);
 
     try {
-      const normalizedLayout = normalizeLayoutForSave(layout);
+      const normalizedLayout = normalizeLayout(layout);
       await fetch("/__layout-editor/layout", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },

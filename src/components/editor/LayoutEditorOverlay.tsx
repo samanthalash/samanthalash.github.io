@@ -232,7 +232,7 @@ export function LayoutEditorOverlay() {
       width: 34,
       height: 34,
       rotation: 0,
-      objectFit: "cover",
+      objectFit: "contain",
       objectPosition: "center",
     });
   };
@@ -518,20 +518,9 @@ function ImageControls({
 }) {
   return (
     <section className={styles.section}>
-      <label className={styles.field}>
-        Fit
-        <select
-          className={styles.select}
-          value={element.objectFit}
-          onChange={(event) =>
-            onPatch({ objectFit: event.target.value } as Partial<EditableElement>)
-          }
-        >
-          <option value="cover">Cover</option>
-          <option value="contain">Contain</option>
-          <option value="fill">Fill</option>
-        </select>
-      </label>
+      <p className={styles.status}>
+        Image fit is locked to contain so resizing keeps proportions.
+      </p>
       <label className={styles.field}>
         Object position
         <input

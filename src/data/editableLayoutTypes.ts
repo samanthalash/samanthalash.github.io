@@ -33,7 +33,7 @@ export interface EditableImageElement extends EditableBaseElement {
   assetId?: string;
   src?: string;
   alt?: string;
-  objectFit: "cover" | "contain" | "fill";
+  objectFit: "contain";
   objectPosition: string;
   opacity?: number;
 }

@@ -87,7 +87,7 @@ const renderElementContent = (element: EditableElement) => {
         alt={imageElement.alt ?? ""}
         className={styles.imageElement}
         style={{
-          objectFit: imageElement.objectFit,
+          objectFit: "contain",
           objectPosition: imageElement.objectPosition,
           opacity: imageElement.opacity,
         }}
@@ -215,6 +215,7 @@ export function CanvasPageRenderer({ page }: CanvasPageRendererProps) {
     const elementNode =
       target.closest<HTMLElement>("[data-editor-element='true']") ?? target;
     target.setPointerCapture(event.pointerId);
+    setActivePageId(page.id);
     setSelectedElementId(element.id);
     interactionRef.current = {
       kind,
@@ -233,6 +234,7 @@ export function CanvasPageRenderer({ page }: CanvasPageRendererProps) {
       ref={canvasRef}
       onPointerDown={() => {
         if (isEditing) {
+          setActivePageId(page.id);
           setSelectedElementId(undefined);
         }
       }}

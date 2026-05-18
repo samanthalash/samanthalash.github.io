@@ -77,7 +77,7 @@
           "width": 17.02,
           "height": 16.24,
           "rotation": 193.35,
-          "zIndex": 100,
+          "zIndex": 1000000,
           "objectFit": "contain",
           "objectPosition": "center"
         },
@@ -90,9 +90,25 @@
           "width": 17.02,
           "height": 16.24,
           "rotation": 0.69,
-          "zIndex": 102,
+          "zIndex": 1000000,
           "objectFit": "contain",
           "objectPosition": "center"
+        },
+        {
+          "type": "shape",
+          "shape": "plus",
+          "x": 94.86,
+          "y": 4.35,
+          "width": 2.5,
+          "height": 4,
+          "rotation": 0,
+          "fill": "rgba(0, 0, 0, 1)",
+          "stroke": "rgba(0, 0, 0, 1)",
+          "strokeWidth": 1,
+          "radius": 0,
+          "opacity": 1,
+          "id": "shape-mpb6vwag-ct1a8",
+          "zIndex": 103
         }
       ]
     },
@@ -105,26 +121,26 @@
           "id": "hunter-billboard",
           "type": "image",
           "assetId": "brand-hunter-billboard",
-          "x": 5,
-          "y": 14,
-          "width": 55,
-          "height": 37,
+          "x": -23.82,
+          "y": 11.15,
+          "width": 49.85,
+          "height": 72.32,
           "rotation": -5,
           "zIndex": 1,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
           "id": "hunter-flatlay",
           "type": "image",
           "assetId": "brand-hunter-flatlay",
-          "x": 8,
-          "y": 8,
-          "width": 38,
-          "height": 55,
-          "rotation": 5,
+          "x": 36.04,
+          "y": 9.14,
+          "width": 52.49,
+          "height": 83.21,
+          "rotation": 0.1,
           "zIndex": 2,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -214,7 +230,7 @@
           "width": 7,
           "height": 12,
           "rotation": 270,
-          "zIndex": 100,
+          "zIndex": 1000000,
           "objectFit": "contain",
           "objectPosition": "center"
         }
@@ -235,7 +251,7 @@
           "height": 39,
           "rotation": 0,
           "zIndex": 1,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -325,7 +341,7 @@
           "width": 7,
           "height": 12,
           "rotation": 270,
-          "zIndex": 100,
+          "zIndex": 1000000,
           "objectFit": "contain",
           "objectPosition": "center"
         }
@@ -346,7 +362,7 @@
           "height": 32,
           "rotation": 20,
           "zIndex": 3,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -359,7 +375,7 @@
           "height": 48,
           "rotation": 7,
           "zIndex": 14,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -372,7 +388,7 @@
           "height": 39,
           "rotation": -10,
           "zIndex": 13,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -385,7 +401,7 @@
           "height": 42,
           "rotation": -10,
           "zIndex": 1,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -475,7 +491,7 @@
           "width": 7,
           "height": 12,
           "rotation": 270,
-          "zIndex": 100,
+          "zIndex": 1000000,
           "objectFit": "contain",
           "objectPosition": "center"
         }
@@ -496,7 +512,7 @@
           "height": 31,
           "rotation": -3,
           "zIndex": 4,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -509,7 +525,7 @@
           "height": 31,
           "rotation": -3,
           "zIndex": 3,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -522,7 +538,7 @@
           "height": 31,
           "rotation": 5,
           "zIndex": 2,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -535,7 +551,7 @@
           "height": 31,
           "rotation": -7,
           "zIndex": 1,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -611,7 +627,7 @@
           "width": 7,
           "height": 12,
           "rotation": 230,
-          "zIndex": 100,
+          "zIndex": 1000000,
           "objectFit": "contain",
           "objectPosition": "center"
         }
@@ -632,7 +648,7 @@
           "height": 31,
           "rotation": -3,
           "zIndex": 4,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -645,7 +661,7 @@
           "height": 31,
           "rotation": 4,
           "zIndex": 3,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -658,7 +674,7 @@
           "height": 31,
           "rotation": 10,
           "zIndex": 2,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -671,7 +687,7 @@
           "height": 31,
           "rotation": 13,
           "zIndex": 1,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -747,7 +763,7 @@
           "width": 7,
           "height": 12,
           "rotation": 234,
-          "zIndex": 100,
+          "zIndex": 1000000,
           "objectFit": "contain",
           "objectPosition": "center"
         }
@@ -768,7 +784,7 @@
           "height": 30,
           "rotation": -3,
           "zIndex": 5,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -781,7 +797,7 @@
           "height": 30,
           "rotation": 3,
           "zIndex": 4,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -794,7 +810,7 @@
           "height": 30,
           "rotation": 9,
           "zIndex": 3,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -807,7 +823,7 @@
           "height": 30,
           "rotation": 6,
           "zIndex": 2,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -820,7 +836,7 @@
           "height": 30,
           "rotation": 18,
           "zIndex": 1,
-          "objectFit": "cover",
+          "objectFit": "contain",
           "objectPosition": "center"
         },
         {
@@ -896,7 +912,7 @@
           "width": 7,
           "height": 12,
           "rotation": 234,
-          "zIndex": 100,
+          "zIndex": 1000000,
           "objectFit": "contain",
           "objectPosition": "center"
         }
