@@ -2,7 +2,9 @@ import { useState, useTransition } from "react";
 import { FolderScene } from "./components/folder/FolderScene";
 import { PortfolioGalleryOverlay } from "./components/portfolio/PortfolioGalleryOverlay";
 import { DesktopScreen } from "./components/desktop/DesktopScreen";
+import { LayoutEditorOverlay } from "./components/editor/LayoutEditorOverlay";
 import { folderSections } from "./data/folderSections";
+import { LayoutEditorProvider } from "./editor/LayoutEditorContext";
 import type { FolderSectionId } from "./data/folderSections";
 
 export default function App() {
@@ -31,7 +33,7 @@ export default function App() {
   };
 
   return (
-    <>
+    <LayoutEditorProvider>
       {showIntro && <DesktopScreen onDismiss={handleDismiss} />}
       <FolderScene
         sections={folderSections}
@@ -47,6 +49,7 @@ export default function App() {
           onClose={() => setIsPortfolioGalleryOpen(false)}
         />
       )}
-    </>
+      <LayoutEditorOverlay />
+    </LayoutEditorProvider>
   );
 }

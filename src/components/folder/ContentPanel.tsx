@@ -22,11 +22,13 @@ import hunterFlatlayImage from "../../assets/brand-identity/hunter-flatlay.png";
 import hunterBillboardImage from "../../assets/brand-identity/hunter-billboard.png";
 import contactThankYouImage from "../../../inspo/thankyou.png";
 import contactEnvelopeImage from "../../../inspo/envelope.png";
+import { CanvasPageRenderer } from "../editor/CanvasPageRenderer";
 import type {
   BrandIdentityStackImageControl,
   ContentPanelLayout,
 } from "../../data/folderPages";
 import type { FolderSection } from "../../data/folderSections";
+import { useLayoutEditor } from "../../editor/LayoutEditorContext";
 import { DraggablePhotoCard } from "./DraggablePhotoCard";
 import styles from "./ContentPanel.module.css";
 
@@ -125,6 +127,7 @@ export function ContentPanel({
   stampImageSrcs,
   onOpenPortfolioGallery,
 }: ContentPanelProps) {
+  const { layout } = useLayoutEditor();
   const [raisedPhotoLayers, setRaisedPhotoLayers] = useState<
     Record<string, number>
   >({});
@@ -134,6 +137,9 @@ export function ContentPanel({
   const isBrandIdentity =
     layoutVariant === "brandIdentity" || activeSection.id === "archive";
   const usesCreativeTemplate = activeSection.id !== "work";
+  const editablePage = pageId
+    ? layout.pages.find((page) => page.id === pageId)
+    : undefined;
   const brandIdentityBackdropImage =
     brandIdentityBackdropImageSrc ?? hunterBillboardImage;
   const stampImages =
@@ -281,6 +287,10 @@ export function ContentPanel({
         />
       </div>
     );
+  }
+
+  if (editablePage) {
+    return <CanvasPageRenderer page={editablePage} />;
   }
 
   if (usesCreativeTemplate) {

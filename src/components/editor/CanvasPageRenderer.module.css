@@ -1,0 +1,113 @@
+.canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: rgb(39 39 39 / 0.92);
+}
+
+.canvas[data-editing="true"] {
+  cursor: default;
+  overflow: visible;
+}
+
+.element {
+  position: absolute;
+  min-width: 18px;
+  min-height: 18px;
+  transform-origin: center;
+  user-select: none;
+}
+
+.element[data-editing="true"] {
+  cursor: grab;
+}
+
+.element[data-selected="true"] {
+  outline: 1.5px solid rgb(35 106 255 / 0.95);
+  outline-offset: 3px;
+}
+
+.element[data-locked="true"] {
+  cursor: not-allowed;
+}
+
+.element[data-dragging="true"] {
+  cursor: grabbing;
+}
+
+.imageElement {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter:
+    drop-shadow(0 20px 22px rgb(39 39 39 / 0.17))
+    drop-shadow(0 6px 9px rgb(39 39 39 / 0.11));
+}
+
+.textElement {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  white-space: pre-wrap;
+  text-wrap: pretty;
+}
+
+.shapeElement {
+  width: 100%;
+  height: 100%;
+}
+
+.resizeHandle,
+.rotateHandle {
+  position: absolute;
+  display: none;
+  border: 1px solid white;
+  background: rgb(35 106 255);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.24);
+  pointer-events: auto;
+}
+
+.element[data-selected="true"] .resizeHandle,
+.element[data-selected="true"] .rotateHandle {
+  display: block;
+}
+
+.resizeHandle {
+  right: -9px;
+  bottom: -9px;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  cursor: nwse-resize;
+}
+
+.rotateHandle {
+  top: -34px;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  cursor: grab;
+  transform: translateX(-50%);
+}
+
+.rotateHandle::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  width: 1px;
+  height: 18px;
+  background: rgb(35 106 255 / 0.7);
+}
+
+@media (max-width: 900px) {
+  .textElement {
+    font-size: max(13px, calc(var(--editor-font-size, 16) * 0.82px)) !important;
+  }
+}

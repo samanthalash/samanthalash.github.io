@@ -4,6 +4,7 @@ import { PageFlip } from "./PageFlip";
 import { PortfolioHintOverlay } from "./PortfolioHintOverlay";
 import { folderPagesBySectionId } from "../../data/folderPages";
 import { folderSections } from "../../data/folderSections";
+import { useLayoutEditor } from "../../editor/LayoutEditorContext";
 import type { FolderSection, FolderSectionId } from "../../data/folderSections";
 import styles from "./FolderInterior.module.css";
 
@@ -28,6 +29,7 @@ export function FolderInterior({
   isPending,
   onOpenPortfolioGallery,
 }: FolderInteriorProps) {
+  const { isEditMode, isPreviewing } = useLayoutEditor();
   const isHome = activeSection.id === "work";
   const usesPhotoTemplate = activeSection.id !== "work";
   const allowsOverflow = isHome || usesPhotoTemplate;
@@ -152,6 +154,7 @@ export function FolderInterior({
       <PageFlip
         pages={pages}
         allowOverflow={allowsOverflow}
+        disabled={isEditMode && !isPreviewing}
         pageIndex={currentPageIndex}
         onPageChange={handlePageChange}
         onClearingFolderChange={setIsFlipPageFront}

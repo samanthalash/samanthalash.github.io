@@ -18,6 +18,7 @@ type FlipPhase =
 interface PageFlipProps {
   pages: ReactNode[];
   allowOverflow?: boolean;
+  disabled?: boolean;
   pageIndex: number;
   onPageChange: (index: number) => void;
   onClearingFolderChange?: (isClearingFolder: boolean) => void;
@@ -69,6 +70,7 @@ function computeDragStyle(progress: number): CSSProperties {
 export function PageFlip({
   pages,
   allowOverflow = false,
+  disabled = false,
   pageIndex,
   onPageChange,
   onClearingFolderChange,
@@ -318,28 +320,32 @@ export function PageFlip({
       )}
 
       {/* Forward hotspot — bottom-right corner */}
-      <div
-        className={`${styles.cornerHotspot} ${styles.cornerRight}`}
-        data-hidden={isActive}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onKeyDown={handleForwardKey}
-        role="button"
-        tabIndex={0}
-        aria-label="Flip to next page"
-      />
+      {!disabled && (
+        <div
+          className={`${styles.cornerHotspot} ${styles.cornerRight}`}
+          data-hidden={isActive}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onKeyDown={handleForwardKey}
+          role="button"
+          tabIndex={0}
+          aria-label="Flip to next page"
+        />
+      )}
 
       {/* Backward hotspot — bottom-left corner */}
-      <div
-        className={`${styles.cornerHotspot} ${styles.cornerLeft}`}
-        data-hidden={isActive}
-        onClick={handleBackwardClick}
-        onKeyDown={handleBackwardKey}
-        role="button"
-        tabIndex={0}
-        aria-label="Flip to previous page"
-      />
+      {!disabled && (
+        <div
+          className={`${styles.cornerHotspot} ${styles.cornerLeft}`}
+          data-hidden={isActive}
+          onClick={handleBackwardClick}
+          onKeyDown={handleBackwardKey}
+          role="button"
+          tabIndex={0}
+          aria-label="Flip to previous page"
+        />
+      )}
     </div>
   );
 }

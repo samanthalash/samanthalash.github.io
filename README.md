@@ -52,6 +52,13 @@ than a conventional scrolling portfolio.
 - Update tab labels and fallback section copy in `src/data/folderSections.ts`.
 - Update individual page content, layout variants, image overrides, and stamp
   choices in `src/data/folderPages.ts`.
+- Project-page visual layouts are stored in `src/data/editableLayout.json`.
+- To use the local layout editor, run `npm run dev`, open the local site with
+  `?edit=1`, make edits, then press Save in the editor panel. Saved changes are
+  written back to `src/data/editableLayout.json` so they are included after you
+  commit, push, and deploy.
+- The layout editor is development-only. It is guarded by Vite's dev mode, and
+  the save/upload endpoints only exist while running the local dev server.
 - Creative Direction pages have header-based IDs and aliases in
   `src/data/folderPages.ts`, so they can be referenced as Levi's Campaign,
   Hunter Campaign, or Nylon Editorial.
