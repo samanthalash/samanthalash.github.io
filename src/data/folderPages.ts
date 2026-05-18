@@ -213,7 +213,7 @@ export const folderPagesBySectionId: Partial<
       },
       copyBlockWidth: "min(100%, 620px)",
       bodyWidth: "100%",
-      bodyMaxWidth: "44ch",
+      bodyMaxWidth: "56ch",
       bodyTextAlign: "right",
       brandIdentityStackImageSrcs: [
         laManuelaCoverImage,

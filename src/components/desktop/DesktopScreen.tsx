@@ -20,11 +20,11 @@ function FolderIcon() {
       <g className={styles.folderLid}>
         <path
           d="M11,20 L11,10 Q11,6 15,6 L41,6 Q46,6 48,9 L53,20 Z"
-          fill="#ffc0cf"
+          fill="#9693a2"
         />
       </g>
       {/* Folder body */}
-      <rect x="6" y="18" width="84" height="62" rx="10" fill="#ffc0cf" />
+      <rect x="6" y="18" width="84" height="62" rx="10" fill="#9693a2" />
     </svg>
   );
 }
