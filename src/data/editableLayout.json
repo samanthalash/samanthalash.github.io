@@ -3,7 +3,7 @@
   "tabStyle": {
     "shape": "file",
     "railInset": 12,
-    "gap": 8,
+    "gap": 0,
     "height": 43,
     "bodyInset": 3,
     "cornerRadius": 18,
@@ -328,8 +328,8 @@
         {
           "type": "shape",
           "shape": "plus",
-          "x": 2.59,
-          "y": 88.82,
+          "x": 27.15,
+          "y": 89.43,
           "width": 2.5,
           "height": 5.5,
           "rotation": 0,
