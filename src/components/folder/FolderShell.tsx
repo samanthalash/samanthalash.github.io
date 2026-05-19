@@ -14,6 +14,7 @@ interface FolderShellProps {
   isPending: boolean;
   onSectionChange: (sectionId: FolderSectionId) => void;
   onOpenPortfolioGallery: () => void;
+  onOpenProjectGallery: (galleryId: string) => void;
 }
 
 export function FolderShell({
@@ -24,6 +25,7 @@ export function FolderShell({
   isPending,
   onSectionChange,
   onOpenPortfolioGallery,
+  onOpenProjectGallery,
 }: FolderShellProps) {
   const { layout } = useLayoutEditor();
   const tabStyle = layout.tabStyle;
@@ -69,6 +71,7 @@ export function FolderShell({
           isIntroVisible={isIntroVisible}
           isPending={isPending}
           onOpenPortfolioGallery={onOpenPortfolioGallery}
+          onOpenProjectGallery={onOpenProjectGallery}
         />
       </div>
     </section>

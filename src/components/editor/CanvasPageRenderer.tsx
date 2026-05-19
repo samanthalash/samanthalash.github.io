@@ -19,6 +19,7 @@ import styles from "./CanvasPageRenderer.module.css";
 interface CanvasPageRendererProps {
   page: EditablePage;
   onOpenPortfolioGallery?: () => void;
+  onOpenProjectGallery?: (galleryId: string) => void;
 }
 
 type InteractionKind = "move" | "resize" | "rotate";
@@ -124,6 +125,7 @@ const renderElementContent = (element: EditableElement) => {
 export function CanvasPageRenderer({
   page,
   onOpenPortfolioGallery,
+  onOpenProjectGallery,
 }: CanvasPageRendererProps) {
   const {
     isEditMode,
@@ -240,6 +242,10 @@ export function CanvasPageRenderer({
 
     if (element.action === "openPortfolioGallery") {
       onOpenPortfolioGallery?.();
+    }
+
+    if (element.action === "openProjectGallery" && element.galleryId) {
+      onOpenProjectGallery?.(element.galleryId);
     }
   };
 

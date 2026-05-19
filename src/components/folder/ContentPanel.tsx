@@ -78,6 +78,7 @@ interface ContentPanelProps {
   omitPlanningStamp?: boolean;
   stampImageSrcs?: string[];
   onOpenPortfolioGallery?: () => void;
+  onOpenProjectGallery?: (galleryId: string) => void;
 }
 
 export function ContentPanel({
@@ -126,6 +127,7 @@ export function ContentPanel({
   omitPlanningStamp = false,
   stampImageSrcs,
   onOpenPortfolioGallery,
+  onOpenProjectGallery,
 }: ContentPanelProps) {
   const { layout } = useLayoutEditor();
   const [raisedPhotoLayers, setRaisedPhotoLayers] = useState<
@@ -224,6 +226,7 @@ export function ContentPanel({
       <CanvasPageRenderer
         page={editablePage}
         onOpenPortfolioGallery={onOpenPortfolioGallery}
+        onOpenProjectGallery={onOpenProjectGallery}
       />
     );
   }

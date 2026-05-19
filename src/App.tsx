@@ -4,6 +4,7 @@ import { PortfolioGalleryOverlay } from "./components/portfolio/PortfolioGallery
 import { DesktopScreen } from "./components/desktop/DesktopScreen";
 import { LayoutEditorOverlay } from "./components/editor/LayoutEditorOverlay";
 import { folderSections } from "./data/folderSections";
+import { projectGalleries, type ProjectGalleryId } from "./data/projectGalleries";
 import { LayoutEditorProvider } from "./editor/LayoutEditorContext";
 import type { FolderSectionId } from "./data/folderSections";
 
@@ -15,11 +16,16 @@ export default function App() {
     folderSections[0].id,
   );
   const [isPortfolioGalleryOpen, setIsPortfolioGalleryOpen] = useState(false);
+  const [activeProjectGalleryId, setActiveProjectGalleryId] =
+    useState<ProjectGalleryId>();
   const [isPending, startTransition] = useTransition();
 
   const activeSection =
     folderSections.find((section) => section.id === activeSectionId) ??
     folderSections[0];
+  const activeProjectGallery = activeProjectGalleryId
+    ? projectGalleries[activeProjectGalleryId]
+    : undefined;
 
   const handleSectionChange = (sectionId: FolderSectionId) => {
     startTransition(() => {
@@ -43,10 +49,20 @@ export default function App() {
         isPending={isPending}
         onSectionChange={handleSectionChange}
         onOpenPortfolioGallery={() => setIsPortfolioGalleryOpen(true)}
+        onOpenProjectGallery={(galleryId) =>
+          setActiveProjectGalleryId(galleryId as ProjectGalleryId)
+        }
       />
       {isPortfolioGalleryOpen && (
         <PortfolioGalleryOverlay
           onClose={() => setIsPortfolioGalleryOpen(false)}
+        />
+      )}
+      {activeProjectGallery && (
+        <PortfolioGalleryOverlay
+          title={activeProjectGallery.title}
+          images={activeProjectGallery.images}
+          onClose={() => setActiveProjectGalleryId(undefined)}
         />
       )}
       <LayoutEditorOverlay />

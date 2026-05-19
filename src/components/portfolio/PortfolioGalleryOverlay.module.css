@@ -58,6 +58,15 @@
   overscroll-behavior: contain;
 }
 
+.galleryTitle {
+  margin: 0 92px clamp(18px, 2vw, 28px) 0;
+  color: rgb(255 255 255 / 0.94);
+  font-family: var(--font-sans);
+  font-size: clamp(1.4rem, 3vw, 3rem);
+  font-weight: 400;
+  line-height: 0.95;
+}
+
 .galleryGrid {
   columns: 3 240px;
   column-gap: clamp(12px, 1.8vw, 22px);

@@ -20,6 +20,7 @@ interface FolderInteriorProps {
   isIntroVisible: boolean;
   isPending: boolean;
   onOpenPortfolioGallery: () => void;
+  onOpenProjectGallery: (galleryId: string) => void;
 }
 
 export function FolderInterior({
@@ -28,6 +29,7 @@ export function FolderInterior({
   isIntroVisible,
   isPending,
   onOpenPortfolioGallery,
+  onOpenProjectGallery,
 }: FolderInteriorProps) {
   const { isEditMode, isPreviewing } = useLayoutEditor();
   const isHome = activeSection.id === "work";
@@ -92,6 +94,7 @@ export function FolderInterior({
           }
           activeSection={activeSection}
           onOpenPortfolioGallery={onOpenPortfolioGallery}
+          onOpenProjectGallery={onOpenProjectGallery}
         />
       );
     }
@@ -145,6 +148,7 @@ export function FolderInterior({
           hideBrandIdentityTopPhoto={page.hideBrandIdentityTopPhoto}
           omitPlanningStamp={page.omitPlanningStamp}
           stampImageSrcs={page.stampImageSrcs}
+          onOpenProjectGallery={onOpenProjectGallery}
           key={page.id}
         />
       );

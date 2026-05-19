@@ -10,6 +10,7 @@ interface FolderSceneProps {
   isPending: boolean;
   onSectionChange: (sectionId: FolderSectionId) => void;
   onOpenPortfolioGallery: () => void;
+  onOpenProjectGallery: (galleryId: string) => void;
 }
 
 export function FolderScene(props: FolderSceneProps) {

@@ -239,7 +239,9 @@
           "radius": 0,
           "opacity": 1,
           "id": "shape-mpb6vwag-ct1a8",
-          "zIndex": 103
+          "zIndex": 103,
+          "action": "openProjectGallery",
+          "galleryId": "levis-campaign"
         }
       ]
     },
@@ -337,7 +339,9 @@
           "radius": 0,
           "opacity": 1,
           "id": "shape-mpcnnjuz-si03y",
-          "zIndex": 1000001
+          "zIndex": 1000001,
+          "action": "openProjectGallery",
+          "galleryId": "hunter-campaign"
         },
         {
           "id": "image-mpcnph5t-yofha",
@@ -435,7 +439,9 @@
           "radius": 0,
           "opacity": 1,
           "id": "shape-mpcnv6hx-6hzit",
-          "zIndex": 1000001
+          "zIndex": 1000001,
+          "action": "openProjectGallery",
+          "galleryId": "nylon-editorial"
         }
       ]
     },
@@ -546,7 +552,9 @@
           "radius": 0,
           "opacity": 1,
           "id": "shape-mpco3vou-lutjl",
-          "zIndex": 1000001
+          "zIndex": 1000001,
+          "action": "openProjectGallery",
+          "galleryId": "tomorrowland-rebrand"
         }
       ]
     },
@@ -683,7 +691,9 @@
           "radius": 0,
           "opacity": 1,
           "id": "shape-mpcoc7x0-dywmi",
-          "zIndex": 1000001
+          "zIndex": 1000001,
+          "action": "openProjectGallery",
+          "galleryId": "la-manuela"
         }
       ]
     },
@@ -781,7 +791,9 @@
           "radius": 0,
           "opacity": 1,
           "id": "shape-mpcoppp8-wuigs",
-          "zIndex": 1000001
+          "zIndex": 1000001,
+          "action": "openProjectGallery",
+          "galleryId": "apramp-campaign"
         },
         {
           "id": "image-mpcoqnct-zl3yz",
