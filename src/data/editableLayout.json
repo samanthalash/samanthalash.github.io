@@ -2,6 +2,65 @@
   "version": 1,
   "pages": [
     {
+      "id": "home",
+      "sectionId": "work",
+      "name": "HOME",
+      "elements": [
+        {
+          "id": "home-monogram",
+          "type": "image",
+          "assetId": "monogram",
+          "x": 0.41,
+          "y": 4.49,
+          "width": 11.47,
+          "height": 17.13,
+          "rotation": 0,
+          "zIndex": 5,
+          "objectFit": "contain",
+          "objectPosition": "center"
+        },
+        {
+          "id": "home-library-card",
+          "type": "image",
+          "assetId": "library-card",
+          "x": 53.73,
+          "y": 9.21,
+          "width": 63.74,
+          "height": 91.06,
+          "rotation": -17.24,
+          "zIndex": 5,
+          "objectFit": "contain",
+          "objectPosition": "center"
+        },
+        {
+          "id": "home-postcard",
+          "type": "image",
+          "assetId": "postcard",
+          "x": 51.85,
+          "y": 37.21,
+          "width": 49.28,
+          "height": 59.49,
+          "rotation": -1,
+          "zIndex": 6,
+          "objectFit": "contain",
+          "objectPosition": "center"
+        },
+        {
+          "id": "home-paperclip",
+          "type": "image",
+          "assetId": "paperclip",
+          "x": 94.73,
+          "y": 82.29,
+          "width": 5.36,
+          "height": 24.47,
+          "rotation": 181.7,
+          "zIndex": 1000000,
+          "objectFit": "contain",
+          "objectPosition": "center"
+        }
+      ]
+    },
+    {
       "id": "levis-campaign",
       "sectionId": "about",
       "name": "LEVI'S CAMPAIGN",
@@ -66,7 +125,7 @@
           "fontWeight": 300,
           "letterSpacing": -0.5,
           "color": "rgba(39, 39, 39, 0.88)",
-          "textAlign": "left"
+          "textAlign": "justify"
         },
         {
           "id": "paperclip",
@@ -177,7 +236,7 @@
           "fontWeight": 300,
           "letterSpacing": -0.5,
           "color": "rgba(39, 39, 39, 0.88)",
-          "textAlign": "right"
+          "textAlign": "justify"
         },
         {
           "id": "paperclip",
@@ -246,7 +305,7 @@
           "fontWeight": 300,
           "letterSpacing": -0.5,
           "color": "rgba(39, 39, 39, 0.88)",
-          "textAlign": "right"
+          "textAlign": "justify"
         },
         {
           "id": "stamp-concept",
@@ -396,7 +455,7 @@
           "fontWeight": 300,
           "letterSpacing": -0.5,
           "color": "rgba(39, 39, 39, 0.88)",
-          "textAlign": "right"
+          "textAlign": "justify"
         },
         {
           "id": "stamp-concept",
@@ -546,7 +605,7 @@
           "fontWeight": 300,
           "letterSpacing": -0.5,
           "color": "rgba(39, 39, 39, 0.88)",
-          "textAlign": "right"
+          "textAlign": "justify"
         },
         {
           "id": "stamp-strategy",
@@ -682,7 +741,7 @@
           "fontWeight": 300,
           "letterSpacing": -0.5,
           "color": "rgba(39, 39, 39, 0.88)",
-          "textAlign": "right"
+          "textAlign": "justify"
         },
         {
           "id": "stamp-strategy",
@@ -831,7 +890,7 @@
           "fontWeight": 300,
           "letterSpacing": -0.5,
           "color": "rgba(39, 39, 39, 0.88)",
-          "textAlign": "right"
+          "textAlign": "justify"
         },
         {
           "id": "stamp-strategy",

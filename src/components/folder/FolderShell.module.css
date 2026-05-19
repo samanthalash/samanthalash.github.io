@@ -1,11 +1,11 @@
 .folderWrap {
+  --folder-viewport-gap: clamp(56px, 8vh, 96px);
   --tab-height: clamp(30px, 9vw, 6px);
   --tab-embed: clamp(0.15px, 0vw, 0px);
   position: relative;
-  width: min(95vw, calc((100vh - clamp(56px, 8vh, 96px)) * 1.47), 1480px);
-  max-height: calc(100vh - clamp(56px, 8vh, 96px));
-  aspect-ratio: 1.47;
-  transform: translateX(1.2vw) translateY(0.6vh) rotate(-0.55deg);
+  width: min(calc(100vw - var(--folder-viewport-gap)), 1840px);
+  height: calc(100vh - var(--folder-viewport-gap));
+  transform: none;
 }
 
 .shadowBase,
@@ -101,6 +101,7 @@
     --tab-height: clamp(64px, 12vw, 92px);
     --tab-embed: clamp(6px, 1vw, 10px);
     width: min(96vw, 1100px);
+    height: auto;
     aspect-ratio: auto;
     min-height: 88vh;
     transform: translateX(0.3vw) translateY(0.2vh);

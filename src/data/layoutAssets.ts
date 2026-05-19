@@ -1,4 +1,7 @@
 import paperclipImage from "../assets/paperclip.png";
+import monogramImage from "../assets/monogram.png";
+import postcardImage from "../assets/postcard.png";
+import libraryCardImage from "../assets/library-card.png";
 import conceptStampImage from "../assets/creative-direction/concept.png";
 import planningStampImage from "../assets/creative-direction/planning.png";
 import stylingStampImage from "../assets/creative-direction/styling.png";
@@ -34,6 +37,9 @@ import tomorrowlandSteviePosterImage from "../../inspo/tomorrowland /4th.png";
 
 export const layoutAssetRegistry = {
   paperclip: paperclipImage,
+  monogram: monogramImage,
+  postcard: postcardImage,
+  "library-card": libraryCardImage,
   "stamp-concept": conceptStampImage,
   "stamp-planning": planningStampImage,
   "stamp-styling": stylingStampImage,

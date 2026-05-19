@@ -71,7 +71,7 @@ export interface FolderPageConfig {
   bodyFontSize?: string;
   bodyLineHeight?: string;
   bodyLetterSpacing?: string;
-  bodyTextAlign?: "left" | "center" | "right";
+  bodyTextAlign?: "left" | "center" | "right" | "justify";
   bodyShiftX?: string;
   bodyShiftY?: string;
   brandIdentityBackdropImageSrc?: string;

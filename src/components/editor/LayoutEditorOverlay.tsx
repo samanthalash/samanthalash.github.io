@@ -495,6 +495,7 @@ function TextControls({
           <option value="left">Left</option>
           <option value="center">Center</option>
           <option value="right">Right</option>
+          <option value="justify">Justify</option>
         </select>
       </label>
       <label className={styles.field}>

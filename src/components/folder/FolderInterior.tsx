@@ -78,6 +78,7 @@ export function FolderInterior({
     if (!isFlipEnabled) {
       return (
         <ContentPanel
+          pageId={isHome ? "home" : undefined}
           activeSection={activeSection}
           onOpenPortfolioGallery={onOpenPortfolioGallery}
         />

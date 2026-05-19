@@ -62,7 +62,7 @@ interface ContentPanelProps {
   bodyFontSize?: string;
   bodyLineHeight?: string;
   bodyLetterSpacing?: string;
-  bodyTextAlign?: "left" | "center" | "right";
+  bodyTextAlign?: "left" | "center" | "right" | "justify";
   bodyShiftX?: string;
   bodyShiftY?: string;
   brandIdentityBackdropImageSrc?: string;
@@ -219,6 +219,10 @@ export function ContentPanel({
     };
   };
 
+  if (editablePage) {
+    return <CanvasPageRenderer page={editablePage} />;
+  }
+
   if (isHome) {
     return (
       <>
@@ -287,10 +291,6 @@ export function ContentPanel({
         />
       </div>
     );
-  }
-
-  if (editablePage) {
-    return <CanvasPageRenderer page={editablePage} />;
   }
 
   if (usesCreativeTemplate) {

@@ -511,6 +511,7 @@
   line-height: 1.47;
   letter-spacing: -0.03em;
   color: rgb(39 39 39 / 0.88);
+  text-align: justify;
   text-wrap: pretty;
 }
 

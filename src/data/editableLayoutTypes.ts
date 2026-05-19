@@ -25,7 +25,7 @@ export interface EditableTextElement extends EditableBaseElement {
   fontWeight: number;
   letterSpacing?: number;
   color: string;
-  textAlign: "left" | "center" | "right";
+  textAlign: "left" | "center" | "right" | "justify";
 }
 
 export interface EditableImageElement extends EditableBaseElement {
