@@ -8,10 +8,6 @@ import laManuelaMeaningImage from "../../inspo/la manuela/lamanu_third.png";
 import laManuelaMoodboardImage from "../../inspo/la manuela/lamanu_fourth.png";
 import laManuelaStrategyStampImage from "../../inspo/strategy.png";
 import laManuelaPitchDeckStampImage from "../../inspo/pitch deck.png";
-import spotifyCoverImage from "../../inspo/spotify/sp1.png";
-import spotifyConceptImage from "../../inspo/spotify/sp2.png";
-import spotifyContentIdeasImage from "../../inspo/spotify/sp3.png";
-import spotifyMoodboardImage from "../../inspo/spotify/sp4.png";
 import aprampCoverImage from "../../inspo/apramp/ap1.png";
 import aprampIntroImage from "../../inspo/apramp/ap2.png";
 import aprampGiftBoxImage from "../../inspo/apramp/ap3.png";
@@ -228,112 +224,6 @@ export const folderPagesBySectionId: Partial<
     },
   ],
   experiments: [
-    {
-      id: "strategy-concept-page-1",
-      referenceName: "SPOTIFY CONTENT STRATEGY",
-      aliases: ["Spotify", "Spotify Content Strategy"],
-      sectionId: "experiments",
-      layout: "brandIdentity",
-      content: {
-        eyebrow: "Brand Strategy",
-        title: "SPOTIFY CONTENT STRATEGY",
-        body:
-          "A brand ambassador program pitched to Spotify, built around the insight that while Spotify dominates music culture digitally, it has little presence in the physical spaces where that culture actually lives – nightlife. The concept positions a nightlife influencer as a cultural translator for Gen Z women, using music to reframe the party girl narrative. The pitch covered brand analysis, competitor landscape, audience profiling, creative concept, and a full content strategy.",
-        bullets: [],
-        footer: "Spotify content strategy concept sheet.",
-      },
-      copyBlockWidth: "min(100%, 660px)",
-      copyBlockMaxWidth: "700px",
-      copyBlockJustifySelf: "center",
-      copyBlockAlignSelf: "center",
-      // Move the whole Spotify text group with these two values.
-      // Positive X moves right, negative X moves left; positive Y moves down.
-      copyBlockShiftX: "0px",
-      copyBlockShiftY: "0px",
-      titleWidth: "130%",
-      titleWhiteSpace: "normal",
-      titleFontSize: "clamp(1rem, 2vw, 3.7rem)",
-      titleLineHeight: "0.82",
-      titleLetterSpacing: "-0.055em",
-      titleMaxWidth: "100ch",
-      titleTextAlign: "right",
-      // Move only the Spotify title by changing these two values.
-      // Positive X moves right, negative X moves left; positive Y moves down.
-      titleShiftX: "-90px",
-      titleShiftY: "0px",
-      bodyWidth: "110%",
-      bodyMinWidth: "0",
-      bodyMaxWidth: "48ch",
-      bodyMarginTop: "clamp(18px, 2.2vw, 28px)",
-      bodyFontSize: "clamp(1rem, 1vw, 1rem)",
-      bodyLineHeight: "1.47",
-      bodyLetterSpacing: "-0.03em",
-      bodyTextAlign: "right",
-      // Move only the Spotify body copy with these two values.
-      // Positive X moves right, negative X moves left; positive Y moves down.
-      bodyShiftX: "-30px",
-      bodyShiftY: "0px",
-      brandIdentityStackImageSrcs: [
-        spotifyCoverImage,
-        spotifyConceptImage,
-        spotifyContentIdeasImage,
-        spotifyMoodboardImage,
-      ],
-      // Move or resize the whole Spotify picture stack here.
-      brandIdentityStackShiftX: "-7%",
-      brandIdentityStackShiftY: "-40%",
-      brandIdentityStackCardWidth: "86%",
-      brandIdentityStackCardAspect: "1828 / 1026",
-      // Fine-tune each Spotify image card here.
-      // top/left move the card, width changes size, rotate tilts it,
-      // layer controls which image sits on top, and imageObjectPosition crops.
-      brandIdentityStackImageControls: [
-        {
-          top: "20%",
-          left: "0%",
-          width: "86%",
-          aspect: "1828 / 1026",
-          rotate: "-3deg",
-          layer: 4,
-          scale: "1",
-          imageObjectPosition: "center",
-        },
-        {
-          top: "24%",
-          left: "3.5%",
-          width: "86%",
-          aspect: "1826 / 1024",
-          rotate: "4deg",
-          layer: 3,
-          scale: "1",
-          imageObjectPosition: "center",
-        },
-        {
-          top: "34%",
-          left: "7%",
-          width: "86%",
-          aspect: "1826 / 1022",
-          rotate: "10deg",
-          layer: 2,
-          scale: "1",
-          imageObjectPosition: "center",
-        },
-        {
-          top: "44%",
-          left: "10.5%",
-          width: "86%",
-          aspect: "1828 / 1024",
-          rotate: "13deg",
-          layer: 1,
-          scale: "1",
-          imageObjectPosition: "center",
-        },
-      ],
-      stampImageSrcs: [
-        laManuelaStrategyStampImage,
-        laManuelaPitchDeckStampImage,
-      ],
-    },
     {
       id: "apramp-campaign",
       referenceName: "APRAMP CAMPAIGN",

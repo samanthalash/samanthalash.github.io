@@ -621,16 +621,6 @@
   --brand-identity-paperclip-rotate: 230deg;
 }
 
-.brandIdentityPaperclip[data-page-id="strategy-concept-page-1"] {
-  /* Spotify paperclip controls. */
-  --brand-identity-paperclip-top: 150px;
-  --brand-identity-paperclip-left: -13px;
-  --brand-identity-paperclip-width: 70px;
-  --brand-identity-paperclip-shift-x: 0px;
-  --brand-identity-paperclip-shift-y: 0px;
-  --brand-identity-paperclip-rotate: 234deg;
-}
-
 @media (max-width: 1180px) {
   .creativeDirectionContent {
     grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.76fr);
@@ -859,15 +849,6 @@
     --brand-identity-paperclip-rotate: 270deg;
   }
 
-  .brandIdentityPaperclip[data-page-id="strategy-concept-page-1"] {
-    /* Spotify mobile paperclip controls. */
-    --brand-identity-paperclip-top: 10px;
-    --brand-identity-paperclip-left: 20px;
-    --brand-identity-paperclip-width: 72px;
-    --brand-identity-paperclip-shift-x: 0px;
-    --brand-identity-paperclip-shift-y: 0px;
-    --brand-identity-paperclip-rotate: 270deg;
-  }
 }
 
 @media (max-width: 640px) {
@@ -1040,13 +1021,4 @@
     --brand-identity-paperclip-rotate: 270deg;
   }
 
-  .brandIdentityPaperclip[data-page-id="strategy-concept-page-1"] {
-    /* Spotify small-mobile paperclip controls. */
-    --brand-identity-paperclip-top: 10px;
-    --brand-identity-paperclip-left: 14px;
-    --brand-identity-paperclip-width: 72px;
-    --brand-identity-paperclip-shift-x: 0px;
-    --brand-identity-paperclip-shift-y: 0px;
-    --brand-identity-paperclip-rotate: 270deg;
-  }
 }

@@ -34,6 +34,14 @@ export function FolderInterior({
   const usesPhotoTemplate = activeSection.id !== "work";
   const allowsOverflow = isHome || usesPhotoTemplate;
   const isFlipEnabled = (FLIP_TABS as string[]).includes(activeSectionId);
+  const configuredPages = folderPagesBySectionId[activeSectionId] ?? [
+    {
+      id: `${activeSectionId}-page-1`,
+      sectionId: activeSectionId,
+      content: activeSection.placeholderContent,
+    },
+  ];
+  const canFlipPages = isFlipEnabled && configuredPages.length > 1;
   const [isFlipPageFront, setIsFlipPageFront] = useState(false);
   const [hasSeenPortfolioHint, setHasSeenPortfolioHint] = useState(() => {
     try {
@@ -62,7 +70,7 @@ export function FolderInterior({
   }, []);
 
   useEffect(() => {
-    if (isIntroVisible || !isFlipEnabled) {
+    if (isIntroVisible || !canFlipPages) {
       setIsPortfolioHintVisible(false);
       return;
     }
@@ -72,7 +80,7 @@ export function FolderInterior({
     }
 
     setIsPortfolioHintVisible(true);
-  }, [hasSeenPortfolioHint, isFlipEnabled, isIntroVisible]);
+  }, [canFlipPages, hasSeenPortfolioHint, isIntroVisible]);
 
   const renderContent = () => {
     if (!isFlipEnabled) {
@@ -84,14 +92,6 @@ export function FolderInterior({
         />
       );
     }
-
-    const configuredPages = folderPagesBySectionId[activeSectionId] ?? [
-      {
-        id: `${activeSectionId}-page-1`,
-        sectionId: activeSectionId,
-        content: activeSection.placeholderContent,
-      },
-    ];
 
     const pages = configuredPages.map((page) => {
       const pageSection = SECTION_BY_ID.get(page.sectionId) ?? activeSection;
@@ -147,8 +147,8 @@ export function FolderInterior({
       );
     });
 
-    if (pages.length < 2) {
-      pages.push(<div className={styles.blankPage} key="blank-page-2" />);
+    if (!canFlipPages) {
+      return pages[0] ?? null;
     }
 
     return (

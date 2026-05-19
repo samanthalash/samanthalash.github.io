@@ -21,10 +21,6 @@ import laManuelaMeaningImage from "../../inspo/la manuela/lamanu_third.png";
 import laManuelaMoodboardImage from "../../inspo/la manuela/lamanu_fourth.png";
 import laManuelaStrategyStampImage from "../../inspo/strategy.png";
 import laManuelaPitchDeckStampImage from "../../inspo/pitch deck.png";
-import spotifyCoverImage from "../../inspo/spotify/sp1.png";
-import spotifyConceptImage from "../../inspo/spotify/sp2.png";
-import spotifyContentIdeasImage from "../../inspo/spotify/sp3.png";
-import spotifyMoodboardImage from "../../inspo/spotify/sp4.png";
 import aprampCoverImage from "../../inspo/apramp/ap1.png";
 import aprampIntroImage from "../../inspo/apramp/ap2.png";
 import aprampGiftBoxImage from "../../inspo/apramp/ap3.png";
@@ -59,10 +55,6 @@ export const layoutAssetRegistry = {
   "la-manuela-vision": laManuelaVisionImage,
   "la-manuela-meaning": laManuelaMeaningImage,
   "la-manuela-moodboard": laManuelaMoodboardImage,
-  "spotify-cover": spotifyCoverImage,
-  "spotify-concept": spotifyConceptImage,
-  "spotify-content-ideas": spotifyContentIdeasImage,
-  "spotify-moodboard": spotifyMoodboardImage,
   "apramp-cover": aprampCoverImage,
   "apramp-intro": aprampIntroImage,
   "apramp-gift-box": aprampGiftBoxImage,
