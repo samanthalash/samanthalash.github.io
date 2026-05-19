@@ -74,6 +74,12 @@
   box-shadow: none;
 }
 
+.paperSheet[data-contact="true"] {
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
 .paperSheet::before,
 .paperSheet::after {
   display: none;

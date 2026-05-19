@@ -21,6 +21,8 @@ import laManuelaMeaningImage from "../../inspo/la manuela/lamanu_third.png";
 import laManuelaMoodboardImage from "../../inspo/la manuela/lamanu_fourth.png";
 import laManuelaStrategyStampImage from "../../inspo/strategy.png";
 import laManuelaPitchDeckStampImage from "../../inspo/pitch deck.png";
+import contactThankYouImage from "../../inspo/thankyou.png";
+import contactEnvelopeImage from "../../inspo/envelope.png";
 import aprampCoverImage from "../../inspo/apramp/ap1.png";
 import aprampIntroImage from "../../inspo/apramp/ap2.png";
 import aprampGiftBoxImage from "../../inspo/apramp/ap3.png";
@@ -44,6 +46,8 @@ export const layoutAssetRegistry = {
   "stamp-graphic-design": graphicDesignStampImage,
   "stamp-strategy": laManuelaStrategyStampImage,
   "stamp-pitch-deck": laManuelaPitchDeckStampImage,
+  "contact-thank-you": contactThankYouImage,
+  "contact-envelope": contactEnvelopeImage,
   "creative-nylon-photo": nylonPhotoImage,
   "creative-levi-cyclist": leviCyclistImage,
   "creative-levi-billboard": leviBillboardImage,

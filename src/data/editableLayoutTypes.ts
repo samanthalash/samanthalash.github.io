@@ -3,6 +3,7 @@ import type { FolderSectionId } from "./folderSections";
 export type EditableElementType = "text" | "image" | "shape";
 export type EditableShapeKind = "rectangle" | "ellipse" | "plus";
 export type EditableTabShape = "file" | "pill" | "angled" | "ticket";
+export type EditableElementAction = "openPortfolioGallery";
 
 export interface EditableBaseElement {
   id: string;
@@ -13,6 +14,7 @@ export interface EditableBaseElement {
   height: number;
   rotation: number;
   zIndex: number;
+  action?: EditableElementAction;
   locked?: boolean;
   hidden?: boolean;
 }

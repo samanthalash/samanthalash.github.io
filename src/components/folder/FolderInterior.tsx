@@ -31,6 +31,7 @@ export function FolderInterior({
 }: FolderInteriorProps) {
   const { isEditMode, isPreviewing } = useLayoutEditor();
   const isHome = activeSection.id === "work";
+  const isContact = activeSection.id === "contact";
   const usesPhotoTemplate = activeSection.id !== "work";
   const allowsOverflow = isHome || usesPhotoTemplate;
   const isFlipEnabled = (FLIP_TABS as string[]).includes(activeSectionId);
@@ -86,7 +87,9 @@ export function FolderInterior({
     if (!isFlipEnabled) {
       return (
         <ContentPanel
-          pageId={isHome ? "home" : undefined}
+          pageId={
+            isHome ? "home" : activeSection.id === "contact" ? "contact" : undefined
+          }
           activeSection={activeSection}
           onOpenPortfolioGallery={onOpenPortfolioGallery}
         />
@@ -181,6 +184,7 @@ export function FolderInterior({
         tabIndex={0}
         data-pending={isPending}
         data-home={isHome}
+        data-contact={isContact}
         data-overflow={allowsOverflow}
         className={styles.paperSheet}
       >

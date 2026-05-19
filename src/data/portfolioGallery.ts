@@ -43,13 +43,6 @@ const imagesFromGlob = (
       dedupeKey: duplicateKeysByPath[path],
     }));
 
-const spotifyInspoImages = imagesFromGlob(
-  import.meta.glob<string>("../../inspo/spotify/*.{png,jpg,jpeg,webp}", {
-    eager: true,
-    import: "default",
-  }),
-);
-
 const hunterInspoImages = imagesFromGlob(
   import.meta.glob<string>("../../inspo/hunter/*.{png,jpg,jpeg,webp}", {
     eager: true,
@@ -68,6 +61,10 @@ const nylonInspoImages = imagesFromGlob(
     eager: true,
     import: "default",
   }),
+  {
+    "../../inspo/nylon/editorial-article-draft-1.png":
+      "nylon-editorial-desktop",
+  },
 );
 
 const tomorrowlandInspoImages = imagesFromGlob(
@@ -140,7 +137,6 @@ const orderedPortfolioGalleryImages: PortfolioGalleryImage[] = [
     alt: "Levi's campaign beach",
     dedupeKey: "levis-beach",
   },
-  ...spotifyInspoImages,
   {
     id: "portfolio-hunter-billboard",
     src: hunterBillboardImage,
@@ -158,6 +154,7 @@ const orderedPortfolioGalleryImages: PortfolioGalleryImage[] = [
     id: "portfolio-nylon-photo",
     src: nylonPhotoImage,
     alt: "Nylon editorial visual",
+    dedupeKey: "nylon-editorial-desktop",
   },
   ...nylonInspoImages,
   ...tomorrowlandInspoImages,

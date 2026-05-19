@@ -32,6 +32,10 @@
   cursor: not-allowed;
 }
 
+.element[data-actionable="true"] {
+  cursor: pointer;
+}
+
 .element[data-dragging="true"] {
   cursor: grabbing;
 }

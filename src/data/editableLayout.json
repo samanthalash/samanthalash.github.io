@@ -73,6 +73,66 @@
       ]
     },
     {
+      "id": "contact",
+      "sectionId": "contact",
+      "name": "CONTACT",
+      "elements": [
+        {
+          "id": "contact-thank-you",
+          "type": "image",
+          "assetId": "contact-thank-you",
+          "x": -13.87,
+          "y": 0.02,
+          "width": 63.21,
+          "height": 112.97,
+          "rotation": 9,
+          "zIndex": 2,
+          "objectFit": "contain",
+          "objectPosition": "center"
+        },
+        {
+          "id": "contact-envelope",
+          "type": "image",
+          "assetId": "contact-envelope",
+          "x": 45.64,
+          "y": 2.89,
+          "width": 69.64,
+          "height": 81.83,
+          "rotation": 3,
+          "zIndex": 3,
+          "action": "openPortfolioGallery",
+          "objectFit": "contain",
+          "objectPosition": "center"
+        },
+        {
+          "id": "contact-paperclip-primary",
+          "type": "image",
+          "assetId": "paperclip",
+          "x": -2.11,
+          "y": 87.46,
+          "width": 16,
+          "height": 20,
+          "rotation": 207,
+          "zIndex": 1000000,
+          "objectFit": "contain",
+          "objectPosition": "center"
+        },
+        {
+          "id": "contact-paperclip-secondary",
+          "type": "image",
+          "assetId": "paperclip",
+          "x": 89.04,
+          "y": 33,
+          "width": 16,
+          "height": 20,
+          "rotation": 70,
+          "zIndex": 1000000,
+          "objectFit": "contain",
+          "objectPosition": "center"
+        }
+      ]
+    },
+    {
       "id": "levis-campaign",
       "sectionId": "about",
       "name": "LEVI'S CAMPAIGN",

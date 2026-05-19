@@ -18,6 +18,7 @@ import styles from "./CanvasPageRenderer.module.css";
 
 interface CanvasPageRendererProps {
   page: EditablePage;
+  onOpenPortfolioGallery?: () => void;
 }
 
 type InteractionKind = "move" | "resize" | "rotate";
@@ -120,7 +121,10 @@ const renderElementContent = (element: EditableElement) => {
   );
 };
 
-export function CanvasPageRenderer({ page }: CanvasPageRendererProps) {
+export function CanvasPageRenderer({
+  page,
+  onOpenPortfolioGallery,
+}: CanvasPageRendererProps) {
   const {
     isEditMode,
     isPreviewing,
@@ -229,6 +233,16 @@ export function CanvasPageRenderer({ page }: CanvasPageRendererProps) {
     };
   };
 
+  const handleElementAction = (element: EditableElement) => {
+    if (isEditMode || !element.action) {
+      return;
+    }
+
+    if (element.action === "openPortfolioGallery") {
+      onOpenPortfolioGallery?.();
+    }
+  };
+
   return (
     <div
       className={styles.canvas}
@@ -250,11 +264,25 @@ export function CanvasPageRenderer({ page }: CanvasPageRendererProps) {
             data-editing={isEditing}
             data-selected={isSelected}
             data-locked={element.locked}
+            data-actionable={!isEditMode && Boolean(element.action)}
             data-dragging={interactionRef.current?.element.id === element.id}
             data-editor-element="true"
+            role={!isEditMode && element.action ? "button" : undefined}
+            tabIndex={!isEditMode && element.action ? 0 : undefined}
             key={element.id}
             style={getElementStyle(element)}
             onPointerDown={(event) => startInteraction(event, element, "move")}
+            onClick={() => handleElementAction(element)}
+            onKeyDown={(event) => {
+              if (
+                !isEditMode &&
+                element.action &&
+                (event.key === "Enter" || event.key === " ")
+              ) {
+                event.preventDefault();
+                handleElementAction(element);
+              }
+            }}
           >
             {renderElementContent(element)}
             {isEditing && !element.locked && (

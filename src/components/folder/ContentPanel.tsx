@@ -220,7 +220,12 @@ export function ContentPanel({
   };
 
   if (editablePage) {
-    return <CanvasPageRenderer page={editablePage} />;
+    return (
+      <CanvasPageRenderer
+        page={editablePage}
+        onOpenPortfolioGallery={onOpenPortfolioGallery}
+      />
+    );
   }
 
   if (isHome) {
