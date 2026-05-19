@@ -1,14 +1,14 @@
 .tabRail {
-  --tab-rail-inset: clamp(28px, 2.6vw, 38px);
   position: absolute;
   top: 0;
-  left: var(--tab-rail-inset);
-  right: var(--tab-rail-inset);
+  left: clamp(0px, var(--tab-rail-inset, clamp(28px, 2.6vw, 38px)), 22%);
+  right: clamp(0px, var(--tab-rail-inset, clamp(28px, 2.6vw, 38px)), 22%);
   height: var(--tab-height);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   align-items: flex-end;
-  gap: clamp(0px, 0vw, 0px);
+  gap: clamp(0px, var(--tab-gap, 0px), 28px);
+  overflow: hidden;
   pointer-events: none;
   transform: translateY(calc(-100% + var(--tab-embed)));
   z-index: 12;

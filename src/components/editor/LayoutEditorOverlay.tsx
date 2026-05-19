@@ -10,6 +10,8 @@ import type {
   EditableElement,
   EditableImageElement,
   EditableShapeElement,
+  EditableTabShape,
+  EditableTabStyle,
   EditableTextElement,
 } from "../../data/editableLayoutTypes";
 import { useLayoutEditor } from "../../editor/LayoutEditorContext";
@@ -55,11 +57,15 @@ export function LayoutEditorOverlay() {
     layout,
     activePageId,
     selectedElementId,
+    isTabStyleSelected,
     saveStatus,
     saveError,
     setIsEditMode,
     setIsPreviewing,
+    setIsTabStyleSelected,
+    setSelectedElementId,
     updateElement,
+    updateTabStyle,
     addElement,
     deleteElement,
     duplicateElement,
@@ -254,7 +260,9 @@ export function LayoutEditorOverlay() {
       >
         <div>
           <h2 className={styles.title}>Layout editor</h2>
-          <p className={styles.pageName}>{activePage?.name ?? "No editable page"}</p>
+          <p className={styles.pageName}>
+            {isTabStyleSelected ? "Folder tabs" : activePage?.name ?? "No editable page"}
+          </p>
           <p className={styles.status}>
             {saveStatus === "saving" && "Saving..."}
             {saveStatus === "saved" && "Saved to source JSON."}
@@ -281,6 +289,16 @@ export function LayoutEditorOverlay() {
           onClick={() => setIsPreviewing(!isPreviewing)}
         >
           {isPreviewing ? "Edit" : "Preview"}
+        </button>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={() => {
+            setSelectedElementId(undefined);
+            setIsTabStyleSelected(true);
+          }}
+        >
+          Tab style
         </button>
       </div>
 
@@ -322,7 +340,12 @@ export function LayoutEditorOverlay() {
             />
           </section>
 
-          {selectedElement ? (
+          {isTabStyleSelected ? (
+            <TabStyleControls
+              tabStyle={layout.tabStyle}
+              onPatch={updateTabStyle}
+            />
+          ) : selectedElement ? (
             <ElementControls
               element={selectedElement}
               onPatch={patchSelected}
@@ -427,6 +450,145 @@ function ElementControls({
   );
 }
 
+const TAB_STYLE_FALLBACK: EditableTabStyle = {
+  shape: "file",
+  railInset: 38,
+  gap: 8,
+  height: 46,
+  bodyInset: 10,
+  cornerRadius: 24,
+  shoulderSize: 20,
+  slant: 8,
+  activeOffset: 1,
+  labelScale: 1,
+};
+
+function TabStyleControls({
+  tabStyle,
+  onPatch,
+}: {
+  tabStyle?: EditableTabStyle;
+  onPatch: (patch: Partial<EditableTabStyle>) => void;
+}) {
+  const style = { ...TAB_STYLE_FALLBACK, ...tabStyle };
+  const isFileShape = style.shape === "file";
+  const usesCornerRadius = style.shape === "file" || style.shape === "pill";
+  const usesSlant = style.shape === "angled" || style.shape === "ticket";
+  const patchNumber =
+    (key: keyof EditableTabStyle) => (event: ChangeEvent<HTMLInputElement>) => {
+      onPatch({ [key]: numberValue(event.target.value) } as Partial<EditableTabStyle>);
+    };
+
+  return (
+    <>
+      <section className={styles.section}>
+        <p className={styles.status}>
+          These controls apply to every folder tab. Spacing uses equal grid
+          columns and the tab shapes stay clipped inside the folder boundary.
+        </p>
+        <label className={styles.field}>
+          Shape
+          <select
+            className={styles.select}
+            value={style.shape}
+            onChange={(event) =>
+              onPatch({ shape: event.target.value as EditableTabShape })
+            }
+          >
+            <option value="file">File</option>
+            <option value="pill">Rounded</option>
+            <option value="angled">Angled</option>
+            <option value="ticket">Ticket</option>
+          </select>
+        </label>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.grid}>
+          <RangeField
+            label="Tab height"
+            min={28}
+            max={88}
+            step={1}
+            value={style.height}
+            onChange={patchNumber("height")}
+          />
+          <RangeField
+            label="Tab spacing"
+            min={0}
+            max={28}
+            step={1}
+            value={style.gap}
+            onChange={patchNumber("gap")}
+          />
+          <RangeField
+            label="Side inset"
+            min={0}
+            max={120}
+            step={1}
+            value={style.railInset}
+            onChange={patchNumber("railInset")}
+          />
+          <RangeField
+            label="Tab width inset"
+            min={0}
+            max={40}
+            step={1}
+            value={style.bodyInset}
+            onChange={patchNumber("bodyInset")}
+          />
+          {usesCornerRadius && (
+            <RangeField
+              label="Corner radius"
+              min={0}
+              max={44}
+              step={1}
+              value={style.cornerRadius}
+              onChange={patchNumber("cornerRadius")}
+            />
+          )}
+          {isFileShape && (
+            <RangeField
+              label="Shoulder"
+              min={0}
+              max={36}
+              step={1}
+              value={style.shoulderSize}
+              onChange={patchNumber("shoulderSize")}
+            />
+          )}
+          {usesSlant && (
+            <RangeField
+              label="Slant"
+              min={0}
+              max={36}
+              step={1}
+              value={style.slant}
+              onChange={patchNumber("slant")}
+            />
+          )}
+          <RangeField
+            label="Active offset"
+            min={-10}
+            max={10}
+            step={1}
+            value={style.activeOffset}
+            onChange={patchNumber("activeOffset")}
+          />
+          <RangeField
+            label="Label scale"
+            min={0.75}
+            max={1.35}
+            step={0.05}
+            value={style.labelScale}
+            onChange={patchNumber("labelScale")}
+          />
+        </div>
+      </section>
+    </>
+  );
+}
+
 function NumberField({
   label,
   value,
@@ -444,6 +606,46 @@ function NumberField({
         step="0.5"
         className={styles.input}
         value={Number.isFinite(value) ? value : 0}
+        onChange={onChange}
+      />
+    </label>
+  );
+}
+
+function RangeField({
+  label,
+  min,
+  max,
+  step,
+  value,
+  onChange,
+}: {
+  label: string;
+  min: number;
+  max: number;
+  step: number;
+  value: number;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}) {
+  return (
+    <label className={styles.field}>
+      {label}
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        className={styles.input}
+        value={Number.isFinite(value) ? value : min}
+        onChange={onChange}
+      />
+      <input
+        type="number"
+        min={min}
+        max={max}
+        step={step}
+        className={styles.input}
+        value={Number.isFinite(value) ? value : min}
         onChange={onChange}
       />
     </label>

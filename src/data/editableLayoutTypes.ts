@@ -2,6 +2,7 @@ import type { FolderSectionId } from "./folderSections";
 
 export type EditableElementType = "text" | "image" | "shape";
 export type EditableShapeKind = "rectangle" | "ellipse" | "plus";
+export type EditableTabShape = "file" | "pill" | "angled" | "ticket";
 
 export interface EditableBaseElement {
   id: string;
@@ -68,7 +69,21 @@ export interface EditablePage {
   elements: EditableElement[];
 }
 
+export interface EditableTabStyle {
+  shape: EditableTabShape;
+  railInset: number;
+  gap: number;
+  height: number;
+  bodyInset: number;
+  cornerRadius: number;
+  shoulderSize: number;
+  slant: number;
+  activeOffset: number;
+  labelScale: number;
+}
+
 export interface EditableLayoutDocument {
   version: 1;
+  tabStyle?: EditableTabStyle;
   pages: EditablePage[];
 }

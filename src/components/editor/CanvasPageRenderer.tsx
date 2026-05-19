@@ -126,6 +126,7 @@ export function CanvasPageRenderer({ page }: CanvasPageRendererProps) {
     isPreviewing,
     selectedElementId,
     setActivePageId,
+    setIsTabStyleSelected,
     setSelectedElementId,
     updateElement,
   } = useLayoutEditor();
@@ -216,6 +217,7 @@ export function CanvasPageRenderer({ page }: CanvasPageRendererProps) {
       target.closest<HTMLElement>("[data-editor-element='true']") ?? target;
     target.setPointerCapture(event.pointerId);
     setActivePageId(page.id);
+    setIsTabStyleSelected(false);
     setSelectedElementId(element.id);
     interactionRef.current = {
       kind,
@@ -235,6 +237,7 @@ export function CanvasPageRenderer({ page }: CanvasPageRendererProps) {
       onPointerDown={() => {
         if (isEditing) {
           setActivePageId(page.id);
+          setIsTabStyleSelected(false);
           setSelectedElementId(undefined);
         }
       }}

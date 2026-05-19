@@ -1,6 +1,7 @@
 import { FolderTab } from "./FolderTab";
 import type { KeyboardEvent } from "react";
 import type { FolderSection, FolderSectionId } from "../../data/folderSections";
+import { useLayoutEditor } from "../../editor/LayoutEditorContext";
 import styles from "./FolderTabs.module.css";
 
 interface FolderTabsProps {
@@ -14,6 +15,7 @@ export function FolderTabs({
   activeSectionId,
   onSectionChange,
 }: FolderTabsProps) {
+  const { layout } = useLayoutEditor();
   const activeIndex = sections.findIndex(
     (section) => section.id === activeSectionId,
   );
@@ -56,6 +58,7 @@ export function FolderTabs({
       className={styles.tabRail}
       role="tablist"
       aria-label="Portfolio sections"
+      data-tab-shape={layout.tabStyle?.shape ?? "file"}
       onKeyDown={handleKeyDown}
     >
       {sections.map((section, index) => (

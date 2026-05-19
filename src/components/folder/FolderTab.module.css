@@ -16,7 +16,7 @@
 }
 
 .tab[data-active="true"] {
-  transform: translateY(1px);
+  transform: translateY(var(--tab-active-offset, 1px));
   z-index: 10;
 }
 
@@ -33,20 +33,21 @@
 }
 
 .tabBody {
-  --tab-shoulder-width: clamp(50px, 1.1vw, 70px);
-  --tab-shoulder-height: clamp(40px, 15%, 20px);
   position: absolute;
-  inset: 0 calc(var(--tab-shoulder-width)*0.9) calc(var(--tab-embed) * -1);
-  border-radius: 26px 26px 0 0;
+  inset: 0 calc(var(--tab-body-inset, 10px) + var(--tab-shoulder-size, 20%))
+    calc(var(--tab-embed) * -1);
+  border-radius: var(--tab-corner-radius, 24px) var(--tab-corner-radius, 24px) 0 0;
   background: var(--folder-pink-deep);
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.16);
   filter: brightness(0.96);
+  overflow: visible;
 }
 
 .tabBody::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 2;
   border-radius: inherit;
   opacity: 0.1;
   background-image: var(--noise-texture);
@@ -57,35 +58,58 @@
 .tabBody::after {
   content: "";
   position: absolute;
-  left: calc(var(--tab-shoulder-width) * -1);
-  right: calc(var(--tab-shoulder-width) * -1);
+  left: calc(var(--tab-shoulder-size, 20%) * -1);
+  right: calc(var(--tab-shoulder-size, 20%) * -1);
   bottom: 0;
-  height: var(--tab-shoulder-height);
+  height: 72%;
+  z-index: 1;
   background: inherit;
-  border-radius: 18px 18px 0 0;
   clip-path: polygon(
-  0 100%,
-  4% 99%,
-  8% 95%,
-  12% 82%,
-  16% 62%,
-  20% 40%,
-  24% 20%,
-  27% 8%,
-  30% 2%,
-  34% 0,
-  66% 0,
-  70% 2%,
-  73% 8%,
-  76% 20%,
-  80% 40%,
-  84% 62%,
-  88% 82%,
-  92% 95%,
-  96% 99%,
-  100% 100%
-);
+    0 100%,
+    var(--tab-shoulder-size, 20%) 0,
+    calc(100% - var(--tab-shoulder-size, 20%)) 0,
+    100% 100%
+  );
   pointer-events: none;
+}
+
+:global([data-tab-shape="pill"]) .tabBody {
+  inset: 0 var(--tab-body-inset, 10px) calc(var(--tab-embed) * -1);
+  border-radius: var(--tab-corner-radius, 24px) var(--tab-corner-radius, 24px) 0 0;
+  overflow: hidden;
+  clip-path: none;
+}
+
+:global([data-tab-shape="pill"]) .tabBody::after,
+:global([data-tab-shape="angled"]) .tabBody::after,
+:global([data-tab-shape="ticket"]) .tabBody::after {
+  display: none;
+}
+
+:global([data-tab-shape="angled"]) .tabBody {
+  inset: 0 var(--tab-body-inset, 10px) calc(var(--tab-embed) * -1);
+  border-radius: 0;
+  overflow: hidden;
+  clip-path: polygon(
+    var(--tab-slant, 8px) 0,
+    calc(100% - var(--tab-slant, 8px)) 0,
+    100% 100%,
+    0 100%
+  );
+}
+
+:global([data-tab-shape="ticket"]) .tabBody {
+  inset: 0 var(--tab-body-inset, 10px) calc(var(--tab-embed) * -1);
+  border-radius: var(--tab-corner-radius, 24px) var(--tab-corner-radius, 24px) 0 0;
+  overflow: hidden;
+  clip-path: polygon(
+    0 var(--tab-slant, 8px),
+    var(--tab-slant, 8px) 0,
+    calc(100% - var(--tab-slant, 8px)) 0,
+    100% var(--tab-slant, 8px),
+    100% 100%,
+    0 100%
+  );
 }
 
 .tab[data-active="true"] .tabBody {
@@ -112,6 +136,8 @@
   user-select: none;
   padding: clamp(10px, 1vw, 14px) clamp(10px, 1.1vw, 18px)
     clamp(10px, 1vw, 14px);
+  transform: scale(var(--tab-label-scale, 1));
+  transform-origin: center;
 }
 
 .tab[data-active="true"] .label {

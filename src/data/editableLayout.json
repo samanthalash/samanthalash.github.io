@@ -1,5 +1,17 @@
 {
   "version": 1,
+  "tabStyle": {
+    "shape": "file",
+    "railInset": 12,
+    "gap": 8,
+    "height": 43,
+    "bodyInset": 3,
+    "cornerRadius": 18,
+    "shoulderSize": 4,
+    "slant": 0,
+    "activeOffset": 4,
+    "labelScale": 1.3
+  },
   "pages": [
     {
       "id": "home",

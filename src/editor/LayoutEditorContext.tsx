@@ -13,6 +13,7 @@ import type {
   EditableImageElement,
   EditableLayoutDocument,
   EditablePage,
+  EditableTabStyle,
   NewEditableElement,
 } from "../data/editableLayoutTypes";
 
@@ -25,10 +26,12 @@ interface LayoutEditorContextValue {
   layout: EditableLayoutDocument;
   activePageId?: string;
   selectedElementId?: string;
+  isTabStyleSelected: boolean;
   saveStatus: SaveStatus;
   saveError?: string;
   setActivePageId: (pageId: string) => void;
   setSelectedElementId: (elementId?: string) => void;
+  setIsTabStyleSelected: (isSelected: boolean) => void;
   setIsEditMode: (isEditMode: boolean) => void;
   setIsPreviewing: (isPreviewing: boolean) => void;
   toggleEditMode: () => void;
@@ -37,6 +40,7 @@ interface LayoutEditorContextValue {
     elementId: string,
     patch: Partial<EditableElement>,
   ) => void;
+  updateTabStyle: (patch: Partial<EditableTabStyle>) => void;
   addElement: (
     pageId: string,
     element: NewEditableElement,
@@ -53,6 +57,18 @@ const LayoutEditorContext = createContext<LayoutEditorContextValue | null>(
 
 const canEditLayout = import.meta.env.DEV;
 const PAPERCLIP_LAYER = 1000000;
+const DEFAULT_TAB_STYLE: EditableTabStyle = {
+  shape: "file",
+  railInset: 38,
+  gap: 8,
+  height: 46,
+  bodyInset: 10,
+  cornerRadius: 24,
+  shoulderSize: 20,
+  slant: 8,
+  activeOffset: 1,
+  labelScale: 1,
+};
 
 const readInitialEditMode = () => {
   if (!canEditLayout || typeof window === "undefined") {
@@ -101,6 +117,10 @@ const normalizeLayout = (
   document: EditableLayoutDocument,
 ): EditableLayoutDocument => ({
   ...document,
+  tabStyle: {
+    ...DEFAULT_TAB_STYLE,
+    ...document.tabStyle,
+  },
   pages: document.pages.map((page) => ({
     ...page,
     elements: page.elements.map(normalizeElement),
@@ -131,6 +151,7 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
   const [isPreviewing, setIsPreviewing] = useState(false);
   const [activePageId, setActivePageId] = useState<string>();
   const [selectedElementId, setSelectedElementId] = useState<string>();
+  const [isTabStyleSelected, setIsTabStyleSelected] = useState(false);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
   const [saveError, setSaveError] = useState<string>();
 
@@ -143,6 +164,7 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
     window.sessionStorage.setItem("layoutEditorEnabled", nextMode ? "1" : "0");
     if (!nextMode) {
       setSelectedElementId(undefined);
+      setIsTabStyleSelected(false);
       setIsPreviewing(false);
     }
   }, []);
@@ -168,6 +190,7 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
 
       if (event.key === "Escape") {
         setSelectedElementId(undefined);
+        setIsTabStyleSelected(false);
       }
     };
 
@@ -205,6 +228,20 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
     [],
   );
 
+  const updateTabStyle = useCallback((patch: Partial<EditableTabStyle>) => {
+    setLayout((current) =>
+      normalizeLayout({
+        ...current,
+        tabStyle: {
+          ...DEFAULT_TAB_STYLE,
+          ...current.tabStyle,
+          ...patch,
+        },
+      }),
+    );
+    setSaveStatus("idle");
+  }, []);
+
   const addElement = useCallback<LayoutEditorContextValue["addElement"]>(
     (pageId, element) => {
       setLayout((current) =>
@@ -220,6 +257,7 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
           const normalizedElement = normalizeElement(nextElement);
 
           setSelectedElementId(normalizedElement.id);
+          setIsTabStyleSelected(false);
           return {
             ...page,
             elements: [...page.elements, normalizedElement],
@@ -239,6 +277,7 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
       })),
     );
     setSelectedElementId(undefined);
+    setIsTabStyleSelected(false);
     setSaveStatus("idle");
   }, []);
 
@@ -260,6 +299,7 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
         const normalizedDuplicate = normalizeElement(duplicate);
 
         setSelectedElementId(normalizedDuplicate.id);
+        setIsTabStyleSelected(false);
         return { ...page, elements: [...page.elements, normalizedDuplicate] };
       }),
     );
@@ -319,14 +359,17 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
       layout,
       activePageId,
       selectedElementId,
+      isTabStyleSelected,
       saveStatus,
       saveError,
       setActivePageId,
       setSelectedElementId,
+      setIsTabStyleSelected,
       setIsEditMode,
       setIsPreviewing,
       toggleEditMode,
       updateElement,
+      updateTabStyle,
       addElement,
       deleteElement,
       duplicateElement,
@@ -340,6 +383,7 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
       duplicateElement,
       isEditMode,
       isPreviewing,
+      isTabStyleSelected,
       layout,
       saveError,
       saveLayout,
@@ -348,6 +392,7 @@ export function LayoutEditorProvider({ children }: { children: ReactNode }) {
       setIsEditMode,
       toggleEditMode,
       updateElement,
+      updateTabStyle,
       uploadAsset,
     ],
   );
