@@ -106,9 +106,12 @@ const normalizeElement = (element: EditableElement): EditableElement => {
     return element;
   }
 
+  const imageElement = element as EditableImageElement;
+
   return {
-    ...element,
-    objectFit: "contain",
+    ...imageElement,
+    objectFit: imageElement.objectFit ?? "contain",
+    objectPosition: imageElement.objectPosition ?? "center",
     zIndex: isPaperclipElement(element) ? PAPERCLIP_LAYER : element.zIndex,
   };
 };

@@ -31,7 +31,7 @@ export function FolderInterior({
   onOpenPortfolioGallery,
   onOpenProjectGallery,
 }: FolderInteriorProps) {
-  const { isEditMode, isPreviewing } = useLayoutEditor();
+  const { isEditMode, isPreviewing, setActivePageId } = useLayoutEditor();
   const isHome = activeSection.id === "work";
   const isContact = activeSection.id === "contact";
   const usesPhotoTemplate = activeSection.id !== "work";
@@ -58,6 +58,13 @@ export function FolderInterior({
   // Preserve per-tab page position across tab switches
   const [pageIndices, setPageIndices] = useState<Record<string, number>>({});
   const currentPageIndex = pageIndices[activeSectionId] ?? 0;
+  const visibleEditablePageId = !isFlipEnabled
+    ? isHome
+      ? "home"
+      : activeSection.id === "contact"
+        ? "contact"
+        : undefined
+    : configuredPages[currentPageIndex]?.id;
   const handlePageChange = (index: number) => {
     setPageIndices((prev) => ({ ...prev, [activeSectionId]: index }));
   };
@@ -85,13 +92,17 @@ export function FolderInterior({
     setIsPortfolioHintVisible(true);
   }, [canFlipPages, hasSeenPortfolioHint, isIntroVisible]);
 
+  useEffect(() => {
+    if (visibleEditablePageId) {
+      setActivePageId(visibleEditablePageId);
+    }
+  }, [setActivePageId, visibleEditablePageId]);
+
   const renderContent = () => {
     if (!isFlipEnabled) {
       return (
         <ContentPanel
-          pageId={
-            isHome ? "home" : activeSection.id === "contact" ? "contact" : undefined
-          }
+          pageId={visibleEditablePageId}
           activeSection={activeSection}
           onOpenPortfolioGallery={onOpenPortfolioGallery}
           onOpenProjectGallery={onOpenProjectGallery}

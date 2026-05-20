@@ -6,12 +6,14 @@ import {
 import styles from "./PortfolioGalleryOverlay.module.css";
 
 interface PortfolioGalleryOverlayProps {
+  galleryId?: string;
   images?: PortfolioGalleryImage[];
   title?: string;
   onClose: () => void;
 }
 
 export function PortfolioGalleryOverlay({
+  galleryId,
   images = portfolioGalleryImages,
   title,
   onClose,
@@ -56,7 +58,7 @@ export function PortfolioGalleryOverlay({
 
         <div className={styles.galleryScroll}>
           {title && <h2 className={styles.galleryTitle}>{title}</h2>}
-          <div className={styles.galleryGrid}>
+          <div className={styles.galleryGrid} data-gallery-id={galleryId}>
             {images.map((image) => (
               <figure className={styles.galleryItem} key={image.id}>
                 <img src={image.src} alt={image.alt} loading="lazy" />

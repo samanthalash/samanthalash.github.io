@@ -89,7 +89,7 @@ const renderElementContent = (element: EditableElement) => {
         alt={imageElement.alt ?? ""}
         className={styles.imageElement}
         style={{
-          objectFit: "contain",
+          objectFit: imageElement.objectFit ?? "contain",
           objectPosition: imageElement.objectPosition,
           opacity: imageElement.opacity,
         }}
@@ -273,6 +273,7 @@ export function CanvasPageRenderer({
             data-actionable={!isEditMode && Boolean(element.action)}
             data-dragging={interactionRef.current?.element.id === element.id}
             data-editor-element="true"
+            data-element-id={element.id}
             role={!isEditMode && element.action ? "button" : undefined}
             tabIndex={!isEditMode && element.action ? 0 : undefined}
             key={element.id}

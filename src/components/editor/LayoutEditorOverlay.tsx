@@ -6,6 +6,8 @@ import {
   type ChangeEvent,
   type PointerEvent as ReactPointerEvent,
 } from "react";
+import type { PortfolioGalleryImage } from "../../data/portfolioGallery";
+import { layoutAssetOptions } from "../../data/layoutAssets";
 import type {
   EditableElement,
   EditableImageElement,
@@ -20,11 +22,89 @@ import styles from "./LayoutEditorOverlay.module.css";
 const numberValue = (value: string) => Number.parseFloat(value) || 0;
 const PANEL_POSITION_KEY = "layoutEditorPanelPosition";
 const PANEL_MARGIN = 12;
+const CANVAS_ASPECT_RATIO = 16 / 9;
+const DEFAULT_IMAGE_WIDTH = 48;
+const DEFAULT_IMAGE_HEIGHT = 54;
+const MAX_IMAGE_WIDTH = 58;
+const MAX_IMAGE_HEIGHT = 72;
 
 interface PanelPosition {
   x: number;
   y: number;
 }
+
+interface ActiveGalleryEditor {
+  id: string;
+  title: string;
+  images: PortfolioGalleryImage[];
+}
+
+interface ImageDimensions {
+  width: number;
+  height: number;
+}
+
+const roundValue = (value: number) => Math.round(value * 100) / 100;
+
+const getImagePlacement = (dimensions?: ImageDimensions) => {
+  if (
+    !dimensions ||
+    !Number.isFinite(dimensions.width) ||
+    !Number.isFinite(dimensions.height) ||
+    dimensions.width <= 0 ||
+    dimensions.height <= 0
+  ) {
+    return {
+      x: roundValue((100 - DEFAULT_IMAGE_WIDTH) / 2),
+      y: roundValue((100 - DEFAULT_IMAGE_HEIGHT) / 2),
+      width: DEFAULT_IMAGE_WIDTH,
+      height: DEFAULT_IMAGE_HEIGHT,
+    };
+  }
+
+  const imageAspectRatio = dimensions.width / dimensions.height;
+  let width = imageAspectRatio >= 1 ? DEFAULT_IMAGE_WIDTH : 38;
+  let height = (width * CANVAS_ASPECT_RATIO) / imageAspectRatio;
+
+  if (height > MAX_IMAGE_HEIGHT) {
+    height = MAX_IMAGE_HEIGHT;
+    width = (height * imageAspectRatio) / CANVAS_ASPECT_RATIO;
+  }
+
+  if (width > MAX_IMAGE_WIDTH) {
+    width = MAX_IMAGE_WIDTH;
+    height = (width * CANVAS_ASPECT_RATIO) / imageAspectRatio;
+  }
+
+  return {
+    x: roundValue((100 - width) / 2),
+    y: roundValue((100 - height) / 2),
+    width: roundValue(width),
+    height: roundValue(height),
+  };
+};
+
+const readImageDimensions = (src: string) =>
+  new Promise<ImageDimensions>((resolve, reject) => {
+    const image = new Image();
+    image.addEventListener("load", () => {
+      resolve({
+        width: image.naturalWidth,
+        height: image.naturalHeight,
+      });
+    });
+    image.addEventListener("error", () => {
+      reject(new Error("Unable to read image dimensions."));
+    });
+    image.src = src;
+  });
+
+const readFileImageDimensions = (file: File) => {
+  const objectUrl = URL.createObjectURL(file);
+  return readImageDimensions(objectUrl).finally(() => {
+    URL.revokeObjectURL(objectUrl);
+  });
+};
 
 const getInitialPanelPosition = (): PanelPosition => {
   if (typeof window === "undefined") {
@@ -49,7 +129,17 @@ const getInitialPanelPosition = (): PanelPosition => {
   };
 };
 
-export function LayoutEditorOverlay() {
+interface LayoutEditorOverlayProps {
+  activeGallery?: ActiveGalleryEditor;
+  onUploadGalleryImage?: (galleryId: string, file: File) => Promise<void>;
+  onRemoveGalleryImage?: (galleryId: string, imageId: string) => Promise<void>;
+}
+
+export function LayoutEditorOverlay({
+  activeGallery,
+  onUploadGalleryImage,
+  onRemoveGalleryImage,
+}: LayoutEditorOverlayProps) {
   const {
     canEdit,
     isEditMode,
@@ -73,10 +163,17 @@ export function LayoutEditorOverlay() {
     uploadAsset,
   } = useLayoutEditor();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const galleryFileInputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLElement>(null);
   const dragStartRef = useRef({ pointerX: 0, pointerY: 0, x: 0, y: 0 });
   const [panelPosition, setPanelPosition] = useState(getInitialPanelPosition);
   const [isDraggingPanel, setIsDraggingPanel] = useState(false);
+  const [isUploadingAsset, setIsUploadingAsset] = useState(false);
+  const [isUploadingGalleryImage, setIsUploadingGalleryImage] = useState(false);
+  const [isInspoAssetsOpen, setIsInspoAssetsOpen] = useState(false);
+  const [removingGalleryImageId, setRemovingGalleryImageId] = useState<string>();
+  const [uploadMessage, setUploadMessage] = useState<string>();
+  const [galleryMessage, setGalleryMessage] = useState<string>();
 
   const activePage = useMemo(
     () => layout.pages.find((page) => page.id === activePageId),
@@ -94,6 +191,15 @@ export function LayoutEditorOverlay() {
       JSON.stringify(panelPosition),
     );
   }, [panelPosition]);
+
+  useEffect(() => {
+    setUploadMessage(undefined);
+  }, [activePageId]);
+
+  useEffect(() => {
+    setGalleryMessage(undefined);
+    setRemovingGalleryImageId(undefined);
+  }, [activeGallery?.id]);
 
   const clampPanelPosition = (position: PanelPosition) => {
     const rect = panelRef.current?.getBoundingClientRect();
@@ -224,23 +330,102 @@ export function LayoutEditorOverlay() {
   const handleUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     event.target.value = "";
-    if (!file || !pageId) {
+    if (!file) {
       return;
     }
 
-    const src = await uploadAsset(file);
+    if (!pageId) {
+      setUploadMessage("No editable page is active.");
+      return;
+    }
+
+    setIsUploadingAsset(true);
+    setUploadMessage("Uploading image...");
+
+    try {
+      const dimensions = await readFileImageDimensions(file).catch(() => undefined);
+      const src = await uploadAsset(file);
+      const placement = getImagePlacement(dimensions);
+      addElement(pageId, {
+        type: "image",
+        src,
+        alt: file.name.replace(/\.[^.]+$/, ""),
+        ...placement,
+        rotation: 0,
+        objectFit: "contain",
+        objectPosition: "center",
+      });
+      setUploadMessage(`Added image to ${activePage?.name ?? "this page"}.`);
+    } catch (error) {
+      setUploadMessage(
+        error instanceof Error ? error.message : "Image upload failed.",
+      );
+    } finally {
+      setIsUploadingAsset(false);
+    }
+  };
+
+  const addLayoutAsset = async (asset: (typeof layoutAssetOptions)[number]) => {
+    if (!pageId) {
+      setUploadMessage("No editable page is active.");
+      return;
+    }
+
+    setUploadMessage(`Adding ${asset.label}...`);
+
+    const dimensions = await readImageDimensions(asset.src).catch(() => undefined);
     addElement(pageId, {
       type: "image",
-      src,
-      alt: "",
-      x: 12,
-      y: 12,
-      width: 34,
-      height: 34,
+      assetId: asset.id,
+      alt: asset.label,
+      ...getImagePlacement(dimensions),
       rotation: 0,
       objectFit: "contain",
       objectPosition: "center",
     });
+    setUploadMessage(`Added ${asset.label} to ${activePage?.name ?? "this page"}.`);
+  };
+
+  const handleGalleryUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file || !activeGallery || !onUploadGalleryImage) {
+      return;
+    }
+
+    setIsUploadingGalleryImage(true);
+    setGalleryMessage("Uploading image...");
+
+    try {
+      await onUploadGalleryImage(activeGallery.id, file);
+      setGalleryMessage(`Added image to ${activeGallery.title}.`);
+    } catch (error) {
+      setGalleryMessage(
+        error instanceof Error ? error.message : "Gallery image upload failed.",
+      );
+    } finally {
+      setIsUploadingGalleryImage(false);
+    }
+  };
+
+  const removeGalleryImage = async (imageId: string) => {
+    if (!activeGallery || !onRemoveGalleryImage) {
+      return;
+    }
+
+    setRemovingGalleryImageId(imageId);
+    setGalleryMessage("Removing image...");
+
+    try {
+      await onRemoveGalleryImage(activeGallery.id, imageId);
+      setGalleryMessage(`Removed image from ${activeGallery.title}.`);
+    } catch (error) {
+      setGalleryMessage(
+        error instanceof Error ? error.message : "Gallery image removal failed.",
+      );
+    } finally {
+      setRemovingGalleryImageId(undefined);
+    }
   };
 
   return (
@@ -312,9 +497,10 @@ export function LayoutEditorOverlay() {
               <button
                 type="button"
                 className={styles.button}
+                disabled={!pageId || isUploadingAsset}
                 onClick={() => fileInputRef.current?.click()}
               >
-                Add image
+                {isUploadingAsset ? "Uploading..." : "Add image"}
               </button>
               <button
                 type="button"
@@ -338,7 +524,97 @@ export function LayoutEditorOverlay() {
               className={styles.hiddenFileInput}
               onChange={handleUpload}
             />
+            {uploadMessage && (
+              <p className={styles.status}>{uploadMessage}</p>
+            )}
           </section>
+
+          <section className={styles.section}>
+            <div className={styles.disclosureHeader}>
+              <div>
+                <h3 className={styles.sectionTitle}>Inspo images</h3>
+                <p className={styles.status}>
+                  Add committed images from the inspo folder.
+                </p>
+              </div>
+              <button
+                type="button"
+                className={styles.button}
+                aria-expanded={isInspoAssetsOpen}
+                aria-controls="layout-editor-inspo-assets"
+                onClick={() => setIsInspoAssetsOpen((isOpen) => !isOpen)}
+              >
+                {isInspoAssetsOpen ? "Hide" : "Show"}
+              </button>
+            </div>
+            {isInspoAssetsOpen && (
+              <div
+                className={styles.assetGrid}
+                id="layout-editor-inspo-assets"
+              >
+                {layoutAssetOptions.map((asset) => (
+                  <button
+                    type="button"
+                    className={styles.assetButton}
+                    disabled={!pageId}
+                    title={asset.path}
+                    key={asset.id}
+                    onClick={() => {
+                      void addLayoutAsset(asset);
+                    }}
+                  >
+                    <img src={asset.src} alt="" />
+                    <span>{asset.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </section>
+
+          {activeGallery && (
+            <section className={styles.section}>
+              <div>
+                <h3 className={styles.sectionTitle}>Image gallery</h3>
+                <p className={styles.status}>{activeGallery.title}</p>
+              </div>
+              <div className={styles.row}>
+                <button
+                  type="button"
+                  className={styles.button}
+                  disabled={isUploadingGalleryImage}
+                  onClick={() => galleryFileInputRef.current?.click()}
+                >
+                  {isUploadingGalleryImage ? "Uploading..." : "Add picture"}
+                </button>
+              </div>
+              <input
+                ref={galleryFileInputRef}
+                type="file"
+                accept="image/*"
+                className={styles.hiddenFileInput}
+                onChange={handleGalleryUpload}
+              />
+              {galleryMessage && (
+                <p className={styles.status}>{galleryMessage}</p>
+              )}
+              <div className={styles.galleryImageList}>
+                {activeGallery.images.map((image) => (
+                  <div className={styles.galleryImageRow} key={image.id}>
+                    <img src={image.src} alt={image.alt} />
+                    <span>{image.alt || "Untitled image"}</span>
+                    <button
+                      type="button"
+                      className={styles.dangerButton}
+                      disabled={removingGalleryImageId === image.id}
+                      onClick={() => removeGalleryImage(image.id)}
+                    >
+                      {removingGalleryImageId === image.id ? "Removing..." : "Remove"}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           {isTabStyleSelected ? (
             <TabStyleControls
@@ -721,9 +997,21 @@ function ImageControls({
 }) {
   return (
     <section className={styles.section}>
-      <p className={styles.status}>
-        Image fit is locked to contain so resizing keeps proportions.
-      </p>
+      <label className={styles.field}>
+        Fit
+        <select
+          className={styles.select}
+          value={element.objectFit}
+          onChange={(event) =>
+            onPatch({
+              objectFit: event.target.value as EditableImageElement["objectFit"],
+            } as Partial<EditableElement>)
+          }
+        >
+          <option value="contain">Contain</option>
+          <option value="cover">Cover</option>
+        </select>
+      </label>
       <label className={styles.field}>
         Object position
         <input

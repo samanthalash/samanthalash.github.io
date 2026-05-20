@@ -33,7 +33,7 @@ import tomorrowlandInstagramImage from "../../inspo/tomorrowland /2nd.png";
 import tomorrowlandVinylImage from "../../inspo/tomorrowland /3rd.png";
 import tomorrowlandSteviePosterImage from "../../inspo/tomorrowland /4th.png";
 
-export const layoutAssetRegistry = {
+const baseLayoutAssetRegistry = {
   paperclip: paperclipImage,
   monogram: monogramImage,
   postcard: postcardImage,
@@ -70,7 +70,56 @@ export const layoutAssetRegistry = {
   "tomorrowland-stevie-poster": tomorrowlandSteviePosterImage,
 } as const;
 
-export type LayoutAssetId = keyof typeof layoutAssetRegistry;
+const inspoImagesByPath = import.meta.glob<string>(
+  "../../inspo/**/*.{png,jpg,jpeg,webp}",
+  {
+    eager: true,
+    import: "default",
+  },
+);
+
+const collator = new Intl.Collator(undefined, {
+  numeric: true,
+  sensitivity: "base",
+});
+
+const getInspoRelativePath = (path: string) =>
+  path.replace(/^\.\.\/\.\.\/inspo\//, "");
+
+const getFilename = (path: string) => {
+  const parts = path.split("/");
+  return parts[parts.length - 1]?.replace(/\.[^.]+$/, "") ?? path;
+};
+
+const getAssetLabel = (path: string) =>
+  getFilename(path).replace(/[_-]+/g, " ");
+
+const getInspoAssetId = (path: string) => `inspo/${getInspoRelativePath(path)}`;
+
+const inspoLayoutAssetRegistry = Object.fromEntries(
+  Object.entries(inspoImagesByPath).map(([path, src]) => [
+    getInspoAssetId(path),
+    src,
+  ]),
+) as Record<string, string>;
+
+export const layoutAssetRegistry: Record<string, string> = {
+  ...baseLayoutAssetRegistry,
+  ...inspoLayoutAssetRegistry,
+};
+
+export const layoutAssetOptions = Object.entries(inspoImagesByPath)
+  .sort(([firstPath], [secondPath]) =>
+    collator.compare(getInspoRelativePath(firstPath), getInspoRelativePath(secondPath)),
+  )
+  .map(([path, src]) => ({
+    id: getInspoAssetId(path),
+    src,
+    label: getAssetLabel(path),
+    path: getInspoRelativePath(path),
+  }));
+
+export type LayoutAssetId = keyof typeof baseLayoutAssetRegistry;
 
 export const resolveLayoutAsset = (assetId?: string, src?: string) => {
   if (src) {
