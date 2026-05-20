@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap");
 
 :root {
-  --font-sans: "Neue Montreal", "PP Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-editorial: var(--font-sans);
   --font-script: var(--font-sans);
   --font-mono: "IBM Plex Mono", "Courier New", monospace;

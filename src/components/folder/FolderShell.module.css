@@ -3,8 +3,9 @@
   --tab-height: clamp(30px, 9vw, 6px);
   --tab-embed: clamp(0.15px, 0vw, 0px);
   position: relative;
-  width: min(calc(100vw - var(--folder-viewport-gap)), 1840px);
-  height: calc(100vh - var(--folder-viewport-gap));
+  width: min(calc(100vw - var(--folder-viewport-gap)), 160vh, 1840px);
+  height: auto;
+  aspect-ratio: 16 / 9;
   transform: none;
 }
 
@@ -94,16 +95,4 @@
   box-shadow:
     inset 0 18px 22px rgb(255 255 255 / 0.05),
     inset 0 -12px 18px rgb(39 39 39 / 0.06);
-}
-
-@media (max-width: 900px) {
-  .folderWrap {
-    --tab-height: clamp(64px, 12vw, 92px);
-    --tab-embed: clamp(6px, 1vw, 10px);
-    width: min(96vw, 1100px);
-    height: auto;
-    aspect-ratio: auto;
-    min-height: 88vh;
-    transform: translateX(0.3vw) translateY(0.2vh);
-  }
 }
