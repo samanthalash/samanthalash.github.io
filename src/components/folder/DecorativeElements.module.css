@@ -70,7 +70,7 @@
 .scriptTitle {
   margin: 0;
   font-family: var(--font-script);
-  font-weight: var(--font-weight-medium);
+  font-weight: 400;
   font-size: clamp(3rem, 4.5vw, 5rem);
   line-height: 0.92;
   color: rgb(43 26 34 / 0.94);
