@@ -63,7 +63,7 @@
   color: rgb(255 255 255 / 0.94);
   font-family: var(--font-sans);
   font-size: clamp(1.4rem, 3vw, 3rem);
-  font-weight: 400;
+  font-weight: var(--font-weight-medium);
   line-height: 0.95;
 }
 

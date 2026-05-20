@@ -495,7 +495,7 @@
   margin: 0;
   font-family: var(--font-sans);
   font-size: clamp(1rem, 2vw, 3.7rem);
-  font-weight: 400;
+  font-weight: var(--font-weight-medium);
   letter-spacing: -0.055em;
   line-height: 0.7;
   white-space: nowrap;
@@ -563,7 +563,7 @@
   color: rgb(39 39 39 / 0.9);
   font-family: var(--font-sans);
   font-size: clamp(0.74rem, 0.9vw, 1rem);
-  font-weight: 700;
+  font-weight: var(--font-weight-medium);
   line-height: 0.9;
   text-align: center;
   text-transform: uppercase;

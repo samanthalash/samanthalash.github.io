@@ -176,7 +176,7 @@
           "fontSize": 76.5,
           "lineHeight": 0.8,
           "fontFamily": "sans",
-          "fontWeight": 400,
+          "fontWeight": 500,
           "letterSpacing": -2.4,
           "color": "#272727",
           "textAlign": "left"
@@ -289,7 +289,7 @@
           "fontSize": 76.5,
           "lineHeight": 0.8,
           "fontFamily": "sans",
-          "fontWeight": 400,
+          "fontWeight": 500,
           "letterSpacing": -2.4,
           "color": "#272727",
           "textAlign": "right"
@@ -389,7 +389,7 @@
           "fontSize": 76,
           "lineHeight": 0.8,
           "fontFamily": "sans",
-          "fontWeight": 400,
+          "fontWeight": 500,
           "letterSpacing": -2.4,
           "color": "#272727",
           "textAlign": "left"
@@ -489,7 +489,7 @@
           "fontSize": 76,
           "lineHeight": 0.82,
           "fontFamily": "sans",
-          "fontWeight": 400,
+          "fontWeight": 500,
           "letterSpacing": -2.2,
           "color": "#272727",
           "textAlign": "right"
@@ -615,7 +615,7 @@
           "fontSize": 76,
           "lineHeight": 0.82,
           "fontFamily": "sans",
-          "fontWeight": 400,
+          "fontWeight": 500,
           "letterSpacing": -2.4,
           "color": "#272727",
           "textAlign": "right"
@@ -741,7 +741,7 @@
           "fontSize": 76,
           "lineHeight": 0.82,
           "fontFamily": "sans",
-          "fontWeight": 400,
+          "fontWeight": 500,
           "letterSpacing": -2.2,
           "color": "#272727",
           "textAlign": "right"

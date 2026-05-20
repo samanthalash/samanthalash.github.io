@@ -1,7 +1,43 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("../../inspo/PP Neue Montreal - Free for Personal Use v3.0/otf/PPNeueMontreal-Light.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("../../inspo/PP Neue Montreal - Free for Personal Use v3.0/otf/PPNeueMontreal-Regular.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("../../inspo/PP Neue Montreal - Free for Personal Use v3.0/otf/PPNeueMontreal-Semibold.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("../../inspo/PP Neue Montreal - Free for Personal Use v3.0/otf/PPNeueMontreal-Semibold.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
 
 :root {
-  --font-sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "PP Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-editorial: var(--font-sans);
   --font-script: var(--font-sans);
   --font-mono: "IBM Plex Mono", "Courier New", monospace;
