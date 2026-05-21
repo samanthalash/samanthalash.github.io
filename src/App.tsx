@@ -6,6 +6,7 @@ import { LayoutEditorOverlay } from "./components/editor/LayoutEditorOverlay";
 import { folderSections } from "./data/folderSections";
 import { projectGalleries, type ProjectGalleryId } from "./data/projectGalleries";
 import initialGalleryOverrides from "./data/galleryOverrides.json";
+import { resolveLayoutAsset } from "./data/layoutAssets";
 import { LayoutEditorProvider } from "./editor/LayoutEditorContext";
 import type { FolderSectionId } from "./data/folderSections";
 import type { PortfolioGalleryImage } from "./data/portfolioGallery";
@@ -17,8 +18,16 @@ const PORTFOLIO_GALLERY_ID = "portfolio";
 
 type EditableGalleryId = ProjectGalleryId | typeof PORTFOLIO_GALLERY_ID;
 
+interface GalleryOverrideImage {
+  id: string;
+  src?: string;
+  assetId?: string;
+  alt: string;
+  dedupeKey?: string;
+}
+
 interface GalleryOverride {
-  addedImages?: PortfolioGalleryImage[];
+  addedImages?: GalleryOverrideImage[];
   removedImageIds?: string[];
 }
 
@@ -30,20 +39,28 @@ interface GalleryOverrideDocument {
 const isSupportedViewport = () =>
   window.innerWidth >= MIN_DESKTOP_VIEWPORT_WIDTH;
 
-const fileToDataUrl = (file: File) =>
-  new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.addEventListener("load", () => resolve(String(reader.result)));
-    reader.addEventListener("error", () => reject(reader.error));
-    reader.readAsDataURL(file);
-  });
-
 const normalizeGalleryOverrides = (
   document: GalleryOverrideDocument,
 ): GalleryOverrideDocument => ({
   version: 1,
   galleries: document.galleries ?? {},
 });
+
+const resolveGalleryOverrideImage = (
+  image: GalleryOverrideImage,
+): PortfolioGalleryImage | undefined => {
+  const src = resolveLayoutAsset(image.assetId, image.src);
+  if (!src) {
+    return undefined;
+  }
+
+  return {
+    id: image.id,
+    src,
+    alt: image.alt,
+    dedupeKey: image.dedupeKey,
+  };
+};
 
 const applyGalleryOverrides = (
   images: PortfolioGalleryImage[],
@@ -52,12 +69,13 @@ const applyGalleryOverrides = (
 ) => {
   const override = overrides.galleries[galleryId];
   const removedImageIds = new Set(override?.removedImageIds ?? []);
+  const addedImages = (override?.addedImages ?? [])
+    .map(resolveGalleryOverrideImage)
+    .filter((image): image is PortfolioGalleryImage => Boolean(image));
 
   return [
     ...images.filter((image) => !removedImageIds.has(image.id)),
-    ...(override?.addedImages ?? []).filter(
-      (image) => !removedImageIds.has(image.id),
-    ),
+    ...addedImages.filter((image) => !removedImageIds.has(image.id)),
   ];
 };
 
@@ -180,15 +198,15 @@ export default function App() {
     setGalleryOverrides(normalizeGalleryOverrides(document));
   };
 
-  const handleUploadGalleryImage = async (
+  const handleAddGalleryAsset = async (
     galleryId: string,
-    file: File,
+    asset: { id: string; label: string },
   ) => {
     await mutateGalleryOverrides({
-      action: "upload",
+      action: "addAsset",
       galleryId,
-      fileName: file.name,
-      dataUrl: await fileToDataUrl(file),
+      assetId: asset.id,
+      alt: asset.label,
     });
   };
 
@@ -239,7 +257,7 @@ export default function App() {
       )}
       <LayoutEditorOverlay
         activeGallery={activeEditableGallery}
-        onUploadGalleryImage={handleUploadGalleryImage}
+        onAddGalleryAsset={handleAddGalleryAsset}
         onRemoveGalleryImage={handleRemoveGalleryImage}
       />
     </LayoutEditorProvider>

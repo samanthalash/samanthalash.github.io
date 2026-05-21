@@ -1,4 +1,42 @@
 {
   "version": 1,
-  "galleries": {}
+  "galleries": {
+    "levis-campaign": {
+      "addedImages": [
+        {
+          "id": "gallery-levis-campaign-levis-2-0-1779351103509",
+          "assetId": "inspo/levis_2.0.png",
+          "alt": "levis 2.0"
+        },
+        {
+          "id": "gallery-levis-campaign-levis-1-0-1779351105844",
+          "assetId": "inspo/levis_1.0.png",
+          "alt": "levis 1.0"
+        },
+        {
+          "id": "gallery-levis-campaign-levis-3-0-1779351107954",
+          "assetId": "inspo/levis_3.0.png",
+          "alt": "levis 3.0"
+        }
+      ],
+      "removedImageIds": [
+        "project-levis-desert",
+        "project-levis-cyclist",
+        "project-levis-billboard"
+      ]
+    },
+    "tomorrowland-rebrand": {
+      "addedImages": [
+        {
+          "id": "gallery-tomorrowland-rebrand-tomorrowland-new-image-1779351583459",
+          "assetId": "inspo/tomorrowland_new_image.png",
+          "alt": "tomorrowland new image"
+        }
+      ],
+      "removedImageIds": [
+        "project-tomorrowland-overview",
+        "../../inspo/tomorrowland /1st.png"
+      ]
+    }
+  }
 }

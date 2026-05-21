@@ -103,6 +103,8 @@ function layoutEditorPlugin(): Plugin {
             action?: string;
             galleryId?: string;
             imageId?: string;
+            assetId?: string;
+            alt?: string;
             fileName?: string;
             dataUrl?: string;
           };
@@ -144,6 +146,21 @@ function layoutEditorPlugin(): Plugin {
                 id: `gallery-${galleryId}-${fileName}`,
                 src: `/gallery-assets/${galleryId}/${fileName}`,
                 alt: safeBaseName.replace(/-/g, " "),
+              },
+            ];
+          } else if (payload.action === "addAsset") {
+            const assetId = assertInspoAssetId(payload.assetId);
+            const safeBaseName = createSafeBaseName(
+              payload.alt || assetId.split("/").pop() || assetId,
+              path.extname(assetId),
+            );
+
+            override.addedImages = [
+              ...override.addedImages,
+              {
+                id: `gallery-${galleryId}-${safeBaseName}-${Date.now()}`,
+                assetId,
+                alt: payload.alt || safeBaseName.replace(/-/g, " "),
               },
             ];
           } else if (payload.action === "remove") {
@@ -192,7 +209,8 @@ interface ResponseLike {
 
 interface GalleryOverrideImage {
   id: string;
-  src: string;
+  src?: string;
+  assetId?: string;
   alt: string;
   dedupeKey?: string;
 }
@@ -253,6 +271,19 @@ function createSafeBaseName(fileName: string, extension: string) {
       .replace(/^-|-$/g, "")
       .slice(0, 48) || "gallery-image"
   );
+}
+
+function assertInspoAssetId(value: unknown): string {
+  if (
+    typeof value !== "string" ||
+    !value.startsWith("inspo/") ||
+    value.includes("..") ||
+    !/\.(png|jpe?g|webp)$/i.test(value)
+  ) {
+    throw new Error("Invalid inspo asset id.");
+  }
+
+  return value;
 }
 
 function assertLayoutDocument(value: unknown): asserts value is object {

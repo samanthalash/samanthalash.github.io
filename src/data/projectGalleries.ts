@@ -1,10 +1,10 @@
-import hunterBillboardImage from "../assets/brand-identity/hunter-billboard.png";
-import hunterFlatlayImage from "../assets/brand-identity/hunter-flatlay.png";
 import leviBeachImage from "../assets/creative-direction/levi-beach.png";
 import leviBillboardImage from "../assets/creative-direction/levi-billboard.png";
 import leviCyclistImage from "../assets/creative-direction/levi-cyclist.png";
 import leviDesertImage from "../assets/creative-direction/levi-desert.png";
 import nylonPhotoImage from "../assets/creative-direction/nylon_photo.png";
+import hunterFlatlayImage from "../../inspo/hunter_1.0.png";
+import hunterBillboardImage from "../../inspo/hunter_2.0.png";
 import aprampOverviewImage from "../../inspo/Apramp.png";
 import laManuelaOverviewImage from "../../inspo/La_manuela.png";
 import tomorrowlandOverviewImage from "../../inspo/Tomorrowland.png";
@@ -90,19 +90,6 @@ const levisInspoImages: PortfolioGalleryImage[] = [
   },
 ];
 
-const hunterInspoImages = imagesFromGlob(
-  import.meta.glob<string>("../../inspo/hunter/*.{png,jpg,jpeg,webp}", {
-    eager: true,
-    import: "default",
-  }),
-  {
-    "../../inspo/hunter/Screenshot 2026-03-19 at 1.01.51 PM.png":
-      "hunter-flatlay",
-    "../../inspo/hunter/Screenshot 2026-04-01 at 2.02.30 PM.png":
-      "hunter-billboard",
-  },
-);
-
 const nylonInspoImages = imagesFromGlob(
   import.meta.glob<string>("../../inspo/nylon/*.{png,jpg,jpeg,webp}", {
     eager: true,
@@ -168,21 +155,18 @@ export const projectGalleries: Record<ProjectGalleryId, ProjectGallery> = {
   },
   "hunter-campaign": {
     title: "Hunter Campaign",
-    images: dedupeImages([
+    images: [
       {
         id: "project-hunter-billboard",
         src: hunterBillboardImage,
         alt: "Hunter campaign billboard",
-        dedupeKey: "hunter-billboard",
       },
       {
         id: "project-hunter-flatlay",
         src: hunterFlatlayImage,
         alt: "Hunter campaign flatlay",
-        dedupeKey: "hunter-flatlay",
       },
-      ...hunterInspoImages,
-    ]),
+    ],
   },
   "nylon-editorial": {
     title: "Nylon Editorial",

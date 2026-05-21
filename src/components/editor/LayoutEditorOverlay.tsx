@@ -39,6 +39,8 @@ interface ActiveGalleryEditor {
   images: PortfolioGalleryImage[];
 }
 
+type LayoutAssetOption = (typeof layoutAssetOptions)[number];
+
 interface ImageDimensions {
   width: number;
   height: number;
@@ -131,13 +133,16 @@ const getInitialPanelPosition = (): PanelPosition => {
 
 interface LayoutEditorOverlayProps {
   activeGallery?: ActiveGalleryEditor;
-  onUploadGalleryImage?: (galleryId: string, file: File) => Promise<void>;
+  onAddGalleryAsset?: (
+    galleryId: string,
+    asset: Pick<LayoutAssetOption, "id" | "label">,
+  ) => Promise<void>;
   onRemoveGalleryImage?: (galleryId: string, imageId: string) => Promise<void>;
 }
 
 export function LayoutEditorOverlay({
   activeGallery,
-  onUploadGalleryImage,
+  onAddGalleryAsset,
   onRemoveGalleryImage,
 }: LayoutEditorOverlayProps) {
   const {
@@ -163,14 +168,14 @@ export function LayoutEditorOverlay({
     uploadAsset,
   } = useLayoutEditor();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const galleryFileInputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLElement>(null);
   const dragStartRef = useRef({ pointerX: 0, pointerY: 0, x: 0, y: 0 });
   const [panelPosition, setPanelPosition] = useState(getInitialPanelPosition);
   const [isDraggingPanel, setIsDraggingPanel] = useState(false);
   const [isUploadingAsset, setIsUploadingAsset] = useState(false);
-  const [isUploadingGalleryImage, setIsUploadingGalleryImage] = useState(false);
   const [isInspoAssetsOpen, setIsInspoAssetsOpen] = useState(false);
+  const [isGalleryAssetsOpen, setIsGalleryAssetsOpen] = useState(false);
+  const [addingGalleryAssetId, setAddingGalleryAssetId] = useState<string>();
   const [removingGalleryImageId, setRemovingGalleryImageId] = useState<string>();
   const [uploadMessage, setUploadMessage] = useState<string>();
   const [galleryMessage, setGalleryMessage] = useState<string>();
@@ -199,6 +204,8 @@ export function LayoutEditorOverlay({
   useEffect(() => {
     setGalleryMessage(undefined);
     setRemovingGalleryImageId(undefined);
+    setAddingGalleryAssetId(undefined);
+    setIsGalleryAssetsOpen(false);
   }, [activeGallery?.id]);
 
   const clampPanelPosition = (position: PanelPosition) => {
@@ -386,28 +393,6 @@ export function LayoutEditorOverlay({
     setUploadMessage(`Added ${asset.label} to ${activePage?.name ?? "this page"}.`);
   };
 
-  const handleGalleryUpload = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    event.target.value = "";
-    if (!file || !activeGallery || !onUploadGalleryImage) {
-      return;
-    }
-
-    setIsUploadingGalleryImage(true);
-    setGalleryMessage("Uploading image...");
-
-    try {
-      await onUploadGalleryImage(activeGallery.id, file);
-      setGalleryMessage(`Added image to ${activeGallery.title}.`);
-    } catch (error) {
-      setGalleryMessage(
-        error instanceof Error ? error.message : "Gallery image upload failed.",
-      );
-    } finally {
-      setIsUploadingGalleryImage(false);
-    }
-  };
-
   const removeGalleryImage = async (imageId: string) => {
     if (!activeGallery || !onRemoveGalleryImage) {
       return;
@@ -425,6 +410,29 @@ export function LayoutEditorOverlay({
       );
     } finally {
       setRemovingGalleryImageId(undefined);
+    }
+  };
+
+  const addGalleryAsset = async (asset: LayoutAssetOption) => {
+    if (!activeGallery || !onAddGalleryAsset) {
+      return;
+    }
+
+    setAddingGalleryAssetId(asset.id);
+    setGalleryMessage(`Adding ${asset.label}...`);
+
+    try {
+      await onAddGalleryAsset(activeGallery.id, {
+        id: asset.id,
+        label: asset.label,
+      });
+      setGalleryMessage(`Added ${asset.label} to ${activeGallery.title}.`);
+    } catch (error) {
+      setGalleryMessage(
+        error instanceof Error ? error.message : "Gallery image add failed.",
+      );
+    } finally {
+      setAddingGalleryAssetId(undefined);
     }
   };
 
@@ -573,29 +581,52 @@ export function LayoutEditorOverlay({
 
           {activeGallery && (
             <section className={styles.section}>
-              <div>
-                <h3 className={styles.sectionTitle}>Image gallery</h3>
-                <p className={styles.status}>{activeGallery.title}</p>
-              </div>
-              <div className={styles.row}>
+              <div className={styles.disclosureHeader}>
+                <div>
+                  <h3 className={styles.sectionTitle}>Image gallery</h3>
+                  <p className={styles.status}>{activeGallery.title}</p>
+                </div>
                 <button
                   type="button"
                   className={styles.button}
-                  disabled={isUploadingGalleryImage}
-                  onClick={() => galleryFileInputRef.current?.click()}
+                  aria-expanded={isGalleryAssetsOpen}
+                  aria-controls="layout-editor-gallery-assets"
+                  disabled={!onAddGalleryAsset}
+                  onClick={() => setIsGalleryAssetsOpen((isOpen) => !isOpen)}
                 >
-                  {isUploadingGalleryImage ? "Uploading..." : "Add picture"}
+                  {isGalleryAssetsOpen ? "Hide" : "Add from inspo"}
                 </button>
               </div>
-              <input
-                ref={galleryFileInputRef}
-                type="file"
-                accept="image/*"
-                className={styles.hiddenFileInput}
-                onChange={handleGalleryUpload}
-              />
               {galleryMessage && (
                 <p className={styles.status}>{galleryMessage}</p>
+              )}
+              {isGalleryAssetsOpen && (
+                <div
+                  className={styles.assetGrid}
+                  id="layout-editor-gallery-assets"
+                >
+                  {layoutAssetOptions.map((asset) => (
+                    <button
+                      type="button"
+                      className={styles.assetButton}
+                      disabled={
+                        !onAddGalleryAsset || addingGalleryAssetId === asset.id
+                      }
+                      title={asset.path}
+                      key={asset.id}
+                      onClick={() => {
+                        void addGalleryAsset(asset);
+                      }}
+                    >
+                      <img src={asset.src} alt="" />
+                      <span>
+                        {addingGalleryAssetId === asset.id
+                          ? "Adding..."
+                          : asset.label}
+                      </span>
+                    </button>
+                  ))}
+                </div>
               )}
               <div className={styles.galleryImageList}>
                 {activeGallery.images.map((image) => (
