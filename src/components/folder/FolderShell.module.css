@@ -1,9 +1,8 @@
 .folderWrap {
-  --folder-viewport-gap: clamp(56px, 8vh, 96px);
   --tab-height: clamp(30px, 9vw, 6px);
   --tab-embed: clamp(0.15px, 0vw, 0px);
   position: relative;
-  width: min(calc(100vw - var(--folder-viewport-gap)), 160vh, 1840px);
+  width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
   transform: none;

@@ -1,7 +1,7 @@
 .scene {
   position: relative;
-  min-height: 100vh;
-  padding: clamp(14px, 1.8vw, 24px);
+  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -12,9 +12,17 @@
 }
 
 .composition {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 1;
-  display: grid;
-  min-height: calc(100vh - clamp(28px, 3.6vw, 48px));
-  place-items: center;
+}
+
+.folderStage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1394px;
+  aspect-ratio: 16 / 9;
+  transform: translate(-50%, -50%) scale(var(--folder-stage-scale, 1));
+  transform-origin: center;
 }
