@@ -70,7 +70,11 @@ const getTextStyle = (element: EditableTextElement): CSSProperties =>
 const renderElementContent = (element: EditableElement) => {
   if (element.type === "text") {
     return (
-      <div className={styles.textElement} style={getTextStyle(element)}>
+      <div
+        className={styles.textElement}
+        data-text-align={element.textAlign}
+        style={getTextStyle(element)}
+      >
         {element.text}
       </div>
     );

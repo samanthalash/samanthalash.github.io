@@ -250,7 +250,7 @@ export const folderPagesBySectionId: Partial<
       titleWhiteSpace: "normal",
       titleFontSize: "clamp(1rem, 2vw, 3.7rem)",
       titleLineHeight: "0.82",
-      titleLetterSpacing: "-0.065em",
+      titleLetterSpacing: "-0.08em",
       titleMaxWidth: "100ch",
       titleTextAlign: "right",
       // Move only the APRAMP title by changing these two values.
