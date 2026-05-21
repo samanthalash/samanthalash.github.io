@@ -123,15 +123,15 @@
           "type": "image",
           "assetId": "inspo/thankyou-CONTACT.png",
           "alt": "thankyou CONTACT",
-          "x": -17.7,
-          "y": 9.51,
+          "x": -17.75,
+          "y": 9.1,
           "width": 59.77,
           "height": 111.3,
           "rotation": 15.5,
           "objectFit": "contain",
           "objectPosition": "center",
           "id": "image-mpf97lr6-012c2",
-          "zIndex": 1000
+          "zIndex": 100000
         }
       ]
     },
