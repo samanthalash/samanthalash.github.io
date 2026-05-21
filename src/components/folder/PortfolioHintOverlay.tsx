@@ -18,15 +18,13 @@ export function PortfolioHintOverlay({ onDismiss }: PortfolioHintOverlayProps) {
 
   return (
     <div className={styles.overlay} aria-live="polite">
-      <div className={styles.photoHint} aria-hidden="true">
-        <span className={`${styles.demoPhoto} ${styles.demoPhotoBack}`} />
-        <span className={`${styles.demoPhoto} ${styles.demoPhotoMiddle}`} />
-        <span className={`${styles.demoPhoto} ${styles.demoPhotoFront}`} />
-        <span className={styles.dragDot} />
+      <div className={styles.plusHint} aria-hidden="true">
+        <span className={styles.demoPlus} />
+        <span className={styles.mousePointer} />
       </div>
 
-      <div className={styles.photoMessage}>
-        Drag pictures to move them and bring them forward.
+      <div className={styles.plusMessage}>
+        Click the plus icons on project pages to open the full project gallery.
       </div>
 
       <div className={styles.cornerMessage}>

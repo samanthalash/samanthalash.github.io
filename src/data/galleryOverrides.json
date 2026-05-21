@@ -90,6 +90,18 @@
         "portfolio-hunter-billboard",
         "portfolio-hunter-flatlay"
       ]
+    },
+    "la-manuela": {
+      "addedImages": [],
+      "removedImageIds": [
+        "project-la-manuela-overview"
+      ]
+    },
+    "apramp-campaign": {
+      "addedImages": [],
+      "removedImageIds": [
+        "project-apramp-overview"
+      ]
     }
   }
 }
