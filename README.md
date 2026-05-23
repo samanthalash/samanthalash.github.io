@@ -1,83 +1,116 @@
 # Samantha Lash Portfolio
 
-This repository contains Samantha Lash's portfolio website. The live build is a
-Vite + React app for GitHub Pages, designed as a tactile archival folder rather
-than a conventional scrolling portfolio.
+Portfolio website for Samantha Lash, live at [samanthalash.com](https://samanthalash.com).
 
-## What Has Been Built
+The site is a Vite + React portfolio designed as an interactive desktop folder. It opens with a desktop-style folder icon, then reveals a tabbed archive interface with page flips, project layouts, and image galleries.
 
-- Reworked the original static portfolio into a typed React application.
-- Built an opening desktop-style intro screen with a clickable folder icon that
-  reveals the portfolio and remembers the intro state for the session.
-- Created the main folder scene with tabbed sections for Home, Creative
-  Direction, Brand Identity, Strategy & Concept, and Contact.
-- Built reusable folder components for the shell, tabs, interior page, content
-  panel, decorative marks, and page-flip behavior.
-- Added a page-flip system with forward and backward controls, pointer dragging,
-  keyboard support, layered stacking, and animated page depth.
-- Moved portfolio section copy and page configuration into typed data files so
-  project pages can be edited without changing the component structure.
-- Added visual campaign pages for Levi's, Hunter, and Nylon using imported image
-  assets, layered photography, stamps, paperclips, monograms, and archive-style
-  layout details.
-- Archived the earlier HTML/CSS version of the site in `archive/legacy-site/`
-  for reference while keeping the Vite app as the active site.
-- Kept the custom domain setup in `public/CNAME` so it is included in the
-  production build for GitHub Pages.
+## How The Site Works
 
-## Active App Structure
+- Visitors first see an intro folder screen. Once opened, that intro is hidden for the rest of the browser session with `sessionStorage`.
+- The main experience is a fixed folder scene with tabs for Home, Creative Direction, Brand Identity, Strategy & Concept, and Contact.
+- Project sections are presented as folder pages with animated page flipping. The corner controls turn pages forward and backward.
+- Plus icons on project pages open full project galleries.
+- The Contact page envelope opens the overall portfolio gallery.
+- A one-time hint overlay explains the plus icons and page-flip corner. It is remembered with `localStorage`.
+- Screens narrower than `1100px` show a desktop-only message instead of the folder interface.
+
+## Tech Stack
+
+- React 18
+- TypeScript
+- Vite
+- CSS Modules
+- GitHub Pages/custom-domain deployment
+
+## Project Structure
 
 ```text
-/
-├── index.html                  # Vite entry HTML
-├── package.json                # App scripts and dependencies
-├── public/
-│   └── CNAME                   # Copied into the production build
-├── src/
-│   ├── App.tsx                 # Intro state and active folder section state
-│   ├── components/desktop/     # Opening desktop-style portfolio screen
-│   ├── components/folder/      # Folder shell, tabs, page flip, and content UI
-│   ├── data/                   # Section and page content configuration
-│   ├── assets/                 # Portfolio images and visual ephemera
-│   └── styles/                 # Design tokens and global styles
-├── content/
-│   ├── site/                   # Copy notes and planning material
-│   └── projects/               # Draft project content
-└── archive/
-    └── legacy-site/            # Previous static HTML/CSS portfolio scaffold
+src/
+  App.tsx                         App state, intro, viewport guard, gallery overlays
+  components/desktop/             First-visit desktop folder screen
+  components/folder/              Folder shell, tabs, pages, page flip, hint overlay
+  components/editor/              Development-only visual layout editor
+  components/portfolio/           Full-screen gallery overlay
+  data/
+    folderSections.ts             Folder tab labels and fallback copy
+    folderPages.ts                Page order, project copy, and per-page config
+    editableLayout.json           Visual page layouts used by the editor renderer
+    galleryOverrides.json         Gallery additions/removals saved from the editor
+    projectGalleries.ts           Per-project gallery image lists
+    portfolioGallery.ts           Overall portfolio gallery image list
+    layoutAssets.ts               Asset registry for editor/layout images
+  assets/                         Imported site images and visual elements
+  styles/                         Global styles and design tokens
+
+public/
+  CNAME                           Custom domain copied into production builds
+  editor-assets/                  Images uploaded through the local layout editor
+  gallery-assets/                 Gallery uploads saved through the local editor
+
+inspo/                            Source/reference project imagery imported by Vite
+content/                          Draft notes and project copy
+archive/legacy-site/              Older static HTML/CSS version kept for reference
 ```
 
-## Editing Content
+## Local Development
 
-- Update tab labels and fallback section copy in `src/data/folderSections.ts`.
-- Update individual page content, layout variants, image overrides, and stamp
-  choices in `src/data/folderPages.ts`.
-- Project-page visual layouts are stored in `src/data/editableLayout.json`.
-- To use the local layout editor, run `npm run dev`, open the local site with
-  `?edit=1`, make edits, then press Save in the editor panel. Saved changes are
-  written back to `src/data/editableLayout.json` so they are included after you
-  commit, push, and deploy.
-- The layout editor is development-only. It is guarded by Vite's dev mode, and
-  the save/upload endpoints only exist while running the local dev server.
-- Creative Direction pages have header-based IDs and aliases in
-  `src/data/folderPages.ts`, so they can be referenced as Levi's Campaign,
-  Hunter Campaign, or Nylon Editorial.
-- Add or replace campaign imagery in `src/assets/`, then import it into the
-  relevant data or component file.
-- Keep long-form notes and drafts in `content/` until they are ready to become
-  part of the React app.
-
-## Commands
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Start the local site:
+
+```bash
 npm run dev
+```
+
+Build for production:
+
+```bash
 npm run build
+```
+
+Preview the production build locally:
+
+```bash
 npm run preview
 ```
 
-## Build Notes
+## Editing Content And Layouts
 
-- `npm run build` runs TypeScript and outputs the production site into `dist/`.
-- `public/CNAME` is copied into `dist/` automatically by Vite.
-- `node_modules/`, `dist/`, and TypeScript build artifacts are gitignored.
+Most visible project page layouts come from `src/data/editableLayout.json`, rendered by `CanvasPageRenderer`. The local visual editor is only available in Vite dev mode.
+
+To edit layouts locally:
+
+1. Run `npm run dev`.
+2. Open the local site with `?edit=1`.
+3. Use the editor panel to move, resize, add, duplicate, delete, or configure page elements.
+4. Use Save in the editor panel. This writes changes back to `src/data/editableLayout.json`.
+5. Commit the updated JSON and any uploaded assets.
+
+Other common editing points:
+
+- Folder tabs and fallback section copy: `src/data/folderSections.ts`
+- Page order, page copy, and project-level layout config: `src/data/folderPages.ts`
+- Project gallery image lists: `src/data/projectGalleries.ts`
+- Overall portfolio gallery list: `src/data/portfolioGallery.ts`
+- Gallery additions/removals from the local editor: `src/data/galleryOverrides.json`
+- Editor asset registry: `src/data/layoutAssets.ts`
+
+The Vite dev server also exposes local editor endpoints under `/__layout-editor/*`. Those endpoints do not exist in production.
+
+## Assets And Galleries
+
+Project imagery is pulled from both `src/assets/` and `inspo/`. Some galleries use `import.meta.glob` to include all images from specific `inspo/` folders, sorted naturally by filename.
+
+Uploaded editor assets are stored under `public/editor-assets/`. Uploaded gallery assets are stored under `public/gallery-assets/`. Because these folders are inside `public/`, Vite copies them into the production build.
+
+## Deployment Notes
+
+- `npm run build` runs TypeScript first, then writes the production site to `dist/`.
+- `public/CNAME` contains `samanthalash.com` and is copied into `dist/` during the Vite build.
+- This repository is set up for GitHub Pages with the custom domain [samanthalash.com](https://samanthalash.com).
+- Commit source changes, build locally to verify, then push the branch used by the GitHub Pages deployment.
+
