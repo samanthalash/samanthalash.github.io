@@ -5,7 +5,7 @@ interface Props {
   onDismiss: () => void;
 }
 
-const ANIM_DURATION = 960;
+const ANIM_DURATION = 820;
 const REDUCED_DURATION = 200;
 
 function FolderIcon() {

@@ -93,23 +93,6 @@ export const folderPagesBySectionId: Partial<
 > = {
   about: [
     {
-      id: "levis-campaign",
-      referenceName: "LEVI'S CAMPAIGN",
-      aliases: ["Levi's Campaign", "Levis Campaign", "Fit For Wherever"],
-      sectionId: "about",
-      content: {
-        eyebrow: "Campaign Study",
-        title: "LEVI'S CAMPAIGN",
-        body:
-          "Fit For Wherever is a campaign concept developed for Levi's, targeting the digital nomad lifestyle. The creative idea: wherever life takes you, denim is already there. In an era where travel is increasingly performed for an audience, the campaign leans into authenticity, positioning Levi's jeans as more than clothing, but a dependable, grounding companion through the unpredictable",
-        bullets: [],
-        footer: "Levi's campaign concept sheet.",
-      },
-      copyBlockWidth: "min(100%, 560px)",
-      bodyWidth: "auto",
-      bodyMaxWidth: "35ch",
-    },
-    {
       id: "hunter-campaign",
       referenceName: "HUNTER CAMPAIGN",
       aliases: ["Hunter Campaign", "Hunter Wellington"],
@@ -126,6 +109,23 @@ export const folderPagesBySectionId: Partial<
       copyBlockWidth: "min(100%, 580px)",
       bodyWidth: "auto",
       bodyMaxWidth: "38ch",
+    },
+    {
+      id: "levis-campaign",
+      referenceName: "LEVI'S CAMPAIGN",
+      aliases: ["Levi's Campaign", "Levis Campaign", "Fit For Wherever"],
+      sectionId: "about",
+      content: {
+        eyebrow: "Campaign Study",
+        title: "LEVI'S CAMPAIGN",
+        body:
+          "Fit For Wherever is a campaign concept developed for Levi's, targeting the digital nomad lifestyle. The creative idea: wherever life takes you, denim is already there. In an era where travel is increasingly performed for an audience, the campaign leans into authenticity, positioning Levi's jeans as more than clothing, but a dependable, grounding companion through the unpredictable",
+        bullets: [],
+        footer: "Levi's campaign concept sheet.",
+      },
+      copyBlockWidth: "min(100%, 560px)",
+      bodyWidth: "auto",
+      bodyMaxWidth: "35ch",
     },
     {
       id: "nylon-editorial",
