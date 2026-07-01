@@ -15,6 +15,13 @@ export interface PortfolioGalleryImage {
   src: string;
   alt: string;
   dedupeKey?: string;
+  /**
+   * When set, this gallery item is a multi-slide presentation rather than a
+   * single photo. `src` is used as the cover thumbnail and `pdfSrc` is the
+   * document opened in the presentation viewer.
+   */
+  pdfSrc?: string;
+  slideCount?: number;
 }
 
 const collator = new Intl.Collator(undefined, {

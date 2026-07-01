@@ -6,6 +6,8 @@ import nylonPhotoImage from "../assets/creative-direction/nylon_photo.png";
 import hunterFlatlayImage from "../../inspo/hunter_1.0.png";
 import hunterBillboardImage from "../../inspo/hunter_2.0.png";
 import aprampOverviewImage from "../../inspo/Apramp.png";
+import aprampPresentationCover from "../assets/apramp/presentation-cover.png";
+import aprampPresentationPdf from "../../inspo/apramp/FINAL APRAMP PRESENTATION.pdf?url";
 import laManuelaOverviewImage from "../../inspo/La_manuela.png";
 import tomorrowlandOverviewImage from "../../inspo/Tomorrowland.png";
 import levisInspoCyclistImage from "../../inspo/levi's/Screenshot 2026-04-01 at 2.10.29 PM.png";
@@ -205,6 +207,13 @@ export const projectGalleries: Record<ProjectGalleryId, ProjectGallery> = {
   "apramp-campaign": {
     title: "APRAMP Campaign",
     images: dedupeImages([
+      {
+        id: "project-apramp-presentation",
+        src: aprampPresentationCover,
+        alt: "APRAMP campaign presentation",
+        pdfSrc: aprampPresentationPdf,
+        slideCount: 35,
+      },
       {
         id: "project-apramp-overview",
         src: aprampOverviewImage,
