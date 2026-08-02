@@ -2,6 +2,25 @@
 
 ## Plan
 
+- [x] Move the landing-page text group a final tiny step downward.
+- [x] Nudge the landing-page text group slightly lower once more.
+- [x] Lower the landing-page text group by one additional small increment.
+- [x] Move the landing-page text group one more slight increment downward.
+- [x] Move the landing-page name, summary, and contact links slightly downward
+  as one visual group.
+- [x] Apply another subtle responsive reduction to the landing-page name.
+- [x] Reduce the responsive landing-page name by one additional increment.
+- [x] Make one final slight reduction to the responsive landing-page name size.
+- [x] Reduce the landing-page name lockup further at all responsive sizes.
+- [x] Reduce the landing-page name lockup slightly at desktop and mobile sizes.
+- [x] Refine the landing intro alignment, name spacing, summary width, and live
+  LinkedIn treatment.
+- [x] Align the landing-page project group with the right-hand navigation while
+  preserving title-to-image spacing and image sizing.
+- [x] Match every landing-page project image to the Hunter campaign image width
+  while preserving each image's aspect ratio.
+- [x] Align each landing-page project title with the top of its image and keep
+  the sticky title within the image's bottom edge.
 - [x] Inspect the current app, archive dependencies, references, and deployment.
 - [x] Establish documentation, memory, lesson, and task conventions.
 - [x] Organize the supplied references without changing archive paths.
@@ -13,16 +32,28 @@
 
 ## Verification
 
+- Production build and a 1366x768 headless Chrome screenshot confirm the landing
+  name, summary, and contact links shift downward together while the portrait
+  stays fixed.
 - `npm run build` passes with TypeScript and Vite.
+- Headless Chrome checks at 1366x768 and 390x844 confirm the landing portrait
+  meets the left viewport edge, the uppercase name lines do not overlap or clip,
+  the summary has the requested extra width, and LinkedIn uses the active-link
+  treatment.
+- A 1366x768 production screenshot confirms the landing-page project image's
+  right edge aligns with the right edge of `ABOUT ME` and `+ PROJECTS`.
+- Landing-page project images share the Hunter campaign's desktop width; mobile
+  images remain uniformly full-width and every image retains its intrinsic ratio.
 - Production preview returns HTTP 200 for all new routes, `/archive/`, and the
   APRAMP PDF.
 - Headless Chrome screenshots were reviewed at 1366x768 and 500x844; project
   asset selection and detail-title spacing were corrected from that review.
+- Desktop browser geometry confirms landing-page project titles start flush with
+  their images and stop with zero overflow at each image's bottom edge.
 - No tracked files under `src/archive/`, `inspo/`, or `archive/legacy-site/`
   changed.
 
 ## Deferred Inputs
 
-- LinkedIn URL
 - Final CV file
 - Approved portrait image

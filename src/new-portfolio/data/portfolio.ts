@@ -52,6 +52,7 @@ export const site = {
   summary:
     "Passionate about art direction and brand strategy, building concepts from human insight to cohesive executions.",
   email: "samanthalash28@gmail.com",
+  linkedin: "https://www.linkedin.com/in/samanthalash/",
   phone: "+34 641 984 149",
 } as const;
 

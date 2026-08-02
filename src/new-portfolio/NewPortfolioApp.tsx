@@ -50,7 +50,7 @@ function HomePage() {
         <NameLockup />
         <p id="home-title" className={styles.homeSummary}>{site.summary}</p>
         <div className={styles.socialLinks}>
-          <span aria-disabled="true">LinkedIn</span>
+          <a href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
           <a href={`mailto:${site.email}`}>Email</a>
         </div>
       </section>

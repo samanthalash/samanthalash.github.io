@@ -98,12 +98,14 @@
 }
 
 .homeIntro {
+  --home-copy-shift: clamp(32px, 4.5vh, 40px);
+  --home-intro-gutter: clamp(30px, 4vw, 60px);
   position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
   height: 100svh;
-  padding: clamp(30px, 4vw, 60px);
+  padding: var(--home-intro-gutter);
   padding-top: 17vh;
 }
 
@@ -124,6 +126,10 @@
   background: var(--placeholder);
 }
 
+.homeIntro .portraitPlaceholder {
+  margin-left: calc(-1 * var(--home-intro-gutter));
+}
+
 .nameLockup h1,
 .nameLockup > p {
   position: absolute;
@@ -139,9 +145,16 @@
   text-transform: lowercase;
 }
 
+.homeIntro .nameLockup h1 {
+  font-size: clamp(1.8rem, 2.75vw, 3.6rem);
+  line-height: 1.3;
+  text-transform: uppercase;
+  transform: translateY(var(--home-copy-shift));
+}
+
 .homeSummary {
-  width: min(28ch, 88%);
-  margin: clamp(48px, 8vh, 100px) 0 0;
+  width: min(32ch, 94%);
+  margin: calc(clamp(48px, 8vh, 100px) + var(--home-copy-shift)) 0 0;
   font-size: clamp(0.85rem, 1vw, 1.05rem);
   line-height: 1.45;
 }
@@ -174,19 +187,21 @@
 }
 
 .homeProject {
+  --home-project-gap: clamp(24px, 3vw, 64px);
   display: grid;
-  grid-template-columns: minmax(170px, 27%) 1fr;
-  gap: clamp(24px, 3vw, 64px);
+  grid-template-columns:
+    minmax(170px, 27%)
+    minmax(0, min(56.884vh, calc(73% - var(--home-project-gap))));
+  justify-content: end;
+  gap: var(--home-project-gap);
   align-items: start;
-  min-height: 88vh;
-  padding: 2vh 0 13vh;
+  margin-bottom: 15vh;
   text-decoration: none;
 }
 
 .homeProjectMeta {
   position: sticky;
-  top: 12vh;
-  padding-top: 0.2rem;
+  top: 0;
   font-size: clamp(0.74rem, 0.85vw, 0.95rem);
   text-transform: uppercase;
 }
@@ -216,10 +231,9 @@
 
 .homeProject > img {
   display: block;
-  width: 100%;
-  max-height: 74vh;
-  object-fit: contain;
-  object-position: top left;
+  /* Hunter's 1130:1470 ratio at the feed's established 74vh image height. */
+  width: min(100%, 56.884vh);
+  height: auto;
   transition: filter 220ms ease, transform 450ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
@@ -597,9 +611,10 @@
   }
 
   .homeIntro {
+    --home-intro-gutter: 28px;
     height: auto;
     min-height: 88svh;
-    padding: 130px 28px 72px;
+    padding: 130px var(--home-intro-gutter) 72px;
   }
 
   .homeIntro .siteNav {
@@ -634,12 +649,16 @@
     font-size: clamp(3.4rem, 13vw, 6.2rem);
   }
 
+  .homeIntro .nameLockup h1 {
+    font-size: clamp(1.4rem, 6.5vw, 3.25rem);
+  }
+
   .portraitPlaceholder {
     width: min(58vw, 260px);
   }
 
   .homeSummary {
-    margin-top: 5rem;
+    margin-top: calc(5rem + var(--home-copy-shift));
   }
 
   .homeFeed {
@@ -652,6 +671,7 @@
     grid-template-columns: 1fr;
     min-height: 0;
     gap: 24px;
+    margin-bottom: 0;
     padding: 0 0 100px;
   }
 
@@ -660,7 +680,7 @@
   }
 
   .homeProject > img {
-    max-height: none;
+    width: 100%;
   }
 
   .projectCollage {

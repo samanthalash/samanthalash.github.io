@@ -13,7 +13,7 @@
 
 - Review the first pass against Samantha's source designs and record precise
   layout corrections.
-- Replace disabled LinkedIn and CV labels when final targets are supplied.
+- Replace the disabled CV label when the final document is supplied.
 - Replace the gray portrait placeholder when an approved portrait is supplied.
 - Perform final content proofing with Samantha before public launch.
 

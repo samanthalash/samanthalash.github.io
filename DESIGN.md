@@ -62,8 +62,8 @@ history restoration is expected.
 ## Content And Link Policy
 
 Visible portfolio wording is stored once in typed project data. Known contact
-email is active. LinkedIn and Download CV remain visible but disabled until the
-real URL and document are supplied. Images require meaningful alt text; purely
+email and LinkedIn URL are active. Download CV remains visible but disabled until
+the real document is supplied. Images require meaningful alt text; purely
 decorative marks use empty alt text.
 
 ## Technical Boundaries
@@ -73,4 +73,3 @@ paths to the lazy archived application and all other paths to the new app. Vite
 generates route entry files so clean URLs survive direct GitHub Pages loads and
 refreshes. Fonts are self-hosted and production assets are independent copies of
 the chosen archive/inspiration files.
-
