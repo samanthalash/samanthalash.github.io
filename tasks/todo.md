@@ -2,6 +2,13 @@
 
 ## Plan
 
+- [x] Increase the shared top-left logo size across desktop and mobile layouts.
+- [x] Lower the first landing-page project group by another increment.
+- [x] Lower the first landing-page project group by one more increment.
+- [x] Lower the first landing-page project group slightly while preserving the
+  title, metadata, and image alignment.
+- [x] Match the About page portrait block and name lockup to the landing page's
+  current proportions, alignment, typography, and overlap.
 - [x] Move the landing-page text group a final tiny step downward.
 - [x] Nudge the landing-page text group slightly lower once more.
 - [x] Lower the landing-page text group by one additional small increment.
@@ -32,6 +39,16 @@
 
 ## Verification
 
+- The production build passes after increasing the shared logo from a 52–70px
+  responsive range to 64–88px, with a 62px phone size.
+- The production build passes after increasing the desktop feed's top inset from
+  15vh to 17vh.
+- The production build passes after increasing the desktop feed's top inset from
+  13vh to 15vh.
+- A 1366x768 production screenshot confirms the first project title, discipline,
+  and image begin 2vh lower as one aligned group.
+- A 1366x768 production screenshot confirms the About portrait block is flush
+  with the viewport edge and its name lockup matches the current landing style.
 - Production build and a 1366x768 headless Chrome screenshot confirm the landing
   name, summary, and contact links shift downward together while the portrait
   stays fixed.
