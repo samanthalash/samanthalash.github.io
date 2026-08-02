@@ -2,12 +2,13 @@ import stampLogo from "../assets/brand/stamp-logo.png";
 import hunterHero from "../assets/projects/hunter/hero.png";
 import hunterBillboard from "../assets/projects/hunter/billboard.png";
 import levisBeach from "../assets/projects/levis/beach.png";
+import levisBeachBillboard from "../assets/projects/levis/beachbilly.png";
 import levisDesert from "../assets/projects/levis/desert.png";
-import levisBillboard from "../assets/projects/levis/billboard.png";
 import levisCyclist from "../assets/projects/levis/cyclist.png";
 import aprampOverview from "../assets/projects/apramp/overview.png";
 import aprampCover from "../assets/projects/apramp/cover.png";
 import aprampCampaignBoard from "../assets/projects/apramp/campaign-board.png";
+import aprampLandingHero from "../assets/projects/apramp/landing-hero.png";
 import aprampGiftBox from "../assets/projects/apramp/gift-box.png";
 import aprampInside from "../assets/projects/apramp/inside-installation.png";
 import aprampExecution from "../assets/projects/apramp/execution-plan.png";
@@ -41,6 +42,8 @@ export interface Project {
   solution: string;
   tools: string[];
   hero: ProjectImage;
+  detailHero?: ProjectImage;
+  heroAccent?: ProjectImage;
   gallery: ProjectImage[];
   layout: "portrait" | "landscape" | "overview";
   fullCampaignHref?: string;
@@ -54,6 +57,7 @@ export const site = {
   email: "samanthalash28@gmail.com",
   linkedin: "https://www.linkedin.com/in/samanthalash/",
   phone: "+34 641 984 149",
+  cvHref: "/assets/Samantha-Lash-CV.pdf",
 } as const;
 
 export const projects: Project[] = [
@@ -94,9 +98,9 @@ export const projects: Project[] = [
       "Position Levi's jeans as more than clothing, but a grounding companion through the unpredictable. Built around the idea \"Wherever life takes you, denim is already there,\" the campaign reframes denim as the one constant across every destination.",
     tools: ["Studio Equipment", "Adobe Photoshop", "Gen AI"],
     hero: { src: levisBeach, alt: "Levi's Fit For Wherever beach campaign" },
+    heroAccent: { src: levisDesert, alt: "Levi's Fit For Wherever desert campaign" },
     gallery: [
-      { src: levisDesert, alt: "Levi's Fit For Wherever desert campaign" },
-      { src: levisBillboard, alt: "Levi's beach campaign on a street billboard" },
+      { src: levisBeachBillboard, alt: "Levi's beach campaign on a brick building billboard" },
       { src: levisCyclist, alt: "Levi's desert campaign on an outdoor billboard" },
     ],
     layout: "landscape",
@@ -117,7 +121,8 @@ export const projects: Project[] = [
     solution:
       "False Promises, an immersive walk-in installation that transforms the hidden process of online recruitment into a public experience. Supported by guerrilla activation, print collateral, a dedicated website, and social strategy, the campaign urges audiences recognize the early signs of exploitation.",
     tools: ["Adobe Illustrator", "Instagram", "TikTok"],
-    hero: { src: aprampCampaignBoard, alt: "APRAMP False Promises campaign overview" },
+    hero: { src: aprampLandingHero, alt: "APRAMP False Promises installation in a busy public square" },
+    detailHero: { src: aprampCampaignBoard, alt: "APRAMP False Promises campaign board" },
     gallery: [
       { src: aprampInstallation, alt: "False Promises installation in El Retiro Park" },
       { src: aprampSocialMedia, alt: "False Promises social media campaign" },

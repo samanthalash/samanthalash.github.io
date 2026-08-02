@@ -121,7 +121,7 @@ function AboutPage() {
       <section className={styles.aboutPage}>
         <aside className={styles.aboutIdentity}>
           <NameLockup heading={false} />
-          <span className={styles.disabledLink} aria-disabled="true">Download CV</span>
+          <a className={styles.downloadLink} href={site.cvHref} download>Download CV</a>
         </aside>
         <div className={styles.aboutContent}>
           <section className={styles.aboutRow}>
@@ -189,10 +189,19 @@ function ProjectFacts({ project }: { project: Project }) {
 }
 
 function ProjectPage({ project }: { project: Project }) {
+  const detailHero = project.detailHero ?? project.hero;
+  const heroAccent = project.heroAccent ?? project.gallery[0];
+
   return (
     <main className={`${styles.standardPage} ${styles.projectPage}`}>
       <LogoLink />
-      <section className={`${styles.projectHero} ${styles[`projectHero_${project.layout}`]}`}>
+      <section
+        className={`${styles.projectHero} ${styles[`projectHero_${project.layout}`]} ${
+          project.slug === "levis-campaign" ? styles.levisProjectHero : ""
+        } ${
+          project.slug === "tomorrowland-rebrand" ? styles.tomorrowlandProjectHero : ""
+        }`}
+      >
         <div className={styles.projectTitle}>
           <h1>{project.displayTitle}</h1>
           <p>{project.category}</p>
@@ -200,12 +209,14 @@ function ProjectPage({ project }: { project: Project }) {
             <a href={project.fullCampaignHref}>Full campaign</a>
           )}
         </div>
-        <img src={project.hero.src} alt={project.hero.alt} />
-        {project.layout === "landscape" && project.gallery[0] && (
-          <img className={styles.projectHeroAccent} src={project.gallery[0].src} alt={project.gallery[0].alt} />
+        <img src={detailHero.src} alt={detailHero.alt} />
+        {project.layout === "landscape" && heroAccent && (
+          <img className={styles.projectHeroAccent} src={heroAccent.src} alt={heroAccent.alt} />
         )}
       </section>
-      <section className={styles.projectDetails}>
+      <section id="project-details" className={`${styles.projectDetails} ${
+        project.slug === "levis-campaign" ? styles.levisProjectDetails : ""
+      }`}>
         <div className={styles.projectGallery}>
           {project.gallery.map((image, index) => (
             <img

@@ -62,9 +62,9 @@ history restoration is expected.
 ## Content And Link Policy
 
 Visible portfolio wording is stored once in typed project data. Known contact
-email and LinkedIn URL are active. Download CV remains visible but disabled until
-the real document is supplied. Images require meaningful alt text; purely
-decorative marks use empty alt text.
+email and LinkedIn URL are active. The About page provides Samantha's supplied CV
+as a direct download. Images require meaningful alt text; purely decorative marks
+use empty alt text.
 
 ## Technical Boundaries
 

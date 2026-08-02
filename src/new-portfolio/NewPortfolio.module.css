@@ -171,8 +171,7 @@
   text-transform: uppercase;
 }
 
-.socialLinks span,
-.disabledLink {
+.socialLinks span {
   color: currentColor;
   text-decoration: underline;
   text-underline-offset: 0.16em;
@@ -362,9 +361,12 @@
   padding-top: 5vh;
 }
 
-.aboutIdentity .disabledLink {
+.aboutIdentity .downloadLink {
   display: inline-block;
   margin: 5.5rem 0 0 0.5rem;
+  color: currentColor;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
   text-transform: uppercase;
 }
 
@@ -453,13 +455,18 @@
   min-height: 70svh;
 }
 
+.projectTitle {
+  align-self: end;
+  padding-bottom: clamp(48px, 8vh, 84px);
+}
+
 .projectTitle h1 {
   margin: 0;
   white-space: pre-line;
   font-family: "Beth Ellen", cursive;
-  font-size: clamp(3rem, 4.4vw, 5.5rem);
+  font-size: clamp(2.2rem, 3.25vw, 4rem);
   font-weight: 400;
-  line-height: 1.02;
+  line-height: 1.15;
   letter-spacing: -0.09em;
   text-transform: uppercase;
 }
@@ -485,6 +492,13 @@
   object-fit: contain;
 }
 
+@media (min-width: 901px) {
+  .tomorrowlandProjectHero > img {
+    transform: scale(1.12);
+    transform-origin: top right;
+  }
+}
+
 .projectHero_landscape {
   grid-template-columns: minmax(280px, 34%) 1fr;
   grid-template-areas: "title art";
@@ -507,6 +521,18 @@
   width: 42%;
   max-height: 48vh;
   transform: translate(-42%, -4%);
+}
+
+.levisProjectHero > img:not(.projectHeroAccent) {
+  justify-self: end;
+  width: 72%;
+  transform: translateY(10%);
+}
+
+.levisProjectHero .projectHeroAccent {
+  width: 36%;
+  max-height: 52vh;
+  transform: translate(-36%, -15%);
 }
 
 .projectHero_overview {
@@ -544,6 +570,31 @@
   max-height: 650px;
   object-fit: contain;
   object-position: left center;
+}
+
+.levisProjectDetails {
+  align-items: stretch;
+}
+
+.levisProjectDetails .projectGallery {
+  box-sizing: border-box;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  height: 100%;
+  min-height: 0;
+  gap: clamp(12px, 1.4vw, 20px);
+  padding-top: 0.2rem;
+}
+
+.levisProjectDetails .projectGallery img,
+.levisProjectDetails .projectGallery .galleryLead {
+  grid-column: auto;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
 }
 
 .projectFacts {
@@ -754,11 +805,11 @@
 
   .projectTitle {
     align-self: stretch;
-    padding: 11vh 0 2vh;
+    padding: 18vh 0 2vh;
   }
 
   .projectTitle h1 {
-    font-size: clamp(3.2rem, 11vw, 6rem);
+    font-size: clamp(1.15rem, 5.3vw, 3.25rem);
   }
 
   .projectHero_landscape .projectHeroAccent {
@@ -768,8 +819,34 @@
     transform: none;
   }
 
+  .levisProjectHero > img:not(.projectHeroAccent) {
+    order: 2;
+    align-self: flex-end;
+    width: 92%;
+    margin-top: clamp(16px, 4vw, 32px);
+    transform: none;
+  }
+
+  .levisProjectHero .projectHeroAccent {
+    order: 1;
+    width: 56%;
+    margin: 0;
+  }
+
   .projectDetails {
     margin-top: 90px;
+  }
+
+  .levisProjectDetails .projectGallery {
+    grid-template-rows: repeat(2, auto);
+    height: auto;
+    padding-top: 0;
+  }
+
+  .levisProjectDetails .projectGallery img,
+  .levisProjectDetails .projectGallery .galleryLead {
+    height: auto;
+    aspect-ratio: 3 / 2;
   }
 }
 
@@ -814,7 +891,7 @@
     min-height: 450px;
   }
 
-  .aboutIdentity .disabledLink {
+  .aboutIdentity .downloadLink {
     margin-top: 4.5rem;
   }
 

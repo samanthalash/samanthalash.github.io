@@ -7,13 +7,14 @@
   project detail pages.
 - Added clean GitHub Pages routes, self-hosted fonts, project metadata, and the
   APRAMP campaign PDF.
+- Added Samantha's downloadable CV and the approved Hunter and APRAMP campaign
+  imagery.
 - Preserved and verified the previous portfolio at `/archive/`.
 
 ## Next
 
 - Review the first pass against Samantha's source designs and record precise
   layout corrections.
-- Replace the disabled CV label when the final document is supplied.
 - Replace the gray portrait placeholder when an approved portrait is supplied.
 - Perform final content proofing with Samantha before public launch.
 

@@ -2,6 +2,43 @@
 
 ## Plan
 
+- [x] Enlarge the Tomorrowland detail-page hero poster while keeping its top
+  position fixed.
+- [x] Build and visually verify the Tomorrowland hero at desktop and mobile
+  sizes without changing the other project-detail layouts.
+- [x] Replace the Levi's detail gallery with the supplied beach billboard above
+  the cyclist billboard, using equal left-aligned image boxes and a small gap.
+- [x] Align the desktop Levi's image stack from Context's top edge through Tools'
+  bottom edge, then build and verify desktop and mobile layouts.
+- [x] Reduce the shared project-detail title size and lower the complete title,
+  category, and campaign-link block toward the hero image's bottom edge.
+- [x] Build and visually verify the shared project-title placement across all
+  five detail pages at desktop and mobile sizes.
+- [x] Repeat the Levi's image-position refinement, moving the portrait another
+  increment up-left and the landscape image another increment downward.
+- [x] Build and visually verify the second Levi's position adjustment.
+- [x] Move the Levi's upper-left portrait slightly farther up and left, and the
+  lower-right landscape image slightly downward without changing their sizes.
+- [x] Build and visually verify the refined Levi's desktop image positions.
+- [x] Refit the Levi's detail hero to the approved reference proportions: enlarge
+  the upper-left portrait slightly, reduce the lower-right landscape image, and
+  preserve a clear gap between them.
+- [x] Build and visually verify the Levi's image pair at desktop and responsive
+  sizes without changing the other project-detail compositions.
+- [x] Reduce every project detail title slightly and increase its multiline
+  spacing so the handwritten title lines do not overlap.
+- [x] Build and visually verify the updated project-title treatment at desktop
+  and mobile sizes.
+- [x] Keep APRAMP's new image on project previews while using the campaign board
+  as the APRAMP detail-page hero.
+- [x] Build and verify the APRAMP detail route after separating its preview and
+  detail imagery in typed project data.
+- [x] Add the supplied CV as a downloadable About-page asset.
+- [x] Replace the Hunter hero and billboard images with the supplied versions.
+- [x] Add the supplied APRAMP landing image without removing the existing
+  campaign board, and point the APRAMP hero to the new asset.
+- [x] Build and verify the affected routes and downloadable CV, then remove the
+  staging `new_assets/` folder.
 - [x] Increase the shared top-left logo size across desktop and mobile layouts.
 - [x] Lower the first landing-page project group by another increment.
 - [x] Lower the first landing-page project group by one more increment.
@@ -39,6 +76,37 @@
 
 ## Verification
 
+- The production build passes. A 1366x900 production screenshot confirms the
+  Tomorrowland hero poster is 12% larger and remains anchored to its prior top
+  edge; a 390x844 screenshot confirms the responsive layout remains full-width
+  and unchanged.
+- The production build passes. At 1366x900, browser geometry confirms both
+  Levi's detail images are exactly 527.83px by 355.59px with a 19.11px gap; the
+  first image top matches Context at 886.45px and the second image bottom matches
+  Tools at 1616.75px. At 390x844, both images remain exactly 350px by 233.33px
+  with a 12px responsive gap.
+- The production build passes; 1366x900 screenshots of all five project detail
+  pages confirm the shared title group is smaller, substantially lower, and
+  remains above the common hero-artwork baseline. Representative 390x844 checks
+  confirm the longest title and APRAMP's extra campaign link remain unclipped.
+- A second 1366x900 production screenshot confirms both Levi's images moved by
+  another matching increment while remaining separated and correctly sized.
+- A 1366x900 production screenshot confirms the Levi's portrait moved farther
+  up-left and the landscape image moved lower while retaining their clear gap.
+- The production build passes, and Levi's screenshots at 1366x900 and the
+  headless-browser mobile minimum confirm the first image pair matches the source
+  proportions, keeps a visible gap, and reflows without overlap.
+- The production build passes, and 1366x768 plus 390x844 screenshots confirm
+  project titles are smaller, multiline glyphs remain separated, and the longest
+  title (`TOMORROWLAND REBRAND`) fits without clipping.
+- The production build confirms APRAMP's preview and detail hero compile as
+  separate assets, with `campaign-board.png` selected through `detailHero` only
+  on the project detail page.
+- The production build passes with the supplied Hunter hero and billboard, the
+  new APRAMP landing hero, and the downloadable CV.
+- SHA-1 comparisons confirm all four production assets match the supplied files;
+  production preview requests return HTTP 200 for Home, About, Hunter, APRAMP,
+  and the CV PDF.
 - The production build passes after increasing the shared logo from a 52–70px
   responsive range to 64–88px, with a 62px phone size.
 - The production build passes after increasing the desktop feed's top inset from
@@ -72,5 +140,4 @@
 
 ## Deferred Inputs
 
-- Final CV file
 - Approved portrait image
