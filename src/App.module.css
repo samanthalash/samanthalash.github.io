@@ -1,56 +1,3 @@
-.newPortfolio {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(28px, 5vw, 72px);
-  background: #f7f4ee;
-  color: #191919;
-  font-family:
-    "Inter",
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
-}
-
-.intro {
-  max-width: 920px;
-}
-
-.kicker {
-  margin: 0 0 18px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0;
-  text-transform: uppercase;
-}
-
-.intro h1 {
-  margin: 0;
-  font-size: clamp(4rem, 14vw, 10.5rem);
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: 0;
-}
-
-.summary {
-  max-width: 620px;
-  margin: clamp(24px, 4vw, 42px) 0 0;
-  font-size: clamp(1.15rem, 2vw, 1.7rem);
-  line-height: 1.25;
-}
-
-.archiveLink {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.archiveLink a {
-  color: currentColor;
-  font-size: 1rem;
-  text-underline-offset: 0.18em;
-}
-
 .loading {
   min-height: 100vh;
   display: grid;
@@ -62,15 +9,4 @@
     "Helvetica Neue",
     Arial,
     sans-serif;
-}
-
-@media (max-width: 680px) {
-  .newPortfolio {
-    padding: 24px;
-  }
-
-  .archiveLink {
-    justify-content: flex-start;
-    margin-top: 64px;
-  }
 }

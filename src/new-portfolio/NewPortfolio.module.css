@@ -1,0 +1,822 @@
+:global(:root) {
+  --paper: #fbfaf7;
+  --ink: #171717;
+  --muted: #999;
+  --placeholder: #a6a6a6;
+}
+
+:global(html) {
+  background: var(--paper);
+}
+
+:global(body) {
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "Anonymous Pro", monospace;
+}
+
+:global(a) {
+  color: inherit;
+}
+
+:global(a:focus-visible),
+:global(button:focus-visible) {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.logoLink {
+  position: absolute;
+  top: clamp(24px, 4vw, 54px);
+  left: clamp(24px, 4vw, 58px);
+  z-index: 20;
+  display: block;
+  width: clamp(52px, 4.8vw, 70px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.logoLink img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.siteNav {
+  position: absolute;
+  top: clamp(28px, 4vw, 58px);
+  right: clamp(24px, 4vw, 58px);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: clamp(0.78rem, 1vw, 1rem);
+  line-height: 1.12;
+  text-transform: uppercase;
+}
+
+.siteNav a {
+  text-decoration: none;
+}
+
+.siteNav a:hover,
+.siteNav a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.homeNav {
+  position: fixed;
+}
+
+.mobileHomeNav {
+  display: none;
+}
+
+.homePage {
+  display: grid;
+  grid-template-columns: minmax(360px, 36%) 1fr;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Anonymous Pro", monospace;
+}
+
+.homeIntro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100svh;
+  padding: clamp(30px, 4vw, 60px);
+  padding-top: 17vh;
+}
+
+.homeIntro .logoLink {
+  top: clamp(24px, 4vw, 54px);
+  left: clamp(24px, 4vw, 58px);
+}
+
+.nameLockup {
+  position: relative;
+  width: min(100%, 470px);
+  padding-top: 15vh;
+}
+
+.portraitPlaceholder {
+  width: min(60%, 250px);
+  aspect-ratio: 0.92;
+  background: var(--placeholder);
+}
+
+.nameLockup h1,
+.nameLockup > p {
+  position: absolute;
+  bottom: -0.25em;
+  left: 0.08em;
+  z-index: 1;
+  margin: 0;
+  font-family: "Beth Ellen", cursive;
+  font-size: clamp(2.7rem, 4.2vw, 5.4rem);
+  font-weight: 400;
+  line-height: 0.78;
+  letter-spacing: -0.09em;
+  text-transform: lowercase;
+}
+
+.homeSummary {
+  width: min(28ch, 88%);
+  margin: clamp(48px, 8vh, 100px) 0 0;
+  font-size: clamp(0.85rem, 1vw, 1.05rem);
+  line-height: 1.45;
+}
+
+.socialLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: clamp(30px, 5vh, 58px);
+  font-size: 0.78rem;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.socialLinks span,
+.disabledLink {
+  color: currentColor;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.homeFeed {
+  height: 100svh;
+  overflow-y: auto;
+  padding: 11vh clamp(34px, 4vw, 76px) 16vh;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+.homeProject {
+  display: grid;
+  grid-template-columns: minmax(170px, 27%) 1fr;
+  gap: clamp(24px, 3vw, 64px);
+  align-items: start;
+  min-height: 88vh;
+  padding: 2vh 0 13vh;
+  text-decoration: none;
+}
+
+.homeProjectMeta {
+  position: sticky;
+  top: 12vh;
+  padding-top: 0.2rem;
+  font-size: clamp(0.74rem, 0.85vw, 0.95rem);
+  text-transform: uppercase;
+}
+
+.homeProjectMeta p {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.homeProjectMeta ul {
+  padding: 0;
+  margin: 0.65rem 0 0 3.1rem;
+  list-style: none;
+  font-weight: 700;
+  line-height: 0.95;
+  text-transform: lowercase;
+}
+
+.homeProjectMeta li::before {
+  content: "+";
+  display: inline-block;
+  width: 1.1rem;
+  margin-left: -1.1rem;
+}
+
+.homeProject > img {
+  display: block;
+  width: 100%;
+  max-height: 74vh;
+  object-fit: contain;
+  object-position: top left;
+  transition: filter 220ms ease, transform 450ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.homeProject:hover > img {
+  filter: saturate(1.08) contrast(1.03);
+  transform: translateY(-5px);
+}
+
+.standardPage {
+  position: relative;
+  min-height: 100svh;
+  padding: clamp(110px, 13vw, 180px) clamp(24px, 4vw, 62px) clamp(64px, 8vw, 110px);
+  background: var(--paper);
+  font-family: "Anonymous Pro", monospace;
+}
+
+.projectCollage {
+  position: relative;
+  width: 100%;
+  min-height: min(76vw, 880px);
+  margin-top: -2vw;
+}
+
+.collageProject {
+  position: absolute;
+  display: block;
+  text-decoration: none;
+}
+
+.collageProject img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 350ms ease, filter 250ms ease;
+}
+
+.collageProject span {
+  position: absolute;
+  inset: auto 0 -1.6rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.collageProject:hover img,
+.collageProject:focus-visible img {
+  filter: contrast(1.04) saturate(1.08);
+  transform: scale(1.015);
+}
+
+.collageProject:hover span,
+.collageProject:focus-visible span {
+  opacity: 1;
+}
+
+.collageProject1 {
+  top: 6%;
+  left: 18%;
+  width: 18%;
+  height: 38%;
+}
+
+.collageProject2 {
+  top: 48%;
+  left: 10%;
+  width: 28%;
+  height: 30%;
+}
+
+.collageProject3 {
+  top: 17%;
+  left: 51%;
+  width: 31%;
+  height: 34%;
+}
+
+.collageProject4 {
+  top: 25%;
+  right: 0;
+  width: 17%;
+  height: 43%;
+}
+
+.collageProject5 {
+  top: 25%;
+  left: 0;
+  width: 18%;
+  height: 19%;
+}
+
+.selectedWork {
+  position: absolute;
+  top: 48%;
+  left: 0;
+  z-index: 2;
+  margin: 0;
+  font-family: "Beth Ellen", cursive;
+  font-size: clamp(2.5rem, 5vw, 5.6rem);
+  line-height: 0.82;
+  letter-spacing: -0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.aboutPage {
+  display: grid;
+  grid-template-columns: minmax(330px, 42%) 1fr;
+  gap: clamp(45px, 8vw, 130px);
+}
+
+.aboutIdentity {
+  position: sticky;
+  top: 16vh;
+  align-self: start;
+  min-height: 66vh;
+}
+
+.aboutIdentity .nameLockup {
+  padding-top: 5vh;
+}
+
+.aboutIdentity .portraitPlaceholder {
+  width: min(64%, 280px);
+}
+
+.aboutIdentity .disabledLink {
+  display: inline-block;
+  margin: 5.5rem 0 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(76px, 10vw, 150px);
+  padding-right: min(5vw, 70px);
+}
+
+.aboutRow {
+  display: grid;
+  grid-template-columns: minmax(120px, 25%) 1fr;
+  gap: clamp(26px, 4vw, 72px);
+  align-items: start;
+}
+
+.aboutRow h1,
+.aboutRow h2 {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.3vw, 1.25rem);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.aboutRow p {
+  margin: 0;
+  font-size: clamp(0.92rem, 1.2vw, 1.12rem);
+  line-height: 1.05;
+}
+
+.aboutRow a {
+  text-decoration: none;
+}
+
+.boldCopy,
+.aboutRow strong {
+  font-weight: 700;
+}
+
+.experience + .experience {
+  margin-top: 2.4rem;
+}
+
+.experience h3 {
+  margin: 0 0 1.15rem;
+  font-size: clamp(0.9rem, 1.15vw, 1.08rem);
+  line-height: 1.05;
+}
+
+.experience ul {
+  display: grid;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.experience li {
+  position: relative;
+  padding-left: 2.1rem;
+  font-size: clamp(0.9rem, 1.12vw, 1.05rem);
+  line-height: 1.02;
+}
+
+.experience li::before {
+  position: absolute;
+  left: 0;
+  content: "+";
+}
+
+.stack {
+  display: grid;
+  gap: 1.8rem;
+}
+
+.projectPage {
+  padding-top: clamp(112px, 10vw, 150px);
+}
+
+.projectHero {
+  display: grid;
+  grid-template-columns: minmax(280px, 36%) 1fr;
+  gap: clamp(40px, 7vw, 120px);
+  align-items: center;
+  min-height: 70svh;
+}
+
+.projectTitle h1 {
+  margin: 0;
+  white-space: pre-line;
+  font-family: "Beth Ellen", cursive;
+  font-size: clamp(3rem, 4.4vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.09em;
+  text-transform: uppercase;
+}
+
+.projectTitle p,
+.projectTitle a {
+  display: block;
+  margin: clamp(30px, 5vw, 64px) 0 0;
+  font-size: clamp(0.84rem, 1.15vw, 1.08rem);
+  text-transform: uppercase;
+}
+
+.projectTitle a {
+  width: max-content;
+  margin-top: 0.3rem;
+  text-underline-offset: 0.18em;
+}
+
+.projectHero > img {
+  display: block;
+  width: 100%;
+  max-height: 76svh;
+  object-fit: contain;
+}
+
+.projectHero_landscape {
+  grid-template-columns: minmax(280px, 34%) 1fr;
+  grid-template-areas: "title art";
+}
+
+.projectHero_landscape .projectTitle {
+  grid-area: title;
+}
+
+.projectHero_landscape > img:not(.projectHeroAccent) {
+  grid-area: art;
+  align-self: end;
+}
+
+.projectHero_landscape .projectHeroAccent {
+  grid-area: art;
+  z-index: 2;
+  align-self: start;
+  justify-self: start;
+  width: 42%;
+  max-height: 48vh;
+  transform: translate(-42%, -4%);
+}
+
+.projectHero_overview {
+  grid-template-columns: minmax(280px, 31%) 1fr;
+}
+
+.projectHero_overview > img {
+  max-height: 68svh;
+}
+
+.projectDetails {
+  display: grid;
+  grid-template-columns: minmax(320px, 42%) 1fr;
+  gap: clamp(64px, 11vw, 170px);
+  align-items: start;
+  margin-top: clamp(90px, 13vw, 190px);
+}
+
+.projectGallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(8px, 1vw, 16px);
+}
+
+.projectGallery img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  object-fit: cover;
+}
+
+.projectGallery .galleryLead {
+  grid-column: 1 / -1;
+  max-height: 650px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.projectFacts {
+  display: grid;
+  gap: clamp(42px, 5.5vw, 84px);
+  margin: 0;
+  padding-top: 0.2rem;
+}
+
+.projectFacts > div {
+  display: grid;
+  grid-template-columns: minmax(105px, 23%) 1fr;
+  gap: clamp(20px, 3vw, 55px);
+}
+
+.projectFacts dt {
+  font-size: clamp(0.88rem, 1.2vw, 1.08rem);
+  text-transform: uppercase;
+}
+
+.projectFacts dd {
+  margin: 0;
+  font-size: clamp(0.87rem, 1.08vw, 1.05rem);
+  font-weight: 700;
+  line-height: 1.03;
+}
+
+.projectFacts dd span {
+  display: block;
+}
+
+.nextProject {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: clamp(90px, 14vw, 180px);
+  text-transform: uppercase;
+}
+
+.nextProject a {
+  text-underline-offset: 0.2em;
+}
+
+.notFound {
+  position: relative;
+  display: grid;
+  place-content: center;
+  min-height: 100svh;
+  text-align: center;
+  font-family: "Anonymous Pro", monospace;
+}
+
+.notFound .logoLink {
+  display: block;
+}
+
+.notFound p {
+  font-size: 1.4rem;
+}
+
+@media (max-width: 900px) {
+  .homePage {
+    display: block;
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+  }
+
+  .homeIntro {
+    height: auto;
+    min-height: 88svh;
+    padding: 130px 28px 72px;
+  }
+
+  .homeIntro .siteNav {
+    display: none;
+  }
+
+  .mobileHomeNav {
+    position: absolute;
+    top: 28px;
+    right: 24px;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: var(--ink);
+    font-size: 0.78rem;
+    line-height: 1.12;
+    text-transform: uppercase;
+  }
+
+  .mobileHomeNav a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nameLockup {
+    padding-top: 5vh;
+  }
+
+  .nameLockup h1,
+  .nameLockup > p {
+    font-size: clamp(3.4rem, 13vw, 6.2rem);
+  }
+
+  .portraitPlaceholder {
+    width: min(58vw, 260px);
+  }
+
+  .homeSummary {
+    margin-top: 5rem;
+  }
+
+  .homeFeed {
+    height: auto;
+    overflow: visible;
+    padding: 56px 28px 80px;
+  }
+
+  .homeProject {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: 24px;
+    padding: 0 0 100px;
+  }
+
+  .homeProjectMeta {
+    position: static;
+  }
+
+  .homeProject > img {
+    max-height: none;
+  }
+
+  .projectCollage {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 42px 16px;
+    min-height: 0;
+    margin-top: 20px;
+  }
+
+  .collageProject {
+    position: relative;
+    inset: auto;
+    width: auto;
+    height: auto;
+  }
+
+  .collageProject img {
+    aspect-ratio: 4 / 5;
+  }
+
+  .collageProject span {
+    position: static;
+    display: block;
+    margin-top: 0.55rem;
+    opacity: 1;
+  }
+
+  .collageProject3,
+  .collageProject5 {
+    grid-column: 1 / -1;
+  }
+
+  .collageProject3 img,
+  .collageProject5 img {
+    aspect-ratio: 16 / 9;
+  }
+
+  .selectedWork {
+    position: static;
+    grid-row: 1;
+    grid-column: 1 / -1;
+    margin-bottom: 20px;
+  }
+
+  .aboutPage,
+  .projectDetails {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutIdentity {
+    position: relative;
+    top: auto;
+    min-height: 520px;
+  }
+
+  .aboutContent {
+    padding: 0;
+  }
+
+  .projectHero,
+  .projectHero_landscape,
+  .projectHero_overview {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+  }
+
+  .projectTitle {
+    align-self: stretch;
+    padding: 11vh 0 2vh;
+  }
+
+  .projectTitle h1 {
+    font-size: clamp(3.2rem, 11vw, 6rem);
+  }
+
+  .projectHero_landscape .projectHeroAccent {
+    align-self: flex-start;
+    width: 48%;
+    margin: -12% 0 0 4%;
+    transform: none;
+  }
+
+  .projectDetails {
+    margin-top: 90px;
+  }
+}
+
+@media (max-width: 560px) {
+  .logoLink {
+    width: 50px;
+  }
+
+  .siteNav {
+    font-size: 0.72rem;
+  }
+
+  .standardPage {
+    padding: 100px 20px 60px;
+  }
+
+  .projectCollage {
+    grid-template-columns: 1fr;
+  }
+
+  .collageProject3,
+  .collageProject5 {
+    grid-column: auto;
+  }
+
+  .collageProject img,
+  .collageProject3 img,
+  .collageProject5 img {
+    aspect-ratio: auto;
+    max-height: 70svh;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .aboutRow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .aboutIdentity {
+    min-height: 450px;
+  }
+
+  .aboutIdentity .disabledLink {
+    margin-top: 4.5rem;
+  }
+
+  .projectGallery {
+    grid-template-columns: 1fr;
+  }
+
+  .projectGallery .galleryLead {
+    grid-column: auto;
+  }
+
+  .projectFacts > div {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homeFeed {
+    scroll-behavior: auto;
+  }
+
+  .homeProject > img,
+  .collageProject img,
+  .collageProject span {
+    transition: none;
+  }
+}

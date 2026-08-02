@@ -210,31 +210,83 @@ function archiveRoutePlugin(): Plugin {
     async closeBundle() {
       const distPath = path.join(root, "dist");
       const rootIndexPath = path.join(distPath, "index.html");
-      const archivePath = path.join(distPath, "archive");
       const rootIndexHtml = await readFile(rootIndexPath, "utf8");
-      const archiveIndexHtml = rootIndexHtml
-        .replace(
-          'content="Creative direction, brand identity, strategy, and concept portfolio for Samantha Lash."',
-          'content="Design portfolio for Samantha Lash, presented as a tactile archival folder."',
-        )
-        .replace(
-          'href="https://samanthalash.com/"',
-          'href="https://samanthalash.com/archive/"',
-        )
-        .replace(
-          'property="og:url" content="https://samanthalash.com/"',
-          'property="og:url" content="https://samanthalash.com/archive/"',
-        )
-        .replace(
-          'content="Creative direction, brand identity, strategy, and concept portfolio for Samantha Lash."',
-          'content="Design portfolio for Samantha Lash, presented as a tactile archival folder."',
-        );
+      const routeEntries = [
+        {
+          path: "archive",
+          title: "Archive | Samantha Lash",
+          description:
+            "Design portfolio for Samantha Lash, presented as a tactile archival folder.",
+        },
+        {
+          path: "projects",
+          title: "Projects | Samantha Lash",
+          description:
+            "Selected creative direction, strategy, and brand identity projects by Samantha Lash.",
+        },
+        {
+          path: "about",
+          title: "About | Samantha Lash",
+          description:
+            "About Samantha Lash, a creative direction master's student working across branding, communications, and marketing.",
+        },
+        {
+          path: "projects/hunter-campaign",
+          title: "Hunter Campaign | Samantha Lash",
+          description: "Hunter creative direction campaign by Samantha Lash.",
+        },
+        {
+          path: "projects/levis-campaign",
+          title: "Levi's Campaign | Samantha Lash",
+          description: "Levi's creative direction campaign by Samantha Lash.",
+        },
+        {
+          path: "projects/apramp-campaign",
+          title: "APRAMP Campaign | Samantha Lash",
+          description: "APRAMP strategy and social impact campaign by Samantha Lash.",
+        },
+        {
+          path: "projects/tomorrowland-rebrand",
+          title: "Tomorrowland Rebrand | Samantha Lash",
+          description: "Tomorrowland brand identity project by Samantha Lash.",
+        },
+        {
+          path: "projects/la-manuela-rebrand",
+          title: "La Manuela Rebrand | Samantha Lash",
+          description: "La Manuela brand identity project by Samantha Lash.",
+        },
+      ];
 
-      await mkdir(archivePath, { recursive: true });
-      await writeFile(
-        path.join(archivePath, "index.html"),
-        archiveIndexHtml,
-        "utf8",
+      await Promise.all(
+        routeEntries.map(async (route) => {
+          const routePath = path.join(distPath, route.path);
+          const routeUrl = `https://samanthalash.com/${route.path}/`;
+          const routeIndexHtml = rootIndexHtml
+            .replace(/<title>.*?<\/title>/, `<title>${route.title}</title>`)
+            .replace(
+              /(<meta\s+name="description"\s+content=")[^"]*("\s*\/>)/,
+              `$1${route.description}$2`,
+            )
+            .replace(
+              /(<link\s+rel="canonical"\s+href=")[^"]*("\s*\/>)/,
+              `$1${routeUrl}$2`,
+            )
+            .replace(
+              /(<meta\s+property="og:url"\s+content=")[^"]*("\s*\/>)/,
+              `$1${routeUrl}$2`,
+            )
+            .replace(
+              /(<meta\s+property="og:title"\s+content=")[^"]*("\s*\/>)/,
+              `$1${route.title}$2`,
+            )
+            .replace(
+              /(<meta\s+property="og:description"\s+content=")[^"]*("\s*\/>)/,
+              `$1${route.description}$2`,
+            );
+
+          await mkdir(routePath, { recursive: true });
+          await writeFile(path.join(routePath, "index.html"), routeIndexHtml, "utf8");
+        }),
       );
     },
   };
