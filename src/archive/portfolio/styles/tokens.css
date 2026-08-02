@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "PP Neue Montreal";
-  src: url("../../inspo/PP Neue Montreal - Free for Personal Use v3.0/otf/PPNeueMontreal-Light.otf")
+  src: url("../../../../inspo/PP Neue Montreal - Free for Personal Use v3.0/otf/PPNeueMontreal-Light.otf")
     format("opentype");
   font-style: normal;
   font-weight: 300;
@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: "PP Neue Montreal";
-  src: url("../../inspo/PP Neue Montreal - Free for Personal Use v3.0/otf/PPNeueMontreal-Regular.otf")
+  src: url("../../../../inspo/PP Neue Montreal - Free for Personal Use v3.0/otf/PPNeueMontreal-Regular.otf")
     format("opentype");
   font-style: normal;
   font-weight: 400;
@@ -20,7 +20,7 @@
 
 @font-face {
   font-family: "PP Neue Montreal";
-  src: url("../../inspo/PP Neue Montreal - Free for Personal Use v3.0/otf/PPNeueMontreal-Semibold.otf")
+  src: url("../../../../inspo/PP Neue Montreal - Free for Personal Use v3.0/otf/PPNeueMontreal-Semibold.otf")
     format("opentype");
   font-style: normal;
   font-weight: 500;
@@ -29,7 +29,7 @@
 
 @font-face {
   font-family: "PP Neue Montreal";
-  src: url("../../inspo/PP Neue Montreal - Free for Personal Use v3.0/otf/PPNeueMontreal-Semibold.otf")
+  src: url("../../../../inspo/PP Neue Montreal - Free for Personal Use v3.0/otf/PPNeueMontreal-Semibold.otf")
     format("opentype");
   font-style: normal;
   font-weight: 700;

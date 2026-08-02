@@ -15,23 +15,23 @@ import leviDesertImage from "../assets/creative-direction/levi-desert.png";
 import leviBeachImage from "../assets/creative-direction/levi-beach.png";
 import hunterFlatlayImage from "../assets/brand-identity/hunter-flatlay.png";
 import hunterBillboardImage from "../assets/brand-identity/hunter-billboard.png";
-import laManuelaCoverImage from "../../inspo/la manuela/lamanu_firstlayer.png";
-import laManuelaVisionImage from "../../inspo/la manuela/lamanu_second.png";
-import laManuelaMeaningImage from "../../inspo/la manuela/lamanu_third.png";
-import laManuelaMoodboardImage from "../../inspo/la manuela/lamanu_fourth.png";
-import laManuelaStrategyStampImage from "../../inspo/strategy.png";
-import laManuelaPitchDeckStampImage from "../../inspo/pitch deck.png";
-import contactThankYouImage from "../../inspo/thankyou.png";
-import contactEnvelopeImage from "../../inspo/envelope.png";
-import aprampCoverImage from "../../inspo/apramp/ap1.png";
-import aprampIntroImage from "../../inspo/apramp/ap2.png";
-import aprampGiftBoxImage from "../../inspo/apramp/ap3.png";
-import aprampInsideBoxImage from "../../inspo/apramp/ap4.png";
-import aprampExecutionPlanImage from "../../inspo/apramp/ap5.png";
-import tomorrowlandPosterImage from "../../inspo/tomorrowland /1st.png";
-import tomorrowlandInstagramImage from "../../inspo/tomorrowland /2nd.png";
-import tomorrowlandVinylImage from "../../inspo/tomorrowland /3rd.png";
-import tomorrowlandSteviePosterImage from "../../inspo/tomorrowland /4th.png";
+import laManuelaCoverImage from "../../../../inspo/la manuela/lamanu_firstlayer.png";
+import laManuelaVisionImage from "../../../../inspo/la manuela/lamanu_second.png";
+import laManuelaMeaningImage from "../../../../inspo/la manuela/lamanu_third.png";
+import laManuelaMoodboardImage from "../../../../inspo/la manuela/lamanu_fourth.png";
+import laManuelaStrategyStampImage from "../../../../inspo/strategy.png";
+import laManuelaPitchDeckStampImage from "../../../../inspo/pitch deck.png";
+import contactThankYouImage from "../../../../inspo/thankyou.png";
+import contactEnvelopeImage from "../../../../inspo/envelope.png";
+import aprampCoverImage from "../../../../inspo/apramp/ap1.png";
+import aprampIntroImage from "../../../../inspo/apramp/ap2.png";
+import aprampGiftBoxImage from "../../../../inspo/apramp/ap3.png";
+import aprampInsideBoxImage from "../../../../inspo/apramp/ap4.png";
+import aprampExecutionPlanImage from "../../../../inspo/apramp/ap5.png";
+import tomorrowlandPosterImage from "../../../../inspo/tomorrowland /1st.png";
+import tomorrowlandInstagramImage from "../../../../inspo/tomorrowland /2nd.png";
+import tomorrowlandVinylImage from "../../../../inspo/tomorrowland /3rd.png";
+import tomorrowlandSteviePosterImage from "../../../../inspo/tomorrowland /4th.png";
 
 const baseLayoutAssetRegistry = {
   paperclip: paperclipImage,
@@ -71,7 +71,7 @@ const baseLayoutAssetRegistry = {
 } as const;
 
 const inspoImagesByPath = import.meta.glob<string>(
-  "../../inspo/**/*.{png,jpg,jpeg,webp}",
+  "../../../../inspo/**/*.{png,jpg,jpeg,webp}",
   {
     eager: true,
     import: "default",
@@ -84,7 +84,7 @@ const collator = new Intl.Collator(undefined, {
 });
 
 const getInspoRelativePath = (path: string) =>
-  path.replace(/^\.\.\/\.\.\/inspo\//, "");
+  path.replace(/^\.\.\/\.\.\/\.\.\/\.\.\/inspo\//, "");
 
 const getFilename = (path: string) => {
   const parts = path.split("/");

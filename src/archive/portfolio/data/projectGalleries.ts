@@ -3,17 +3,17 @@ import leviBillboardImage from "../assets/creative-direction/levi-billboard.png"
 import leviCyclistImage from "../assets/creative-direction/levi-cyclist.png";
 import leviDesertImage from "../assets/creative-direction/levi-desert.png";
 import nylonPhotoImage from "../assets/creative-direction/nylon_photo.png";
-import hunterFlatlayImage from "../../inspo/hunter_1.0.png";
-import hunterBillboardImage from "../../inspo/hunter_2.0.png";
-import aprampOverviewImage from "../../inspo/Apramp.png";
+import hunterFlatlayImage from "../../../../inspo/hunter_1.0.png";
+import hunterBillboardImage from "../../../../inspo/hunter_2.0.png";
+import aprampOverviewImage from "../../../../inspo/Apramp.png";
 import aprampPresentationCover from "../assets/apramp/presentation-cover.png";
-import aprampPresentationPdf from "../../inspo/apramp/FINAL APRAMP PRESENTATION.pdf?url";
-import laManuelaOverviewImage from "../../inspo/La_manuela.png";
-import tomorrowlandOverviewImage from "../../inspo/Tomorrowland.png";
-import levisInspoCyclistImage from "../../inspo/levi's/Screenshot 2026-04-01 at 2.10.29 PM.png";
-import levisInspoBillboardImage from "../../inspo/levi's/Screenshot 2026-04-01 at 2.23.13 PM.png";
-import levisInspoDesertImage from "../../inspo/levi's/Screenshot 2026-04-09 at 3.21.20 PM.png";
-import levisInspoBeachImage from "../../inspo/levi's/Screenshot 2026-04-09 at 3.21.46 PM.png";
+import aprampPresentationPdf from "../../../../inspo/apramp/FINAL APRAMP PRESENTATION.pdf?url";
+import laManuelaOverviewImage from "../../../../inspo/La_manuela.png";
+import tomorrowlandOverviewImage from "../../../../inspo/Tomorrowland.png";
+import levisInspoCyclistImage from "../../../../inspo/levi's/Screenshot 2026-04-01 at 2.10.29 PM.png";
+import levisInspoBillboardImage from "../../../../inspo/levi's/Screenshot 2026-04-01 at 2.23.13 PM.png";
+import levisInspoDesertImage from "../../../../inspo/levi's/Screenshot 2026-04-09 at 3.21.20 PM.png";
+import levisInspoBeachImage from "../../../../inspo/levi's/Screenshot 2026-04-09 at 3.21.46 PM.png";
 import type { PortfolioGalleryImage } from "./portfolioGallery";
 
 export type ProjectGalleryId =
@@ -93,32 +93,32 @@ const levisInspoImages: PortfolioGalleryImage[] = [
 ];
 
 const nylonInspoImages = imagesFromGlob(
-  import.meta.glob<string>("../../inspo/nylon/*.{png,jpg,jpeg,webp}", {
+  import.meta.glob<string>("../../../../inspo/nylon/*.{png,jpg,jpeg,webp}", {
     eager: true,
     import: "default",
   }),
   {
-    "../../inspo/nylon/editorial-article-draft-1.png":
+    "../../../../inspo/nylon/editorial-article-draft-1.png":
       "nylon-editorial-desktop",
   },
 );
 
 const tomorrowlandInspoImages = imagesFromGlob(
-  import.meta.glob<string>("../../inspo/tomorrowland /*.{png,jpg,jpeg,webp}", {
+  import.meta.glob<string>("../../../../inspo/tomorrowland /*.{png,jpg,jpeg,webp}", {
     eager: true,
     import: "default",
   }),
 );
 
 const laManuelaInspoImages = imagesFromGlob(
-  import.meta.glob<string>("../../inspo/la manuela/*.{png,jpg,jpeg,webp}", {
+  import.meta.glob<string>("../../../../inspo/la manuela/*.{png,jpg,jpeg,webp}", {
     eager: true,
     import: "default",
   }),
 );
 
 const aprampInspoImages = imagesFromGlob(
-  import.meta.glob<string>("../../inspo/apramp/*.{png,jpg,jpeg,webp}", {
+  import.meta.glob<string>("../../../../inspo/apramp/*.{png,jpg,jpeg,webp}", {
     eager: true,
     import: "default",
   }),

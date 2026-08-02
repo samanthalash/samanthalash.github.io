@@ -20,8 +20,8 @@ import leviDesertImage from "../../assets/creative-direction/levi-desert.png";
 import leviBeachImage from "../../assets/creative-direction/levi-beach.png";
 import hunterFlatlayImage from "../../assets/brand-identity/hunter-flatlay.png";
 import hunterBillboardImage from "../../assets/brand-identity/hunter-billboard.png";
-import contactThankYouImage from "../../../inspo/thankyou.png";
-import contactEnvelopeImage from "../../../inspo/envelope.png";
+import contactThankYouImage from "../../../../../inspo/thankyou.png";
+import contactEnvelopeImage from "../../../../../inspo/envelope.png";
 import { CanvasPageRenderer } from "../editor/CanvasPageRenderer";
 import type {
   BrandIdentityStackImageControl,

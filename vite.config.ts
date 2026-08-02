@@ -5,13 +5,20 @@ import path from "node:path";
 import type { Plugin } from "vite";
 
 export default defineConfig({
-  plugins: [react(), layoutEditorPlugin()],
+  plugins: [react(), layoutEditorPlugin(), archiveRoutePlugin()],
 });
 
 function layoutEditorPlugin(): Plugin {
   const root = process.cwd();
-  const layoutPath = path.join(root, "src/data/editableLayout.json");
-  const galleryOverridesPath = path.join(root, "src/data/galleryOverrides.json");
+  const archivedPortfolioPath = path.join(root, "src/archive/portfolio");
+  const layoutPath = path.join(
+    archivedPortfolioPath,
+    "data/editableLayout.json",
+  );
+  const galleryOverridesPath = path.join(
+    archivedPortfolioPath,
+    "data/galleryOverrides.json",
+  );
   const assetDirectory = path.join(root, "public/editor-assets");
   const galleryAssetDirectory = path.join(root, "public/gallery-assets");
 
@@ -190,6 +197,45 @@ function layoutEditorPlugin(): Plugin {
           response.end(error instanceof Error ? error.message : "Gallery edit failed.");
         }
       });
+    },
+  };
+}
+
+function archiveRoutePlugin(): Plugin {
+  const root = process.cwd();
+
+  return {
+    name: "archive-route-html",
+    apply: "build",
+    async closeBundle() {
+      const distPath = path.join(root, "dist");
+      const rootIndexPath = path.join(distPath, "index.html");
+      const archivePath = path.join(distPath, "archive");
+      const rootIndexHtml = await readFile(rootIndexPath, "utf8");
+      const archiveIndexHtml = rootIndexHtml
+        .replace(
+          'content="Creative direction, brand identity, strategy, and concept portfolio for Samantha Lash."',
+          'content="Design portfolio for Samantha Lash, presented as a tactile archival folder."',
+        )
+        .replace(
+          'href="https://samanthalash.com/"',
+          'href="https://samanthalash.com/archive/"',
+        )
+        .replace(
+          'property="og:url" content="https://samanthalash.com/"',
+          'property="og:url" content="https://samanthalash.com/archive/"',
+        )
+        .replace(
+          'content="Creative direction, brand identity, strategy, and concept portfolio for Samantha Lash."',
+          'content="Design portfolio for Samantha Lash, presented as a tactile archival folder."',
+        );
+
+      await mkdir(archivePath, { recursive: true });
+      await writeFile(
+        path.join(archivePath, "index.html"),
+        archiveIndexHtml,
+        "utf8",
+      );
     },
   };
 }
