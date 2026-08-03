@@ -5,20 +5,17 @@ import levisBeach from "../assets/projects/levis/beach.png";
 import levisBeachBillboard from "../assets/projects/levis/beachbilly.png";
 import levisDesert from "../assets/projects/levis/desert.png";
 import levisCyclist from "../assets/projects/levis/cyclist.png";
-import aprampOverview from "../assets/projects/apramp/overview.png";
-import aprampCover from "../assets/projects/apramp/cover.png";
 import aprampCampaignBoard from "../assets/projects/apramp/campaign-board.png";
 import aprampLandingHero from "../assets/projects/apramp/landing-hero.png";
-import aprampGiftBox from "../assets/projects/apramp/gift-box.png";
-import aprampInside from "../assets/projects/apramp/inside-installation.png";
-import aprampExecution from "../assets/projects/apramp/execution-plan.png";
-import aprampSocialMedia from "../assets/projects/apramp/social-media.png";
+import aprampInvitation from "../assets/projects/apramp/un-regalo.png";
 import aprampInstallation from "../assets/projects/apramp/installation.png";
-import tomorrowlandOverview from "../assets/projects/tomorrowland/overview.png";
+import aprampInsideBox from "../assets/projects/apramp/inside-box.png";
+import aprampInterview from "../assets/projects/apramp/guy-speaking.png";
 import tomorrowlandPoster from "../assets/projects/tomorrowland/poster.png";
 import tomorrowlandInstagram from "../assets/projects/tomorrowland/instagram.png";
+import tomorrowlandBillboard from "../assets/projects/tomorrowland/tomorrowbilly.png";
+import tomorrowlandBracelet from "../assets/projects/tomorrowland/tomorrowbracelet.png";
 import tomorrowlandVinyl from "../assets/projects/tomorrowland/vinyl.png";
-import laManuelaOverview from "../assets/projects/la-manuela/overview.png";
 import laManuelaCover from "../assets/projects/la-manuela/cover.png";
 import laManuelaVision from "../assets/projects/la-manuela/vision.png";
 import laManuelaMeaning from "../assets/projects/la-manuela/meaning.png";
@@ -47,6 +44,19 @@ export interface Project {
   gallery: ProjectImage[];
   layout: "portrait" | "landscape" | "overview";
   fullCampaignHref?: string;
+}
+
+export interface ProjectCollageItem {
+  slug: Project["slug"];
+  image: ProjectImage;
+  placement:
+    | "collageHunter"
+    | "collageLevisBeach"
+    | "collageLevisDesert"
+    | "collageApramp"
+    | "collageTomorrowlandBracelet"
+    | "collageTomorrowland"
+    | "collageLaManuela";
 }
 
 export const site = {
@@ -124,13 +134,10 @@ export const projects: Project[] = [
     hero: { src: aprampLandingHero, alt: "APRAMP False Promises installation in a busy public square" },
     detailHero: { src: aprampCampaignBoard, alt: "APRAMP False Promises campaign board" },
     gallery: [
+      { src: aprampInvitation, alt: "Invitation to find the False Promises gift box in El Retiro" },
       { src: aprampInstallation, alt: "False Promises installation in El Retiro Park" },
-      { src: aprampSocialMedia, alt: "False Promises social media campaign" },
-      { src: aprampOverview, alt: "APRAMP campaign creative brief" },
-      { src: aprampGiftBox, alt: "False Promises gift box concept" },
-      { src: aprampCover, alt: "APRAMP campaign presentation cover" },
-      { src: aprampInside, alt: "Interior of the False Promises installation" },
-      { src: aprampExecution, alt: "APRAMP campaign execution plan" },
+      { src: aprampInsideBox, alt: "Red-lit interior of the False Promises installation" },
+      { src: aprampInterview, alt: "A visitor speaking beside the False Promises installation" },
     ],
     layout: "overview",
     fullCampaignHref: "/assets/FINAL-APRAMP-PRESENTATION.pdf",
@@ -152,8 +159,9 @@ export const projects: Project[] = [
     tools: ["Adobe Illustrator", "Adobe Photoshop", "Figma"],
     hero: { src: tomorrowlandPoster, alt: "Tomorrowland rebrand festival poster" },
     gallery: [
-      { src: tomorrowlandOverview, alt: "Tomorrowland rebrand overview" },
       { src: tomorrowlandInstagram, alt: "Tomorrowland rebrand Instagram profile" },
+      { src: tomorrowlandBillboard, alt: "Tomorrowland festival poster on an outdoor billboard" },
+      { src: tomorrowlandBracelet, alt: "Tomorrowland festival wristband designs" },
       { src: tomorrowlandVinyl, alt: "Tomorrowland rebrand vinyl application" },
     ],
     layout: "portrait",
@@ -175,12 +183,49 @@ export const projects: Project[] = [
     tools: ["Canva", "Figma"],
     hero: { src: laManuelaCover, alt: "La Manuela rebrand identity" },
     gallery: [
-      { src: laManuelaOverview, alt: "La Manuela rebrand overview" },
       { src: laManuelaVision, alt: "La Manuela brand vision" },
       { src: laManuelaMeaning, alt: "La Ronda name and meaning" },
       { src: laManuelaMoodboard, alt: "La Manuela visual moodboard" },
     ],
     layout: "landscape",
+  },
+];
+
+export const projectCollageItems: ProjectCollageItem[] = [
+  {
+    slug: "hunter-campaign",
+    image: { src: hunterHero, alt: "Hunter festival essentials campaign flatlay" },
+    placement: "collageHunter",
+  },
+  {
+    slug: "levis-campaign",
+    image: { src: levisBeach, alt: "Levi's Fit For Wherever beach campaign" },
+    placement: "collageLevisBeach",
+  },
+  {
+    slug: "levis-campaign",
+    image: { src: levisDesert, alt: "Levi's Fit For Wherever desert campaign" },
+    placement: "collageLevisDesert",
+  },
+  {
+    slug: "apramp-campaign",
+    image: { src: aprampLandingHero, alt: "APRAMP False Promises installation in a busy public square" },
+    placement: "collageApramp",
+  },
+  {
+    slug: "tomorrowland-rebrand",
+    image: { src: tomorrowlandBracelet, alt: "Tomorrowland festival wristband designs" },
+    placement: "collageTomorrowlandBracelet",
+  },
+  {
+    slug: "tomorrowland-rebrand",
+    image: { src: tomorrowlandPoster, alt: "Tomorrowland rebrand festival poster" },
+    placement: "collageTomorrowland",
+  },
+  {
+    slug: "la-manuela-rebrand",
+    image: { src: laManuelaCover, alt: "La Manuela rebrand identity" },
+    placement: "collageLaManuela",
   },
 ];
 

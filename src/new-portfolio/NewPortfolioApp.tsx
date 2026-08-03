@@ -2,7 +2,7 @@ import "@fontsource/anonymous-pro/latin-400.css";
 import "@fontsource/anonymous-pro/latin-700.css";
 import "@fontsource/beth-ellen/latin-400.css";
 import { useEffect } from "react";
-import { projectBySlug, projects, site, type Project } from "./data/portfolio";
+import { projectBySlug, projectCollageItems, projects, site, type Project } from "./data/portfolio";
 import styles from "./NewPortfolio.module.css";
 
 const normalizePath = (pathname: string) => {
@@ -73,21 +73,27 @@ function HomePage() {
 
 function ProjectsPage() {
   return (
-    <main className={styles.standardPage}>
+    <main className={`${styles.standardPage} ${styles.projectsPage}`}>
       <LogoLink />
       <SiteNav current="projects" />
       <h1 className={styles.visuallyHidden}>Projects</h1>
       <section className={styles.projectCollage} aria-label="Samantha Lash projects">
-        {projects.map((project, index) => (
+        {projectCollageItems.map((item, index) => {
+          const project = projectBySlug.get(item.slug);
+          if (!project) return null;
+
+          return (
           <a
-            className={`${styles.collageProject} ${styles[`collageProject${index + 1}`]}`}
+            className={`${styles.collageProject} ${styles[item.placement]}`}
             href={`/projects/${project.slug}/`}
-            key={project.slug}
+            key={`${project.slug}-${index}`}
+            aria-label={project.title}
           >
-            <img src={project.hero.src} alt={project.hero.alt} />
-            <span>{project.title}</span>
+            <img src={item.image.src} alt={item.image.alt} />
+            <span aria-hidden="true">{project.title}</span>
           </a>
-        ))}
+          );
+        })}
         <p className={styles.selectedWork}>Selected<br />Work</p>
       </section>
     </main>
@@ -197,9 +203,15 @@ function ProjectPage({ project }: { project: Project }) {
       <LogoLink />
       <section
         className={`${styles.projectHero} ${styles[`projectHero_${project.layout}`]} ${
+          project.slug === "hunter-campaign" ? styles.hunterProjectHero : ""
+        } ${
           project.slug === "levis-campaign" ? styles.levisProjectHero : ""
         } ${
+          project.slug === "apramp-campaign" ? styles.aprampProjectHero : ""
+        } ${
           project.slug === "tomorrowland-rebrand" ? styles.tomorrowlandProjectHero : ""
+        } ${
+          project.slug === "la-manuela-rebrand" ? styles.laManuelaProjectHero : ""
         }`}
       >
         <div className={styles.projectTitle}>
@@ -210,12 +222,18 @@ function ProjectPage({ project }: { project: Project }) {
           )}
         </div>
         <img src={detailHero.src} alt={detailHero.alt} />
-        {project.layout === "landscape" && heroAccent && (
+        {project.layout === "landscape" && project.slug !== "la-manuela-rebrand" && heroAccent && (
           <img className={styles.projectHeroAccent} src={heroAccent.src} alt={heroAccent.alt} />
         )}
       </section>
       <section id="project-details" className={`${styles.projectDetails} ${
         project.slug === "levis-campaign" ? styles.levisProjectDetails : ""
+      } ${
+        project.slug === "tomorrowland-rebrand" ? styles.tomorrowlandProjectDetails : ""
+      } ${
+        project.slug === "apramp-campaign" ? styles.aprampProjectDetails : ""
+      } ${
+        project.slug === "la-manuela-rebrand" ? styles.laManuelaProjectDetails : ""
       }`}>
         <div className={styles.projectGallery}>
           {project.gallery.map((image, index) => (

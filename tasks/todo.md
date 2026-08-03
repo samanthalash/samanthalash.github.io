@@ -2,6 +2,42 @@
 
 ## Plan
 
+- [x] Rebuild the Projects selected-work collage from the seven exact goal-mockup
+  images, preserving their intrinsic aspect ratios, order, overlaps, and gaps.
+- [x] Match the desktop Selected Work lockup, edge-to-edge placement, logo, and
+  navigation to the 1366px goal composition while retaining an accessible
+  responsive layout.
+- [x] Build and visually verify the Projects page at the goal desktop viewport
+  and a representative mobile viewport without disturbing project detail work.
+- [x] Enlarge and lower the APRAMP detail hero so its desktop right and bottom
+  viewport gaps match while preserving the responsive stack.
+- [x] Replace the APRAMP description gallery with the goal-mockup sequence:
+  invitation, outdoor installation, then interior and interview side by side.
+- [x] Build and visually verify the APRAMP detail page at desktop and mobile
+  sizes without changing the other project layouts.
+- [x] Enlarge and right-align the Hunter detail hero so its top, right, and
+  bottom viewport gaps match at desktop sizes, following the Tomorrowland
+  treatment without changing mobile or other project layouts.
+- [x] Build and visually verify the Hunter hero at desktop and mobile sizes.
+- [x] Match the La Manuela detail hero to the goal portfolio with only the cover
+  image, reduced slightly and aligned to equal right and bottom viewport gaps.
+- [x] Rebuild the La Manuela description gallery as a one-column sequence of Our
+  Vision, The Meaning, and Moodboard, removing the non-reference overview image.
+- [x] Build and visually verify the La Manuela detail page at desktop and mobile
+  sizes without changing the other project layouts.
+- [x] Rebuild the Tomorrowland detail gallery from Samantha's reference: large
+  Instagram mockup at left, then billboard, bracelet, and vinyl down the right.
+- [x] Remove the overview image from that gallery and wire in the two supplied
+  production images with accurate alternative text.
+- [x] Build and visually verify the Tomorrowland gallery at desktop and mobile
+  sizes without changing other project galleries.
+- [x] Move the Tomorrowland hero poster right so its right gutter matches its
+  equal top and bottom viewport gaps.
+- [x] Build and visually verify the final desktop gutter alignment.
+- [x] Refit the desktop Tomorrowland hero poster slightly larger, shift it left
+  within its artwork area, and give it equal viewport space above and below.
+- [x] Build and visually verify the revised Tomorrowland hero at desktop and
+  mobile sizes.
 - [x] Enlarge the Tomorrowland detail-page hero poster while keeping its top
   position fixed.
 - [x] Build and visually verify the Tomorrowland hero at desktop and mobile
@@ -76,6 +112,39 @@
 
 ## Verification
 
+- The production build passes. A 1366x768 browser comparison confirms the seven
+  Projects-page images use the goal assets and intrinsic ratios at the reference
+  coordinates: La Manuela at the left edge, Hunter above Levi's two-image group,
+  APRAMP at center-right, and Tomorrowland's wristband and poster at the right.
+  The stamp, navigation, and Selected Work lockup now match the reference scale
+  and placement. A 500x844 check confirms the collage becomes a readable,
+  uncropped single-column sequence with working navigation.
+- The production build passes. At 1366x768, the APRAMP detail hero renders at
+  approximately 826px by 522px with matching 54.6px right and bottom viewport
+  gaps. Its goal-matched gallery is 427px wide: the invitation and outdoor box
+  span full-width rows, followed by two equal 211px by 176px images. At 390px,
+  all four images reflow to a 350px single-column stack without overflow.
+- The production build passes. At 1366x900, the Hunter detail hero is 88svh
+  tall and has approximately 54px top, right, and bottom viewport gaps; a
+  390x844 screenshot confirms the mobile stack remains unchanged and readable.
+- The production build passes. Desktop browser geometry confirms the La Manuela
+  cover is the only hero image, renders at approximately 660px by 368px, and has
+  matching 54.6px right and bottom viewport gaps. The description gallery uses
+  only Our Vision, The Meaning, and Moodboard in a 402px-wide single column with
+  reference-matched spacing; at 390px, all three boards reflow to a clean 350px
+  column before the project facts.
+- The production build passes. At 1366x900, the Tomorrowland detail collage
+  closely matches Samantha's reference with the Instagram mockup spanning the
+  left column and the billboard, bracelet, and vinyl stacked top-to-bottom on
+  the right; a 390x844 check confirms the same composition remains readable and
+  aligned before the single-column project description.
+- The production build passes. At 1366x900, the Tomorrowland poster retains its
+  88svh height and has approximately 54px top, 54px bottom, and 55px right
+  viewport gaps.
+- The production build passes. At 1366x900, the refitted Tomorrowland poster is
+  88svh tall, sits exactly 54px from both viewport edges, and is shifted left
+  within its artwork area; a 390x844 screenshot confirms the mobile layout is
+  unchanged and remains full-width.
 - The production build passes. A 1366x900 production screenshot confirms the
   Tomorrowland hero poster is 12% larger and remains anchored to its prior top
   edge; a 390x844 screenshot confirms the responsive layout remains full-width
