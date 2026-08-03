@@ -2,6 +2,30 @@
 
 ## Plan
 
+- [x] Correct Hunter's hover/focus label to sit outside and above the Projects
+  image at the same mirrored offset, rather than overlaying the artwork.
+- [x] Match the landing LinkedIn and Email links to the top-right navigation's
+  shared responsive label size.
+- [x] Match Selected Work's line spacing to the landing Samantha Lash lockup.
+- [x] Move only Hunter's desktop hover label from below its Projects image to
+  the same offset inside the image, then run the production build.
+- [x] Establish one responsive body-copy size below the shared interface-label
+  size, based on the Canva goal portfolio's type hierarchy.
+- [x] Apply the smaller body scale consistently to Home descriptive copy, About
+  prose and experience details, and all project-detail descriptions.
+- [x] Build and visually verify the typography hierarchy on About and
+  representative project pages at desktop and mobile sizes.
+- [x] Replace the shared Home/About gray portrait placeholder with Samantha's
+  supplied portrait, preserving its intrinsic aspect ratio and old footprint.
+- [x] Anchor the portrait to the placeholder's left and bottom edges, then build
+  and visually verify the Home and About layouts at desktop and mobile sizes.
+- [x] Tie landing project numbers/titles and About-page section headings to the
+  landing navigation's shared responsive font-size token.
+- [x] Build and verify the unified label sizing at desktop and mobile widths.
+- [x] Normalize all directly adjacent Projects-page image pairs to one shared
+  gap while preserving intrinsic aspect ratios and the goal composition.
+- [x] Build and visually verify the corrected horizontal and vertical collage
+  spacing at the 1366x768 reference viewport and on mobile.
 - [x] Rebuild the Projects selected-work collage from the seven exact goal-mockup
   images, preserving their intrinsic aspect ratios, order, overlaps, and gaps.
 - [x] Match the desktop Selected Work lockup, edge-to-edge placement, logo, and
@@ -112,6 +136,29 @@
 
 ## Verification
 
+- The production build passes with landing social links using the shared
+  interface-label token, Selected Work using the landing identity's 1.3
+  line-height, and only Hunter's hover/focus label positioned 1.6rem above its
+  image.
+- The production build passes. At the 1366px Canva reference width, all body
+  copy now resolves to about 12.3px while shared headings and interface labels
+  remain about 13.7px. Desktop About and Hunter renders confirm the hierarchy;
+  a 500px responsive About render confirms clean wrapping and readability. All
+  five project routes share the same `projectFacts` description rule.
+- The production build passes. Desktop Home and About screenshots plus a
+  390x844 Home screenshot confirm Samantha's supplied 530x653 portrait replaces
+  both gray boxes without cropping or distortion and stays anchored to the old
+  footprint's left and bottom edges.
+- The production build passes. Desktop renders of Home and About confirm the
+  landing project number/title and the About Me, Experience, Education, Skills,
+  Languages, and Contact headings now use the same responsive size token as the
+  landing page's top-right About Me and + Projects links. Project disciplines
+  retain their existing smaller size.
+- The production build passes. At 1366x768, every directly facing Projects-page
+  image edge now derives from the same 1.025vw gap (approximately 14px), covering
+  all horizontal and vertical neighbors from La Manuela through Tomorrowland.
+  Intrinsic image ratios remain unchanged, and the existing responsive grid
+  continues to provide one consistent gap between mobile rows.
 - The production build passes. A 1366x768 browser comparison confirms the seven
   Projects-page images use the goal assets and intrinsic ratios at the reference
   coordinates: La Manuela at the left edge, Hunter above Levi's two-image group,
@@ -206,7 +253,3 @@
   their images and stop with zero overflow at each image's bottom edge.
 - No tracked files under `src/archive/`, `inspo/`, or `archive/legacy-site/`
   changed.
-
-## Deferred Inputs
-
-- Approved portrait image

@@ -31,7 +31,7 @@ function SiteNav({ current }: { current: "home" | "projects" | "about" }) {
 function NameLockup({ heading = true }: { heading?: boolean }) {
   return (
     <div className={styles.nameLockup}>
-      <div className={styles.portraitPlaceholder} aria-hidden="true" />
+      <img className={styles.portrait} src={site.portrait} alt="Portrait of Samantha Lash" />
       {heading ? <h1>Samantha<br />Lash</h1> : <p>Samantha<br />Lash</p>}
     </div>
   );

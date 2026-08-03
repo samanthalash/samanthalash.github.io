@@ -1,4 +1,5 @@
 import stampLogo from "../assets/brand/stamp-logo.png";
+import samanthaPortrait from "../assets/samantha.jpeg";
 import hunterHero from "../assets/projects/hunter/hero.png";
 import hunterBillboard from "../assets/projects/hunter/billboard.png";
 import levisBeach from "../assets/projects/levis/beach.png";
@@ -62,6 +63,7 @@ export interface ProjectCollageItem {
 export const site = {
   name: "Samantha Lash",
   logo: stampLogo,
+  portrait: samanthaPortrait,
   summary:
     "Passionate about art direction and brand strategy, building concepts from human insight to cohesive executions.",
   email: "samanthalash28@gmail.com",

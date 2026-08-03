@@ -34,11 +34,18 @@ the goal mockups.
 - Canvas: warm near-white with black type and project artwork providing color.
 - Display handwriting: Beth Ellen.
 - Interface and editorial copy: Anonymous Pro regular and bold.
+- Descriptive body copy uses one shared responsive scale below section headings
+  and interface labels, matching the hierarchy in the goal mockups.
 - Logo: Samantha's circular stamp; it links to Home.
-- Home/About portrait area: neutral gray placeholder until a portrait is
-  supplied.
+- Home/About portrait area: Samantha's supplied black-and-white portrait,
+  preserved at its intrinsic aspect ratio and anchored to the lower-left of the
+  original portrait footprint.
 - Composition: large negative space, asymmetric image placement, compact
   typewritten labels, and restrained underlined actions.
+- Landing LinkedIn and Email links share the top-right navigation's responsive
+  label size. Selected Work shares the landing name lockup's line spacing.
+- Projects collage labels appear beneath their images on hover or focus, except
+  Hunter, whose label appears outside and above the image at the mirrored gap.
 
 Desktop layouts should closely match the 1366px-wide goal exports without using
 the exports as flattened page backgrounds. Use the individual source images.
