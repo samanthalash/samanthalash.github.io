@@ -2,6 +2,10 @@
 
 ## Plan
 
+- [x] Add APRAMP's linked Media coverage section below the campaign details,
+  using the supplied collage at the full available content width.
+- [x] Keep the Tomorrowland next-project navigation below the new section and
+  build-check the resulting desktop and mobile layouts.
 - [x] Lower the landing-page description on smartphone layouts so it clears the
   Samantha Lash lockup and portrait.
 - [x] Build and visually verify the corrected landing intro at 390x844.
@@ -141,6 +145,11 @@
 
 ## Verification
 
+- The production build passes. At 1366px, APRAMP's Media coverage image spans
+  the full 1256.75px content width between the existing gutters; at 390px it
+  spans the full 350px responsive content width. Both layouts preserve the
+  collage's aspect ratio with no horizontal overflow, and the linked title and
+  image remain above the Tomorrowland next-project navigation.
 - The production build passes. A 390x844 screenshot confirms the landing-page
   description sits fully below the Samantha Lash lockup and portrait with a
   clear gap and no overlap.

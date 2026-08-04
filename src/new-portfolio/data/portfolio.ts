@@ -12,6 +12,7 @@ import aprampInvitation from "../assets/projects/apramp/un-regalo.png";
 import aprampInstallation from "../assets/projects/apramp/installation.png";
 import aprampInsideBox from "../assets/projects/apramp/inside-box.png";
 import aprampInterview from "../assets/projects/apramp/guy-speaking.png";
+import aprampMediaCoverage from "../assets/projects/apramp/media-coverage.png";
 import tomorrowlandPoster from "../assets/projects/tomorrowland/poster.png";
 import tomorrowlandInstagram from "../assets/projects/tomorrowland/instagram.png";
 import tomorrowlandBillboard from "../assets/projects/tomorrowland/tomorrowbilly.png";
@@ -45,6 +46,10 @@ export interface Project {
   gallery: ProjectImage[];
   layout: "portrait" | "landscape" | "overview";
   fullCampaignHref?: string;
+  mediaCoverage?: {
+    href: string;
+    image: ProjectImage;
+  };
 }
 
 export interface ProjectCollageItem {
@@ -143,6 +148,13 @@ export const projects: Project[] = [
     ],
     layout: "overview",
     fullCampaignHref: "/assets/FINAL-APRAMP-PRESENTATION.pdf",
+    mediaCoverage: {
+      href: "https://apramp.org/la-campana-de-apramp-falsas-promesas-visible-en-los-medios/",
+      image: {
+        src: aprampMediaCoverage,
+        alt: "News and broadcast coverage of APRAMP's False Promises campaign",
+      },
+    },
   },
   {
     slug: "tomorrowland-rebrand",

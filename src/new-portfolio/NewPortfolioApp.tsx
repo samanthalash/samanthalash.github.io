@@ -248,6 +248,18 @@ function ProjectPage({ project }: { project: Project }) {
         </div>
         <ProjectFacts project={project} />
       </section>
+      {project.mediaCoverage && (
+        <section className={styles.mediaCoverage} aria-labelledby="media-coverage-title">
+          <a href={project.mediaCoverage.href}>
+            <h2 id="media-coverage-title">Media coverage</h2>
+            <img
+              src={project.mediaCoverage.image.src}
+              alt={project.mediaCoverage.image.alt}
+              loading="lazy"
+            />
+          </a>
+        </section>
+      )}
       <nav className={styles.nextProject} aria-label="Project navigation">
         {(() => {
           const index = projects.findIndex((candidate) => candidate.slug === project.slug);
