@@ -132,7 +132,7 @@ function AboutPage() {
         <div className={styles.aboutContent}>
           <section className={styles.aboutRow}>
             <h1>About me</h1>
-            <p className={styles.boldCopy}>Creative Direction master's student with a background in branding, communications, and marketing. Passionate about building strategic, culturally relevant brands through concept-driven design.</p>
+            <p className={styles.boldCopy}>Creative Director with a background in communications and marketing. I create insight-led campaigns, brands, and visual identities rooted in strategy and culture.</p>
           </section>
           <section className={styles.aboutRow}>
             <h2>Experience</h2>

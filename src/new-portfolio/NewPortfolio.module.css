@@ -876,7 +876,7 @@
   }
 
   .homeSummary {
-    margin-top: calc(5rem + var(--home-copy-shift));
+    margin-top: calc(5rem + var(--identity-copy-shift));
   }
 
   .homeFeed {

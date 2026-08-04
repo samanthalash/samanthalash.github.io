@@ -2,6 +2,11 @@
 
 ## Plan
 
+- [x] Lower the landing-page description on smartphone layouts so it clears the
+  Samantha Lash lockup and portrait.
+- [x] Build and visually verify the corrected landing intro at 390x844.
+- [x] Replace the About Me introduction with Samantha's supplied copy while
+  preserving the existing typography and layout.
 - [x] Correct Hunter's hover/focus label to sit outside and above the Projects
   image at the same mirrored offset, rather than overlaying the artwork.
 - [x] Match the landing LinkedIn and Email links to the top-right navigation's
@@ -136,6 +141,11 @@
 
 ## Verification
 
+- The production build passes. A 390x844 screenshot confirms the landing-page
+  description sits fully below the Samantha Lash lockup and portrait with a
+  clear gap and no overlap.
+- The production build passes with the supplied About Me introduction using the
+  existing `boldCopy` paragraph structure and styling.
 - The production build passes with landing social links using the shared
   interface-label token, Selected Work using the landing identity's 1.3
   line-height, and only Hunter's hover/focus label positioned 1.6rem above its
