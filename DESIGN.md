@@ -11,23 +11,29 @@ The local exports in `references/goal-mockups/` are the authority for wording,
 project order, hierarchy, and desktop compositions. The Constanza screenshots in
 `references/constanza-inspiration/` are the authority for the fixed-left,
 scrolling-right desktop landing behavior.
+The three `MONAD NYC` screenshots in `references/goal-mockups/` are the supplied
+reference for the sixth project's hero, gallery order, and exact copy.
 
 ## Routes And Content
 
-- `/`: fixed introduction panel plus a separately scrolling list of five work
+- `/`: fixed introduction panel plus a separately scrolling list of six work
   previews on desktop; a normal stacked document on mobile.
-- `/projects/`: an editorial collage overview linking to all five projects.
+- `/projects/`: an editorial collage overview linking to all six projects.
 - `/about/`: biography, experience, education, skills, languages, and contact.
 - `/projects/hunter-campaign/`
 - `/projects/levis-campaign/`
 - `/projects/apramp-campaign/`
 - `/projects/tomorrowland-rebrand/`
 - `/projects/la-manuela-rebrand/`
+- `/projects/spanish-lullaby/`
 - `/archive/`: preserved previous interactive portfolio.
 
-Project order is Hunter, Levi's, APRAMP, Tomorrowland, and La Manuela. Project
-detail copy uses the exact Context, Role, Insight, Solution, and Tools wording in
-the goal mockups.
+Project order is Hunter, Levi's, APRAMP, Tomorrowland, La Manuela, and the Monad
+NYC editorial. Project detail copy uses the exact Context, Role, Insight,
+Solution, and Tools wording in the supplied goal references. The editorial's
+Home label is "Editorial Photoshoot" and its detail title is "Monad NYC
+Editorial." Its Projects overview image follows the original five-project
+collage as a second, lower composition.
 
 ## Visual System
 

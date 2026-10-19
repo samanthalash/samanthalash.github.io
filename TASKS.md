@@ -14,6 +14,8 @@
 - Standardized Home, About, and project-detail body copy on a smaller responsive
   scale beneath headings and interface labels.
 - Preserved and verified the previous portfolio at `/archive/`.
+- Added the sixth project, Monad NYC Editorial, with its supplied collage,
+  six-photo gallery, exact project copy, and clean detail route.
 
 ## Next
 

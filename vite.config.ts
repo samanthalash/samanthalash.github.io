@@ -255,6 +255,11 @@ function archiveRoutePlugin(): Plugin {
           title: "La Manuela Rebrand | Samantha Lash",
           description: "La Manuela brand identity project by Samantha Lash.",
         },
+        {
+          path: "projects/spanish-lullaby",
+          title: "Monad NYC Editorial | Samantha Lash",
+          description: "Monad NYC editorial photoshoot, art directed and styled by Samantha Lash.",
+        },
       ];
 
       await Promise.all(

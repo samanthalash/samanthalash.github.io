@@ -58,7 +58,7 @@ function HomePage() {
         {projects.map((project) => (
           <a className={styles.homeProject} href={`/projects/${project.slug}/`} key={project.slug}>
             <div className={styles.homeProjectMeta}>
-              <p><span>{project.number}</span>{project.title.toUpperCase()}</p>
+              <p><span>{project.number}</span>{(project.homeTitle ?? project.title).toUpperCase()}</p>
               <ul>
                 {project.disciplines.map((discipline) => <li key={discipline}>{discipline}</li>)}
               </ul>
@@ -212,6 +212,8 @@ function ProjectPage({ project }: { project: Project }) {
           project.slug === "tomorrowland-rebrand" ? styles.tomorrowlandProjectHero : ""
         } ${
           project.slug === "la-manuela-rebrand" ? styles.laManuelaProjectHero : ""
+        } ${
+          project.slug === "spanish-lullaby" ? styles.spanishLullabyProjectHero : ""
         }`}
       >
         <div className={styles.projectTitle}>
@@ -234,6 +236,8 @@ function ProjectPage({ project }: { project: Project }) {
         project.slug === "apramp-campaign" ? styles.aprampProjectDetails : ""
       } ${
         project.slug === "la-manuela-rebrand" ? styles.laManuelaProjectDetails : ""
+      } ${
+        project.slug === "spanish-lullaby" ? styles.spanishLullabyProjectDetails : ""
       }`}>
         <div className={styles.projectGallery}>
           {project.gallery.map((image, index) => (

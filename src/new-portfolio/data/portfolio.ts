@@ -22,6 +22,13 @@ import laManuelaCover from "../assets/projects/la-manuela/cover.png";
 import laManuelaVision from "../assets/projects/la-manuela/vision.png";
 import laManuelaMeaning from "../assets/projects/la-manuela/meaning.png";
 import laManuelaMoodboard from "../assets/projects/la-manuela/moodboard.png";
+import spanishLullabyOverview from "../assets/projects/spanish lullaby/spanish_lullaby_home_page.png";
+import spanishLullabyOne from "../assets/projects/spanish lullaby/Spanish Lullaby Editorial (1).webp";
+import spanishLullabyTwo from "../assets/projects/spanish lullaby/Spanish Lullaby Editorial (2).webp";
+import spanishLullabyThree from "../assets/projects/spanish lullaby/Spanish Lullaby Editorial (3).webp";
+import spanishLullabyFour from "../assets/projects/spanish lullaby/Spanish Lullaby Editorial (4).webp";
+import spanishLullabyFive from "../assets/projects/spanish lullaby/Spanish Lullaby Editorial (5).webp";
+import spanishLullabySix from "../assets/projects/spanish lullaby/Spanish Lullaby Editorial (6).webp";
 
 export interface ProjectImage {
   src: string;
@@ -32,6 +39,7 @@ export interface Project {
   slug: string;
   number: string;
   title: string;
+  homeTitle?: string;
   displayTitle: string;
   category: string;
   disciplines: string[];
@@ -62,7 +70,8 @@ export interface ProjectCollageItem {
     | "collageApramp"
     | "collageTomorrowlandBracelet"
     | "collageTomorrowland"
-    | "collageLaManuela";
+    | "collageLaManuela"
+    | "collageSpanishLullaby";
 }
 
 export const site = {
@@ -203,6 +212,36 @@ export const projects: Project[] = [
     ],
     layout: "landscape",
   },
+  {
+    slug: "spanish-lullaby",
+    number: "06",
+    title: "Monad NYC Editorial",
+    homeTitle: "Editorial Photoshoot",
+    displayTitle: "MONAD NYC\nEDITORIAL",
+    category: "Art Direction + Styling",
+    disciplines: ["art direction", "styling"],
+    context:
+      "An editorial photoshoot submitted as a part of Monad NYC’s cover contest. A collaboration that sought to convey a unique visual perspective while staying in alignment with the publication’s tone and style.",
+    role: "Art Director, Stylist.",
+    insight:
+      "Madrid’s historical architecture holds centuries of tradition, but is inhabited by today’s youth in a unique way – honoring the past and inspiring the future.",
+    solution:
+      "A modern silhouette bridges past and present, letting the city itself become a character in the story. Rather than resolving the tension between tradition and the present, the shoot leans into it, showing how Madrid's history lives on not just in its architecture, but in the people who move through it today.",
+    tools: ["Figma", "Second-hand sourcing"],
+    hero: {
+      src: spanishLullabyOverview,
+      alt: "Spanish Lullaby editorial collage with Madrid portraits and café details",
+    },
+    gallery: [
+      { src: spanishLullabySix, alt: "Model wearing a red flower and black dress on a Madrid street" },
+      { src: spanishLullabyFour, alt: "Model wearing a red veil while leaning against a Madrid wall" },
+      { src: spanishLullabyThree, alt: "Model seated inside a traditional Madrid café" },
+      { src: spanishLullabyTwo, alt: "Model walking past a café in a black dress" },
+      { src: spanishLullabyFive, alt: "Model reclining on a chair in a sunlit Madrid street" },
+      { src: spanishLullabyOne, alt: "Model seated in front of wooden doors in a black dress" },
+    ],
+    layout: "portrait",
+  },
 ];
 
 export const projectCollageItems: ProjectCollageItem[] = [
@@ -240,6 +279,14 @@ export const projectCollageItems: ProjectCollageItem[] = [
     slug: "la-manuela-rebrand",
     image: { src: laManuelaCover, alt: "La Manuela rebrand identity" },
     placement: "collageLaManuela",
+  },
+  {
+    slug: "spanish-lullaby",
+    image: {
+      src: spanishLullabyOverview,
+      alt: "Spanish Lullaby editorial portraits and Madrid details",
+    },
+    placement: "collageSpanishLullaby",
   },
 ];
 

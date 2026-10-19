@@ -2,6 +2,12 @@
 
 ## Plan
 
+- [x] Add the Monad NYC editorial as project 06 in typed data, the Home feed,
+  Projects overview, and a clean detail route using the supplied exact copy.
+- [x] Match the five-photo hero and six-photo detail gallery to the screenshots,
+  including responsive layouts and meaningful image descriptions.
+- [x] Build, inspect desktop and mobile output, verify direct routes and archive,
+  then commit and push the completed work.
 - [x] Add APRAMP's linked Media coverage section below the campaign details,
   using the supplied collage at the full available content width.
 - [x] Keep the Tomorrowland next-project navigation below the new section and
@@ -145,6 +151,11 @@
 
 ## Verification
 
+- The production build passes with the new clean route and six optimized gallery
+  images. Browser captures confirm the hero composition at 1366px, the six-photo
+  gallery and fact column at desktop, the Projects-page addition below the
+  original collage, and a 390px detail page with no horizontal overflow.
+  Direct requests for `/projects/spanish-lullaby/` and `/archive/` return 200.
 - The production build passes. At 1366px, APRAMP's Media coverage image spans
   the full 1256.75px content width between the existing gutters; at 390px it
   spans the full 350px responsive content width. Both layouts preserve the

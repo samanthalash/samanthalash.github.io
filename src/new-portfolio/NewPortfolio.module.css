@@ -257,10 +257,8 @@
 }
 
 .projectsPage {
-  height: 100svh;
-  min-height: 0;
+  min-height: 100svh;
   padding: 0;
-  overflow: hidden;
 }
 
 .projectsPage .logoLink {
@@ -289,7 +287,7 @@
   --apramp-height: 19.729vw;
   position: relative;
   width: 100vw;
-  height: 100svh;
+  height: calc(100svh + 58vw);
 }
 
 .collageProject {
@@ -369,6 +367,12 @@
   top: 38.93svh;
   left: 0;
   width: 18.3vw;
+}
+
+.collageSpanishLullaby {
+  top: calc(100svh + 5vw);
+  left: 59vw;
+  width: 35vw;
 }
 
 .selectedWork {
@@ -538,7 +542,8 @@
 
 @media (min-width: 901px) {
   .hunterProjectHero > img,
-  .tomorrowlandProjectHero > img {
+  .tomorrowlandProjectHero > img,
+  .spanishLullabyProjectHero > img {
     align-self: start;
     justify-self: end;
     width: auto;
@@ -742,6 +747,26 @@
   max-height: none;
   object-fit: contain;
   object-position: left center;
+}
+
+.spanishLullabyProjectDetails {
+  grid-template-columns: minmax(320px, 38%) 1fr;
+  gap: clamp(64px, 8vw, 120px);
+  margin-top: clamp(72px, 6vw, 96px);
+}
+
+.spanishLullabyProjectDetails .projectGallery {
+  gap: clamp(8px, 1vw, 14px);
+}
+
+.spanishLullabyProjectDetails .projectGallery img,
+.spanishLullabyProjectDetails .projectGallery .galleryLead {
+  grid-column: auto;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  object-fit: contain;
 }
 
 .projectFacts {
@@ -999,6 +1024,13 @@
 
   .projectTitle h1 {
     font-size: clamp(1.15rem, 5.3vw, 3.25rem);
+  }
+
+  .spanishLullabyProjectHero > img {
+    min-width: 0;
+    width: 100%;
+    height: auto;
+    max-height: none;
   }
 
   .projectHero_landscape .projectHeroAccent {
